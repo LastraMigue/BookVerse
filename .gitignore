@@ -1,0 +1,36 @@
+# ==============================================================================
+# Git Ignore - BookVerse
+# ==============================================================================
+
+# Configuración local con credenciales y contraseñas
+config.php
+includes/config.php
+*.local.php
+.env
+
+# Archivos y carpetas de editores e IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+
+# Archivos temporales y del sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.swp
+*~
+
+# Logs del servidor y errores
+*.log
+error_log
+
+# Paquetes y dependencias (si se usan herramientas externas)
+node_modules/
+vendor/
+.sass-cache/
+*.css.map
