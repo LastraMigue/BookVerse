@@ -409,3 +409,92 @@
     padding: 8px 12px;
     white-space: normal;
 }
+
+/* MisListas.php */
+
+.cuerpo-listas {
+    height: 588px;
+    display: grid;
+    grid-template-columns: 139px 1fr;
+}
+
+.barra-lateral-biblioteca {
+    border-right: 1px solid #40392f;
+    padding: 24px 15px;
+}
+
+.barra-lateral-biblioteca>p {
+    margin: 0 0 7px;
+}
+
+.barra-lateral-biblioteca h2 {
+    margin: 0 0 18px;
+}
+
+.barra-lateral-biblioteca nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-listas {
+    padding: 23px 28px;
+}
+
+.encabezado-listas {
+    height: 94px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8c1b4;
+}
+
+.encabezado-listas p {
+    margin: 0 0 8px;
+}
+
+.encabezado-listas h2 {
+    margin: 0 0 7px;
+}
+
+.encabezado-listas>a {
+    width: 114px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    margin-top: 27px;
+    background: #c6953f;
+}
+
+.cuadricula-listas {
+    height: 421px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 12px;
+    padding-top: 18px;
+}
+
+.contenido-listas {
+    min-width: 0;
+}
+
+.encabezado-listas {
+    min-height: 120px;
+    height: auto;
+    align-items: center;
+    gap: 16px;
+}
+
+.cuadricula-listas {
+    height: auto;
+    grid-auto-rows: minmax(230px, auto);
+}
+
+.encabezado-listas>a {
+    width: auto;
+    min-width: 160px;
+    height: auto;
+    min-height: 44px;
+    padding: 8px 12px;
+}
+
