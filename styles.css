@@ -1,0 +1,57 @@
+/* inicio.php */
+
+.pagina-inicio {
+    display: block;
+    min-height: 100vh;
+    background: #eddfc7;
+    color: #1d1b18;
+}
+
+.contenido-principal-inicio {
+    width: min(1280px, calc(100% - 40px));
+    margin: 24px auto 0;
+}
+
+.destacado-del-mes {
+    border: 1px solid #d5c7b1;
+    padding: clamp(24px, 4vw, 56px);
+}
+
+.destacado-del-mes>h1 {
+    margin: 0 0 clamp(28px, 4vw, 52px);
+}
+
+.distribucion-destacado {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 6vw, 80px);
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.detalles-destacado {
+    min-width: 0;
+    max-width: 650px;
+}
+
+.rotulo-destacado {
+    margin: 0 0 12px;
+}
+
+.detalles-destacado h2 {
+    margin: 0 0 8px;
+}
+
+.autor-destacado {
+    margin: 0 0 18px;
+}
+
+.descripcion-destacado {
+    max-width: 62ch;
+    margin: 0 0 24px;
+}
+
+.invitacion-debate {
+    margin: 18px 0 22px;
+}
