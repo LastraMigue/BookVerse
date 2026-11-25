@@ -1,0 +1,1033 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #151a27;
+    color: #1d1b19;
+}
+
+
+.barra-superior {
+    height: 78px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 17px 12px;
+    background: #e9ddc8;
+    border-bottom: 1px solid #bdb49f;
+}
+
+
+.enlaces-superiores {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    width: 100%;
+    margin-left: auto;
+}
+
+
+.enlaces-superiores a,
+.ajustes-navbar summary {
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #d0c2aa;
+    background: #f3ecde;
+    color: #3b382f;
+    padding: 0 5px;
+    font-size: 7px;
+    white-space: nowrap;
+}
+
+
+.enlaces-superiores a {
+    text-decoration: none;
+}
+
+
+.ajustes-navbar {
+    position: relative;
+}
+
+
+.ajustes-navbar summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+
+.ajustes-navbar summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.ajustes-navbar[open]>div {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 20;
+    display: grid;
+    gap: 4px;
+    min-width: max-content;
+    padding: 6px;
+    border: 1px solid #c98e34;
+    border-radius: 12px;
+    background: #ead4a9;
+    box-shadow: 0 12px 24px rgba(29, 27, 25, .2);
+}
+
+
+.ajustes-navbar[open]>div a {
+    justify-content: start;
+}
+
+
+.contenedor-busqueda {
+    position: relative;
+    margin: 0 0 14px;
+}
+
+
+.contenedor-busqueda svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    stroke: #777c83;
+}
+
+
+.busqueda {
+    width: 100%;
+    height: 39px;
+    border: 1px solid #c8c9cf;
+    border-radius: 2px;
+    padding: 0 12px 0 40px;
+    color: #777;
+    font-size: 11px;
+}
+
+
+.pagina-catalogo {
+    min-width: 800px;
+    min-height: 700px;
+    display: block;
+    background: #eddfc7;
+    color: #1d1b18;
+}
+
+
+.marco-catalogo {
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    margin: 12px auto;
+}
+
+
+.panel-catalogo {
+    height: 534px;
+    border: 1px solid #28231d;
+}
+
+
+.navegacion-catalogo {
+    height: 44px;
+    display: grid;
+    grid-template-columns: 138px 1fr 234px;
+    align-items: center;
+    border-bottom: 1px solid #383229;
+}
+
+
+.titulo-catalogo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding-left: 23px;
+}
+
+
+.titulo-catalogo span {
+    width: 20px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #1d1b18;
+    background: #c99a49;
+}
+
+
+.busqueda-catalogo {
+    position: relative;
+    width: 338px;
+}
+
+
+.busqueda-catalogo svg {
+    position: absolute;
+    left: 11px;
+    top: 7px;
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: #777;
+    stroke-width: 1.6;
+}
+
+
+.busqueda-catalogo input {
+    width: 100%;
+    height: 23px;
+    border: 1px solid #bfc0bf;
+    padding: 0 10px 0 28px;
+    font-size: 7px;
+}
+
+
+.cuerpo-catalogo {
+    height: 488px;
+    display: grid;
+    grid-template-columns: 139px 1fr;
+}
+
+
+.pagina-detalle .marco-catalogo {
+    margin-top: 12px;
+}
+
+
+.panel-detalle {
+    height: 534px;
+}
+
+
+.pagina-formulario .marco-catalogo {
+    margin-top: 12px;
+}
+
+
+.panel-formulario {
+    height: 634px;
+}
+
+
+.pagina-listas .marco-catalogo {
+    margin-top: 12px;
+}
+
+
+.panel-listas {
+    height: 634px;
+}
+
+
+.barra-lateral-biblioteca nav a {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #eeeae2;
+}
+
+
+.barra-lateral-biblioteca nav a.seleccionado {
+    height: 35px;
+    border: 1px solid #1f1d19;
+    background: #eee4d0;
+    padding: 0 8px;
+}
+
+
+.barra-lateral-biblioteca nav a.seleccionado b {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #c29850;
+}
+
+
+.simbolo-menu,
+.simbolo-menu-cuadrado {
+    width: 9px;
+    height: 9px;
+    display: block;
+    border: 1px solid #555;
+}
+
+
+.simbolo-menu {
+    background: #c39a58;
+}
+
+
+.pagina-administracion .marco-catalogo {
+    margin-top: 12px;
+}
+
+
+.panel-administracion {
+    height: 634px;
+}
+
+
+.pagina-catalogo {
+    min-height: 100vh;
+}
+
+
+.marco-catalogo {
+    margin-bottom: 0;
+}
+
+
+.panel-catalogo,
+.panel-detalle,
+.panel-formulario,
+.panel-listas,
+.panel-administracion {
+    height: auto;
+    min-height: 534px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.panel-formulario,
+.panel-listas,
+.panel-administracion {
+    min-height: 634px;
+}
+
+
+.navegacion-catalogo {
+    flex: 0 0 44px;
+}
+
+
+.cuerpo-catalogo,
+.cuerpo-detalle,
+.contenido-formulario,
+.cuerpo-listas,
+.cuerpo-administracion {
+    flex: 1 0 auto;
+    height: auto;
+}
+
+
+.cuerpo-catalogo,
+.cuerpo-detalle {
+    min-height: 488px;
+}
+
+
+body,
+body * {
+    font-size: revert !important;
+}
+
+
+.navegacion-catalogo {
+    grid-template-columns: minmax(150px, .8fr) minmax(220px, 1.4fr) minmax(300px, 1.8fr);
+    gap: 12px;
+    padding: 0 16px;
+}
+
+
+.busqueda-catalogo {
+    width: 100%;
+    min-width: 0;
+}
+
+
+.cuerpo-catalogo,
+.cuerpo-listas,
+.cuerpo-administracion {
+    grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+}
+
+
+.barra-lateral-biblioteca nav a {
+    min-height: 40px;
+    height: auto;
+}
+
+
+.barra-inicio {
+    height: auto;
+    min-height: 68px;
+    justify-content: flex-end;
+    border-bottom: 2px solid #c98e34;
+    background: #3f3f43;
+    box-shadow: 0 4px 18px rgba(29, 27, 25, .16);
+    padding: 10px clamp(16px, 4vw, 56px);
+}
+
+
+.barra-inicio .enlaces-superiores {
+    width: auto;
+    margin-left: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+
+.barra-inicio .enlaces-superiores a,
+.barra-inicio .ajustes-navbar summary {
+    height: auto;
+    min-height: 44px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: #efe2cf;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color .18s ease, color .18s ease, transform .18s ease;
+}
+
+
+.barra-inicio .enlaces-superiores a:hover,
+.barra-inicio .ajustes-navbar summary:hover,
+.barra-inicio .ajustes-navbar[open] summary {
+    background: #c98e34;
+    color: #1d1b18;
+}
+
+
+.barra-inicio .enlaces-superiores a[aria-current="page"],
+.barra-inicio .ajustes-navbar[open]>div a[aria-current="page"] {
+    border-color: #c98e34;
+    background: #c98e34;
+    color: #1d1b18;
+}
+
+
+.barra-inicio .enlaces-superiores a:hover,
+.barra-inicio .ajustes-navbar summary:hover {
+    transform: translateY(-1px);
+}
+
+
+.barra-inicio .enlaces-superiores a:focus-visible,
+.barra-inicio .ajustes-navbar summary:focus-visible,
+.barra-inicio .ajustes-navbar[open]>div a:focus-visible {
+    outline: 2px solid #c98e34;
+    outline-offset: 3px;
+}
+
+
+.barra-inicio .ajustes-navbar summary::after {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    margin-left: 9px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    content: "";
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform .18s ease;
+}
+
+
+.barra-inicio .ajustes-navbar[open] summary::after {
+    transform: rotate(225deg) translate(-1px, -1px);
+}
+
+
+.barra-inicio .ajustes-navbar[open]>div a {
+    min-height: 40px;
+    border: 0;
+    border-radius: 8px;
+    color: #3b382f;
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+
+.barra-inicio .ajustes-navbar[open]>div a:hover {
+    background: #c98e34;
+    color: #1d1b18;
+}
+
+
+.pagina-catalogo .navegacion-catalogo {
+    grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+}
+
+
+.busqueda-inicio {
+    width: min(920px, 100%);
+    margin: 0 auto 24px;
+}
+
+
+.busqueda-inicio .busqueda {
+    height: 50px;
+    border-color: #b7aa94;
+    padding-left: 44px;
+}
+
+/* inicio.php */
+
+.pagina-inicio {
+    display: block;
+    min-height: 100vh;
+    background: #eddfc7;
+    color: #1d1b18;
+}
+
+.contenido-principal-inicio {
+    max-width: 980px;
+}
+
+.destacado-del-mes {
+    border: 1px solid #d1c09f;
+    border-radius: 12px;
+    background: #f8f1e3;
+    box-shadow: 0 8px 24px rgba(29, 27, 25, .08);
+}
+
+.destacado-del-mes>h1 {
+    color: #3f3f43;
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+}
+
+.distribucion-destacado {
+    gap: 16px;
+}
+
+.detalles-destacado {
+    padding: 8px;
+}
+
+.rotulo-destacado {
+    color: #a47121;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.detalles-destacado h2 {
+}
+
+.autor-destacado {
+}
+
+.descripcion-destacado {
+}
+
+.invitacion-debate {
+}
+
+/* catalogo.php */
+
+.barra-lateral-catalogo {
+}
+
+.encabezado-filtros {
+}
+
+.encabezado-filtros h2 {
+}
+
+.encabezado-filtros button {
+}
+
+.barra-lateral-catalogo fieldset {
+}
+
+.barra-lateral-catalogo legend {
+}
+
+.barra-lateral-catalogo label {
+}
+
+.barra-lateral-catalogo label input {
+}
+
+.resultados-catalogo {
+}
+
+.encabezado-resultados {
+}
+
+.encabezado-resultados p {
+}
+
+.encabezado-resultados h2 {
+}
+
+.selector-orden {
+}
+
+.selector-orden select {
+}
+
+.cuadricula-libros {
+}
+
+.encabezado-resultados {
+}
+
+.barra-lateral-catalogo label {
+}
+
+.barra-lateral-catalogo label {
+}
+
+.barra-lateral-catalogo label input {
+}
+
+.selector-orden {
+}
+
+.selector-orden select {
+}
+
+/* FormularioLibro.php */
+
+.contenido-formulario {
+}
+
+.encabezado-formulario {
+}
+
+.encabezado-formulario p {
+}
+
+.encabezado-formulario h2 {
+}
+
+.boton-cerrar-formulario {
+}
+
+.separador-formulario {
+}
+
+.formulario-libro {
+}
+
+.formulario-libro h3 {
+}
+
+.etiqueta-formulario {
+}
+
+.campo-texto {
+}
+
+.fila-formulario {
+}
+
+.fila-formulario select {
+}
+
+.formulario-libro textarea {
+}
+
+.contador-caracteres {
+}
+
+.carga-portada {
+}
+
+.simbolo-carga {
+}
+
+.carga-portada strong {
+}
+
+.carga-portada small {
+}
+
+.carga-portada button {
+}
+
+.recomendacion {
+}
+
+.recomendacion strong {
+}
+
+.recomendacion p {
+}
+
+.acciones-formulario {
+}
+
+.acciones-formulario button {
+}
+
+.acciones-formulario button:last-child {
+}
+
+.contenido-formulario,
+.cuerpo-listas,
+.cuerpo-administracion {
+}
+
+.contenido-formulario {
+}
+
+.encabezado-formulario {
+}
+
+.formulario-libro {
+}
+
+.campo-texto {
+}
+
+.formulario-libro textarea {
+}
+
+.carga-portada {
+}
+
+.recomendacion {
+}
+
+.acciones-formulario {
+}
+
+.acciones-formulario button,
+.acciones-formulario button:last-child {
+}
+
+.carga-portada button {
+}
+
+/* MisListas.php */
+
+.cuerpo-listas {
+}
+
+.barra-lateral-biblioteca {
+}
+
+.barra-lateral-biblioteca>p {
+}
+
+.barra-lateral-biblioteca h2 {
+}
+
+.barra-lateral-biblioteca nav {
+}
+
+.contenido-listas {
+}
+
+.encabezado-listas {
+}
+
+.encabezado-listas p {
+}
+
+.encabezado-listas h2 {
+}
+
+.encabezado-listas>a {
+}
+
+.cuadricula-listas {
+}
+
+.contenido-listas {
+}
+
+.encabezado-listas {
+}
+
+.cuadricula-listas {
+}
+
+.encabezado-listas>a {
+}
+
+/* libro.php */
+
+.cuerpo-detalle {
+}
+
+.contenido-principal-detalle {
+}
+
+.migas-de-pan {
+}
+
+.resumen-libro {
+}
+
+.portada-detalle {
+}
+
+.portada-detalle i {
+}
+
+.portada-detalle i::before {
+}
+
+.portada-detalle i::after {
+}
+
+.informacion-resumen {
+}
+
+.informacion-resumen .etiqueta-genero {
+}
+
+.informacion-resumen h2 {
+}
+
+.informacion-resumen small {
+}
+
+.estrellas-detalle {
+}
+
+.estrellas-detalle b {
+}
+
+.dato-valoraciones {
+}
+
+.boton-agregar-lista,
+.boton-agregar-estanteria {
+}
+
+.boton-agregar-lista {
+}
+
+.sinopsis {
+}
+
+.sinopsis h3 {
+}
+
+.sinopsis p {
+}
+
+.barra-lateral-detalle {
+}
+
+.barra-lateral-detalle h3,
+.encabezado-resenas h3 {
+}
+
+.barra-lateral-detalle dl {
+}
+
+.barra-lateral-detalle dd {
+}
+
+.seccion-valoracion {
+}
+
+.valoracion-media {
+}
+
+.barras-valoracion div {
+}
+
+.barras-valoracion i {
+}
+
+.barras-valoracion i span {
+}
+
+.resenas {
+}
+
+.encabezado-resenas {
+}
+
+.resenas article {
+}
+
+.imagen-perfil {
+}
+
+.resenas article strong {
+}
+
+.resenas article div div {
+}
+
+.resenas article div div span {
+}
+
+.resenas article p {
+}
+
+.cuerpo-detalle {
+}
+
+.resumen-libro {
+}
+
+.sinopsis {
+}
+
+.barra-lateral-detalle dl {
+}
+
+.barras-valoracion div {
+}
+/* administracion.php */
+
+.cuerpo-administracion {
+}
+
+.barra-lateral-administracion {
+}
+
+.barra-lateral-administracion nav a {
+}
+
+.contenido-moderacion {
+}
+
+.encabezado-moderacion {
+}
+
+.encabezado-moderacion p {
+}
+
+.encabezado-moderacion h2 {
+}
+
+.cuenta-pendientes {
+}
+
+.separador-moderacion {
+}
+
+.pestanas-reportes {
+}
+
+.pestanas-reportes button {
+}
+
+.pestanas-reportes button.activo {
+}
+
+.pestanas-reportes button span {
+}
+
+.tabla-reportes {
+}
+
+.tabla-reportes thead {
+}
+
+.tabla-reportes th {
+}
+
+.tabla-reportes th:nth-child(1) {
+}
+
+.tabla-reportes th:nth-child(2) {
+}
+
+.tabla-reportes th:nth-child(3) {
+}
+
+.tabla-reportes th:nth-child(4) {
+}
+
+.pie-tabla {
+}
+
+.pie-tabla nav {
+}
+
+.pie-tabla button {
+}
+
+.pie-tabla button.activo {
+}
+
+.encabezado-moderacion {
+}
+
+.pestanas-reportes {
+}
+
+.tabla-reportes th:nth-child(1) {
+}
+
+.tabla-reportes th:nth-child(2) {
+}
+
+.tabla-reportes th:nth-child(3) {
+}
+
+.tabla-reportes th:nth-child(4) {
+}
+
+.tabla-reportes th {
+}
+
+.pie-tabla {
+}
+
+.pie-tabla button {
+}
+
+.cuenta-pendientes {
+}
+
+.pestanas-reportes button {
+}
+
+.tabla-reportes thead {
+}
+
+.tabla-reportes th {
+}
+
+.pie-tabla nav {
+}
+/* CrearCuenta.php */
+
+.pagina-acceso {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #eddfc7;
+    color: #1d1b18;
+}.tarjeta-acceso {
+}.subtitulo-acceso {
+}.tarjeta-acceso h1 {
+}.introduccion-acceso {
+}.formulario-acceso {
+}.formulario-acceso>input {
+}.opciones-acceso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 4px 0 10px;
+}.opcion-recordar {
+}.formulario-acceso>button {
+}.enlace-registro {
+}.pagina-acceso {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}.pagina-acceso .tarjeta-acceso {
+}
+
