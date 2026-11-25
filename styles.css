@@ -185,3 +185,227 @@
     min-height: 44px;
     padding: 8px 12px;
 }
+
+/* FormularioLibro.php */
+
+.contenido-formulario {
+    height: 588px;
+    padding: 22px clamp(24px, 9.3vw, 112px) 18px;
+}
+
+.encabezado-formulario {
+    height: 90px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.encabezado-formulario p {
+    margin: 0 0 10px;
+}
+
+.encabezado-formulario h2 {
+    margin: 0 0 7px;
+}
+
+.boton-cerrar-formulario {
+    width: 23px;
+    height: 23px;
+    margin-right: -1px;
+    border: 1px solid #2b2925;
+}
+
+.separador-formulario {
+    height: 1px;
+    margin-bottom: 17px;
+    background: #c6c0b4;
+}
+
+.formulario-libro {
+    height: 398px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(190px, 1fr);
+    column-gap: 24px;
+}
+
+.formulario-libro h3 {
+    margin: 0 0 17px;
+}
+
+.etiqueta-formulario {
+    display: block;
+    margin: 0 0 7px;
+}
+
+.campo-texto {
+    width: 100%;
+    height: 27px;
+    margin-bottom: 13px;
+    border: 1px solid #aaa69d;
+    border-radius: 0;
+    padding: 0 8px;
+    color: #555;
+    font-size: 7px;
+}
+
+.fila-formulario {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.fila-formulario select {
+    appearance: auto;
+}
+
+.formulario-libro textarea {
+    width: 100%;
+    height: 89px;
+    resize: vertical;
+    border: 1px solid #aaa69d;
+    padding: 8px;
+    color: #555;
+    font-size: 7px;
+}
+
+.contador-caracteres {
+    display: block;
+    margin-top: 5px;
+}
+
+.carga-portada {
+    height: 183px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px dashed #6f6b62;
+    padding-top: 16px;
+}
+
+.simbolo-carga {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 12px;
+    border: 1px solid #b58a49;
+    border-radius: 50%;
+}
+
+.carga-portada strong {
+    margin-bottom: 7px;
+}
+
+.carga-portada small {
+    margin-bottom: 11px;
+}
+
+.carga-portada button {
+    width: 112px;
+    height: 25px;
+    margin-bottom: 8px;
+    border: 1px solid #28251f;
+}
+
+.recomendacion {
+    height: 49px;
+    margin-top: 0;
+    border: 1px solid #b9b1a2;
+    background: #e6d5b9;
+    padding: 8px 9px;
+}
+
+.recomendacion strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.recomendacion p {
+    margin: 0;
+}
+
+.acciones-formulario {
+    height: 52px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 8px;
+    border-top: 1px solid #aaa39a;
+}
+
+.acciones-formulario button {
+    width: 61px;
+    height: 27px;
+    border: 1px solid #28251f;
+}
+
+.acciones-formulario button:last-child {
+    width: 76px;
+    background: #c6953f;
+}
+
+.contenido-formulario,
+.cuerpo-listas,
+.cuerpo-administracion {
+    min-height: 588px;
+}
+
+.contenido-formulario {
+    height: auto;
+    padding: 24px clamp(20px, 7vw, 72px);
+}
+
+.encabezado-formulario {
+    min-height: 110px;
+    height: auto;
+}
+
+.formulario-libro {
+    min-height: 450px;
+    height: auto;
+    grid-template-columns: minmax(0, 1.65fr) minmax(200px, 1fr);
+    gap: 24px;
+}
+
+.campo-texto {
+    height: 44px;
+}
+
+.formulario-libro textarea {
+    min-height: 120px;
+    height: 120px;
+}
+
+.carga-portada {
+    min-height: 220px;
+    height: auto;
+    justify-content: center;
+    padding: 20px;
+}
+
+.recomendacion {
+    height: auto;
+    min-height: 60px;
+}
+
+.acciones-formulario {
+    min-height: 72px;
+    height: auto;
+    align-items: center;
+}
+
+.acciones-formulario button,
+.acciones-formulario button:last-child {
+    width: auto;
+    min-height: 40px;
+    padding: 6px 14px;
+}
+
+.carga-portada button {
+    width: min(100%, 220px);
+    max-width: 100%;
+    min-height: 44px;
+    height: auto;
+    padding: 8px 12px;
+    white-space: normal;
+}
