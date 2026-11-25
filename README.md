@@ -72,6 +72,9 @@ feature/<rol>-<tarea> (ramas de trabajo individual)
 
 ---
 
+## Enlace de los wareframes de figma:  https://www.figma.com/make/UIoSnVJejjzYC8s7mosjer/Wireframes-deplataforma-lectora?code-node-id=0-6&p=f&t=iuisifShVjXlhJFW-0&fullscreen=1&previewroute=%2F%23header
+
+
 ## Estructura del Proyecto
 
 ```text
