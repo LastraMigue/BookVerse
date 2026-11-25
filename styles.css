@@ -8,493 +8,386 @@
 }
 
 .contenido-principal-inicio {
-    width: min(1280px, calc(100% - 40px));
-    margin: 24px auto 0;
 }
 
 .destacado-del-mes {
-    border: 1px solid #d5c7b1;
-    padding: clamp(24px, 4vw, 56px);
 }
 
 .destacado-del-mes>h1 {
-    margin: 0 0 clamp(28px, 4vw, 52px);
 }
 
 .distribucion-destacado {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(28px, 6vw, 80px);
-    max-width: 1040px;
-    margin: 0 auto;
 }
 
 .detalles-destacado {
-    min-width: 0;
-    max-width: 650px;
 }
 
 .rotulo-destacado {
-    margin: 0 0 12px;
 }
 
 .detalles-destacado h2 {
-    margin: 0 0 8px;
 }
 
 .autor-destacado {
-    margin: 0 0 18px;
 }
 
 .descripcion-destacado {
-    max-width: 62ch;
-    margin: 0 0 24px;
 }
 
 .invitacion-debate {
-    margin: 18px 0 22px;
 }
+
 /* catalogo.php */
 
-
 .barra-lateral-catalogo {
-    border-right: 1px solid #3d382f;
-    padding: 26px 14px 18px 16px;
 }
 
 .encabezado-filtros {
-    height: 24px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
 }
 
 .encabezado-filtros h2 {
-    margin: 0;
 }
 
 .encabezado-filtros button {
-    border: 0;
-    border-bottom: 1px solid #5d5b54;
-    background: transparent;
-    padding: 0;
 }
 
 .barra-lateral-catalogo fieldset {
-    border: 0;
-    margin: 10px 0 0;
-    padding: 0;
 }
 
 .barra-lateral-catalogo legend {
-    margin-bottom: 9px;
-    font-size: 8px;
-    font-weight: 700;
 }
 
 .barra-lateral-catalogo label {
-    height: 23px;
-    display: grid;
-    grid-template-columns: 12px 1fr 18px;
-    align-items: center;
 }
 
 .barra-lateral-catalogo label input {
-    width: 9px;
-    height: 9px;
-    margin: 0;
-    accent-color: #555;
 }
 
 .resultados-catalogo {
-    padding: 23px 19px 18px 16px;
 }
 
 .encabezado-resultados {
-    height: 82px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .encabezado-resultados p {
-    margin: 0 0 6px;
 }
 
 .encabezado-resultados h2 {
-    margin: 0 0 7px;
 }
 
 .selector-orden {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 16px;
 }
 
 .selector-orden select {
-    width: 98px;
-    height: 30px;
-    border: 1px solid #2b2925;
-    padding: 0 8px;
-    color: #2b2925;
-    font-size: 7px;
 }
 
 .cuadricula-libros {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 12px;
-    row-gap: 10px;
 }
 
 .encabezado-resultados {
-    min-height: 110px;
-    height: auto;
-    align-items: center;
-    gap: 16px;
 }
 
 .barra-lateral-catalogo label {
-    min-height: 40px;
-    height: auto;
 }
 
 .barra-lateral-catalogo label {
-    grid-template-columns: 22px minmax(0, 1fr) 32px;
-    gap: 6px;
-    min-height: 42px;
 }
 
 .barra-lateral-catalogo label input {
-    width: 16px;
-    height: 16px;
 }
 
 .selector-orden {
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
 }
 
 .selector-orden select {
-    width: auto;
-    min-width: 160px;
-    max-width: 100%;
-    height: auto;
-    min-height: 44px;
-    padding: 8px 12px;
 }
 
 /* FormularioLibro.php */
 
 .contenido-formulario {
-    height: 588px;
-    padding: 22px clamp(24px, 9.3vw, 112px) 18px;
 }
 
 .encabezado-formulario {
-    height: 90px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
 }
 
 .encabezado-formulario p {
-    margin: 0 0 10px;
 }
 
 .encabezado-formulario h2 {
-    margin: 0 0 7px;
 }
 
 .boton-cerrar-formulario {
-    width: 23px;
-    height: 23px;
-    margin-right: -1px;
-    border: 1px solid #2b2925;
 }
 
 .separador-formulario {
-    height: 1px;
-    margin-bottom: 17px;
-    background: #c6c0b4;
 }
 
 .formulario-libro {
-    height: 398px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(190px, 1fr);
-    column-gap: 24px;
 }
 
 .formulario-libro h3 {
-    margin: 0 0 17px;
 }
 
 .etiqueta-formulario {
-    display: block;
-    margin: 0 0 7px;
 }
 
 .campo-texto {
-    width: 100%;
-    height: 27px;
-    margin-bottom: 13px;
-    border: 1px solid #aaa69d;
-    border-radius: 0;
-    padding: 0 8px;
-    color: #555;
-    font-size: 7px;
 }
 
 .fila-formulario {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
 }
 
 .fila-formulario select {
-    appearance: auto;
 }
 
 .formulario-libro textarea {
-    width: 100%;
-    height: 89px;
-    resize: vertical;
-    border: 1px solid #aaa69d;
-    padding: 8px;
-    color: #555;
-    font-size: 7px;
 }
 
 .contador-caracteres {
-    display: block;
-    margin-top: 5px;
 }
 
 .carga-portada {
-    height: 183px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px dashed #6f6b62;
-    padding-top: 16px;
 }
 
 .simbolo-carga {
-    width: 30px;
-    height: 30px;
-    display: grid;
-    place-items: center;
-    margin-bottom: 12px;
-    border: 1px solid #b58a49;
-    border-radius: 50%;
 }
 
 .carga-portada strong {
-    margin-bottom: 7px;
 }
 
 .carga-portada small {
-    margin-bottom: 11px;
 }
 
 .carga-portada button {
-    width: 112px;
-    height: 25px;
-    margin-bottom: 8px;
-    border: 1px solid #28251f;
 }
 
 .recomendacion {
-    height: 49px;
-    margin-top: 0;
-    border: 1px solid #b9b1a2;
-    background: #e6d5b9;
-    padding: 8px 9px;
 }
 
 .recomendacion strong {
-    display: block;
-    margin-bottom: 5px;
 }
 
 .recomendacion p {
-    margin: 0;
 }
 
 .acciones-formulario {
-    height: 52px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    gap: 8px;
-    border-top: 1px solid #aaa39a;
 }
 
 .acciones-formulario button {
-    width: 61px;
-    height: 27px;
-    border: 1px solid #28251f;
 }
 
 .acciones-formulario button:last-child {
-    width: 76px;
-    background: #c6953f;
 }
 
 .contenido-formulario,
 .cuerpo-listas,
 .cuerpo-administracion {
-    min-height: 588px;
 }
 
 .contenido-formulario {
-    height: auto;
-    padding: 24px clamp(20px, 7vw, 72px);
 }
 
 .encabezado-formulario {
-    min-height: 110px;
-    height: auto;
 }
 
 .formulario-libro {
-    min-height: 450px;
-    height: auto;
-    grid-template-columns: minmax(0, 1.65fr) minmax(200px, 1fr);
-    gap: 24px;
 }
 
 .campo-texto {
-    height: 44px;
 }
 
 .formulario-libro textarea {
-    min-height: 120px;
-    height: 120px;
 }
 
 .carga-portada {
-    min-height: 220px;
-    height: auto;
-    justify-content: center;
-    padding: 20px;
 }
 
 .recomendacion {
-    height: auto;
-    min-height: 60px;
 }
 
 .acciones-formulario {
-    min-height: 72px;
-    height: auto;
-    align-items: center;
 }
 
 .acciones-formulario button,
 .acciones-formulario button:last-child {
-    width: auto;
-    min-height: 40px;
-    padding: 6px 14px;
 }
 
 .carga-portada button {
-    width: min(100%, 220px);
-    max-width: 100%;
-    min-height: 44px;
-    height: auto;
-    padding: 8px 12px;
-    white-space: normal;
 }
 
 /* MisListas.php */
 
 .cuerpo-listas {
-    height: 588px;
-    display: grid;
-    grid-template-columns: 139px 1fr;
 }
 
 .barra-lateral-biblioteca {
-    border-right: 1px solid #40392f;
-    padding: 24px 15px;
 }
 
 .barra-lateral-biblioteca>p {
-    margin: 0 0 7px;
 }
 
 .barra-lateral-biblioteca h2 {
-    margin: 0 0 18px;
 }
 
 .barra-lateral-biblioteca nav {
-    display: flex;
-    flex-direction: column;
 }
 
 .contenido-listas {
-    padding: 23px 28px;
 }
 
 .encabezado-listas {
-    height: 94px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    border-bottom: 1px solid #c8c1b4;
 }
 
 .encabezado-listas p {
-    margin: 0 0 8px;
 }
 
 .encabezado-listas h2 {
-    margin: 0 0 7px;
 }
 
 .encabezado-listas>a {
-    width: 114px;
-    height: 22px;
-    display: grid;
-    place-items: center;
-    margin-top: 27px;
-    background: #c6953f;
 }
 
 .cuadricula-listas {
-    height: 421px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 12px;
-    row-gap: 12px;
-    padding-top: 18px;
 }
 
 .contenido-listas {
-    min-width: 0;
 }
 
 .encabezado-listas {
-    min-height: 120px;
-    height: auto;
-    align-items: center;
-    gap: 16px;
 }
 
 .cuadricula-listas {
-    height: auto;
-    grid-auto-rows: minmax(230px, auto);
 }
 
 .encabezado-listas>a {
-    width: auto;
-    min-width: 160px;
-    height: auto;
-    min-height: 44px;
-    padding: 8px 12px;
 }
 
+/* libro.php */
+
+.cuerpo-detalle {
+}
+
+.contenido-principal-detalle {
+}
+
+.migas-de-pan {
+}
+
+.resumen-libro {
+}
+
+.portada-detalle {
+}
+
+.portada-detalle i {
+}
+
+.portada-detalle i::before {
+}
+
+.portada-detalle i::after {
+}
+
+.informacion-resumen {
+}
+
+.informacion-resumen .etiqueta-genero {
+}
+
+.informacion-resumen h2 {
+}
+
+.informacion-resumen small {
+}
+
+.estrellas-detalle {
+}
+
+.estrellas-detalle b {
+}
+
+.dato-valoraciones {
+}
+
+.boton-agregar-lista,
+.boton-agregar-estanteria {
+}
+
+.boton-agregar-lista {
+}
+
+.sinopsis {
+}
+
+.sinopsis h3 {
+}
+
+.sinopsis p {
+}
+
+.barra-lateral-detalle {
+}
+
+.barra-lateral-detalle h3,
+.encabezado-resenas h3 {
+}
+
+.barra-lateral-detalle dl {
+}
+
+.barra-lateral-detalle dd {
+}
+
+.seccion-valoracion {
+}
+
+.valoracion-media {
+}
+
+.barras-valoracion div {
+}
+
+.barras-valoracion i {
+}
+
+.barras-valoracion i span {
+}
+
+.resenas {
+}
+
+.encabezado-resenas {
+}
+
+.resenas article {
+}
+
+.imagen-perfil {
+}
+
+.resenas article strong {
+}
+
+.resenas article div div {
+}
+
+.resenas article div div span {
+}
+
+.resenas article p {
+}
+
+.cuerpo-detalle {
+}
+
+.resumen-libro {
+}
+
+.sinopsis {
+}
+
+.barra-lateral-detalle dl {
+}
+
+.barras-valoracion div {
+}
