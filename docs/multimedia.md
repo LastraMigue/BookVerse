@@ -29,7 +29,7 @@ hizo, con qué licencia se usa, cómo hay que atribuirlo, en qué formato está 
 
 | Archivo | Uso | Fuente | Autoría | Licencia | Atribución | Formato | Duración | Resolución | Peso final | Modificaciones | Herramienta |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| assets/media/Videopresentacion.mp4 | Vídeo de presentación del club en la página de inicio, con controles | https://pixabay.com/es/videos/libro-abierto-libro-naturaleza-329698/ | samsabt | Licencia de contenido de Pixabay | No requiere | MP4 (H.264, 24 fps) | 9 s | 1280 × 720 | 1,150 MB | Recorte a 9 s, reescalado a 720p, degradado oscuro, rótulo en PT Serif y fundidos | CapCut |
+| assets/video/Videopresentacion.mp4 | Vídeo de presentación del club en la página de inicio, con controles | https://pixabay.com/es/videos/libro-abierto-libro-naturaleza-329698/ | samsabt | Licencia de contenido de Pixabay | No requiere | MP4 (H.264, 24 fps) | 9 s | 1280 × 720 | 1,150 MB | Recorte a 9 s, reescalado a 720p, degradado oscuro, rótulo en PT Serif y fundidos | CapCut |
 
 ---
 
@@ -37,7 +37,7 @@ hizo, con qué licencia se usa, cómo hay que atribuirlo, en qué formato está 
 
 | Archivo | Uso | Imágenes de origen | Autoría | Licencia | Formato | Duración | Peso final | Cómo se hizo | Herramienta |
 |---|---|---|---|---|---|---|---|---|---|
-| assets/img/bv_1_libro_cerrado.svg, assets/img/bv_2_libro_entreabierto.svg, assets/img/bv_3_libro_abierto.svg + assets/js/animacion-logo.js | Animación de apertura del logo en la cabecera, al cargar la página de inicio | Los tres SVG del logo: libro cerrado → entreabierto → abierto | Manuel Jesús | Propio uso exclusivo del proyecto | SVG animado con CSS y JavaScript | *(pendiente: ~1,5 s)* | 43 KB (suma de los tres SVG) | Tres estados fijos del logo superpuestos; se alterna su opacidad con CSS para simular la apertura. Se reproduce una vez al cargar y respeta prefers-reduced-motion. | Figma (diseño de los tres estados) y código propio (CSS y JavaScript) |
+| img/icono-libro.gif | Icono animado de un libro abierto como presentacion del catalogo | Ninguna: no se parte de fotografías ni de recursos de terceros, el dibujo se genera por código | Elaboración propia del equipo (asistida por IA) | Recurso propio, uso libre dentro del proyecto | | GIF animado, 64×64 px, con fondo transparente | 12 fotogramas, 1,5 s en bucle | 11 KB | Libro dibujado a mano con formas geométricas y animado fotograma a fotograma: en cada uno la página avanza un poco y el libro se balancea. Después se unen los 12 en un GIF que se repite sin fin | Python con la librería Pillow |
 
 ---
 

@@ -4,8 +4,6 @@ Guía para poner en marcha **Club de lectura** desde una copia limpia del reposi
 equipo de desarrollo con XAMPP. Si al seguir estos pasos algo no funciona, abre una issue con la
 etiqueta `docs` indicando el paso y el mensaje de error.
 
-> Probado desde una copia limpia del repositorio (sin `config.php` ni base de datos previa).
-
 ---
 
 ## 1. Requisitos
