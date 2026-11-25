@@ -378,6 +378,7 @@ body * {
 .barra-inicio .enlaces-superiores {
     width: auto;
     margin-left: auto;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
 }
@@ -489,21 +490,33 @@ body * {
 }
 
 .contenido-principal-inicio {
+    max-width: 980px;
 }
 
 .destacado-del-mes {
+    border: 1px solid #d1c09f;
+    border-radius: 12px;
+    background: #f8f1e3;
+    box-shadow: 0 8px 24px rgba(29, 27, 25, .08);
 }
 
 .destacado-del-mes>h1 {
+    color: #3f3f43;
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
 }
 
 .distribucion-destacado {
+    gap: 16px;
 }
 
 .detalles-destacado {
+    padding: 8px;
 }
 
 .rotulo-destacado {
+    color: #a47121;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .detalles-destacado h2 {
