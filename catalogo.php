@@ -3,59 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="description" content="Explora una selección de libros de BookVerse y encuentra tu próxima lectura favorita.">
+    <title>Catálogo de libros | BookVerse</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="pagina-catalogo">
+<body class="pagina-catalogo pagina-catalogo-principal">
     <header class="barra-superior barra-inicio">
-        <nav class="enlaces-superiores" aria-label="Enlaces a las páginas">
+        <nav class="enlaces-superiores" aria-label="Navegación principal">
             <a href="inicio.php">Inicio</a>
             <a href="catalogo.php" aria-current="page">Catálogo</a>
-            <a href="FormularioLibro.php">Formulario</a>
+            <a href="FormularioLibro.php">Proponer un libro</a>
             <details class="ajustes-navbar">
                 <summary>Ajustes</summary>
                 <div>
-                    <a href="MisListas.php">Listas</a>
-                    <a href="IniciarSesion.php">Login</a>
+                    <a href="MisListas.php">Mis listas</a>
+                    <a href="IniciarSesion.php">Iniciar sesión</a>
                 </div>
             </details>
         </nav>
     </header>
+
     <section class="marco-catalogo">
         <main class="panel-catalogo">
             <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label=""><span></span><strong></strong></a>
-                <form class="busqueda-catalogo" role="search">
+                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
+                    <span>BV</span>
+                    <strong>BookVerse</strong>
+                </a>
+                <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="10.5" cy="10.5" r="6.5"></circle>
                         <path d="M15.5 15.5L20 20"></path>
                     </svg>
-                    <input type="search" aria-label="">
+                    <input type="search" name="q" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
                 </form>
             </header>
+
+            <section class="presentacion-catalogo" aria-labelledby="titulo-catalogo">
+                <p class="rotulo-catalogo">La biblioteca de BookVerse</p>
+                <h1 id="titulo-catalogo">Una buena historia siempre te encuentra.</h1>
+                <p class="descripcion-presentacion-catalogo">Explora esta selección de clásicos y aventuras inolvidables. Elige un género, déjate llevar y descubre qué leer después.</p>
+                <div class="resumen-catalogo">
+                    <span><strong>5</strong> libros de ejemplo</span>
+                    <span><strong>5</strong> mundos por descubrir</span>
+                </div>
+            </section>
+
             <div class="cuerpo-catalogo">
                 <aside class="barra-lateral-catalogo">
-                    <div class="encabezado-filtros"><h2></h2><button type="button"></button></div>
-                    <fieldset>
-                        <legend></legend>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                        <label><input type="checkbox"><span></span></label>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                        <label><input type="checkbox"><span></span><b></b></label>
-                    </fieldset>
-                </aside>
-                <section class="resultados-catalogo">
-                    <div class="encabezado-resultados">
-                        <div><p></p><h2></h2><small></small></div>
-                        <label class="selector-orden">
-                            <span></span>
-                            <select aria-label=""><option></option></select>
-                        </label>
+                    <div class="encabezado-filtros">
+                        <h2>Explora por género</h2>
+                        <span>Selección</span>
                     </div>
-                    <div class="cuadricula-libros"></div>
+                    <nav class="enlaces-generos" aria-label="Géneros de la selección">
+                        <a href="#libro-fantasia"><span aria-hidden="true">✦</span> Fantasía <b>1</b></a>
+                        <a href="#libro-terror"><span aria-hidden="true">✦</span> Terror <b>1</b></a>
+                        <a href="#libro-romance"><span aria-hidden="true">✦</span> Romance <b>1</b></a>
+                        <a href="#libro-misterio"><span aria-hidden="true">✦</span> Misterio <b>1</b></a>
+                        <a href="#libro-realismo"><span aria-hidden="true">✦</span> Realismo mágico <b>1</b></a>
+                    </nav>
+                    <div class="nota-catalogo">
+                        <span aria-hidden="true">✧</span>
+                        <p>¿Tienes otro libro en mente?</p>
+                        <a href="FormularioLibro.php">Propón un título <span aria-hidden="true">→</span></a>
+                    </div>
+                </aside>
+
+                <section class="resultados-catalogo" aria-labelledby="titulo-seleccion">
+                    <div class="encabezado-resultados">
+                        <div>
+                            <p>Empieza a explorar</p>
+                            <h2 id="titulo-seleccion">Historias para descubrir</h2>
+                            <small>Una pequeña selección para inspirar tu próxima lectura.</small>
+                        </div>
+                        <span class="etiqueta-seleccion">Selección de ejemplo</span>
+                    </div>
+
+                    <div class="cuadricula-libros">
+                        <a class="enlace-tarjeta-libro" href="libro.php#el-nombre-del-viento">
+                            <article class="tarjeta-libro" id="libro-fantasia">
+                                <div class="portada-libro portada-viento" role="img" aria-label="Portada ilustrada de El nombre del viento">
+                                    <span>BOOKVERSE</span>
+                                    <strong>El nombre<br>del viento</strong>
+                                    <small>Patrick Rothfuss</small>
+                                </div>
+                                <div class="datos-libro">
+                                    <span class="genero-libro">Fantasía épica</span>
+                                    <h3>El nombre del viento</h3>
+                                    <p class="autor-libro">Patrick Rothfuss</p>
+                                    <p class="descripcion-libro">Magia, música y leyendas en una aventura de formación y misterio.</p>
+                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,8 de 5"><span aria-hidden="true">★★★★★</span><b>4,8</b></div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <a class="enlace-tarjeta-libro" href="libro.php#dracula">
+                            <article class="tarjeta-libro" id="libro-terror">
+                                <img class="portada-libro" src="assets/img/dracula.webp" alt="Portada clásica de Drácula">
+                                <div class="datos-libro">
+                                    <span class="genero-libro">Terror gótico</span>
+                                    <h3>Drácula</h3>
+                                    <p class="autor-libro">Bram Stoker</p>
+                                    <p class="descripcion-libro">Un clásico inquietante sobre un misterioso conde y su leyenda.</p>
+                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,7 de 5"><span aria-hidden="true">★★★★★</span><b>4,7</b></div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <a class="enlace-tarjeta-libro" href="libro.php#orgullo-y-prejuicio">
+                            <article class="tarjeta-libro" id="libro-romance">
+                                <img class="portada-libro" src="assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio">
+                                <div class="datos-libro">
+                                    <span class="genero-libro">Romance · Clásico</span>
+                                    <h3>Orgullo y prejuicio</h3>
+                                    <p class="autor-libro">Jane Austen</p>
+                                    <p class="descripcion-libro">Ingenio, primeras impresiones y una historia que sigue conquistando lectores.</p>
+                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <a class="enlace-tarjeta-libro" href="libro.php#el-sabueso-de-los-baskerville">
+                            <article class="tarjeta-libro" id="libro-misterio">
+                                <img class="portada-libro" src="assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville">
+                                <div class="datos-libro">
+                                    <span class="genero-libro">Misterio</span>
+                                    <h3>El sabueso de los Baskerville</h3>
+                                    <p class="autor-libro">Arthur Conan Doyle</p>
+                                    <p class="descripcion-libro">Sherlock Holmes investiga una leyenda oscura en los páramos ingleses.</p>
+                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,6 de 5"><span aria-hidden="true">★★★★★</span><b>4,6</b></div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <a class="enlace-tarjeta-libro" href="libro.php#cien-anos-de-soledad">
+                            <article class="tarjeta-libro" id="libro-realismo">
+                                <img class="portada-libro" src="assets/img/cien-anos-de-soledad.webp" alt="Portada de Cien años de soledad">
+                                <div class="datos-libro">
+                                    <span class="genero-libro">Realismo mágico</span>
+                                    <h3>Cien años de soledad</h3>
+                                    <p class="autor-libro">Gabriel García Márquez</p>
+                                    <p class="descripcion-libro">La saga de una familia y un pueblo donde lo extraordinario forma parte de lo cotidiano.</p>
+                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
                 </section>
             </div>
         </main>
