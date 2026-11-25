@@ -55,3 +55,133 @@
 .invitacion-debate {
     margin: 18px 0 22px;
 }
+/* catalogo.php */
+
+
+.barra-lateral-catalogo {
+    border-right: 1px solid #3d382f;
+    padding: 26px 14px 18px 16px;
+}
+
+.encabezado-filtros {
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.encabezado-filtros h2 {
+    margin: 0;
+}
+
+.encabezado-filtros button {
+    border: 0;
+    border-bottom: 1px solid #5d5b54;
+    background: transparent;
+    padding: 0;
+}
+
+.barra-lateral-catalogo fieldset {
+    border: 0;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.barra-lateral-catalogo legend {
+    margin-bottom: 9px;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.barra-lateral-catalogo label {
+    height: 23px;
+    display: grid;
+    grid-template-columns: 12px 1fr 18px;
+    align-items: center;
+}
+
+.barra-lateral-catalogo label input {
+    width: 9px;
+    height: 9px;
+    margin: 0;
+    accent-color: #555;
+}
+
+.resultados-catalogo {
+    padding: 23px 19px 18px 16px;
+}
+
+.encabezado-resultados {
+    height: 82px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.encabezado-resultados p {
+    margin: 0 0 6px;
+}
+
+.encabezado-resultados h2 {
+    margin: 0 0 7px;
+}
+
+.selector-orden {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.selector-orden select {
+    width: 98px;
+    height: 30px;
+    border: 1px solid #2b2925;
+    padding: 0 8px;
+    color: #2b2925;
+    font-size: 7px;
+}
+
+.cuadricula-libros {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 10px;
+}
+
+.encabezado-resultados {
+    min-height: 110px;
+    height: auto;
+    align-items: center;
+    gap: 16px;
+}
+
+.barra-lateral-catalogo label {
+    min-height: 40px;
+    height: auto;
+}
+
+.barra-lateral-catalogo label {
+    grid-template-columns: 22px minmax(0, 1fr) 32px;
+    gap: 6px;
+    min-height: 42px;
+}
+
+.barra-lateral-catalogo label input {
+    width: 16px;
+    height: 16px;
+}
+
+.selector-orden {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.selector-orden select {
+    width: auto;
+    min-width: 160px;
+    max-width: 100%;
+    height: auto;
+    min-height: 44px;
+    padding: 8px 12px;
+}
