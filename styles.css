@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -13,9 +12,9 @@ body {
     font-family: Georgia, "Times New Roman", serif;
 }
 
-
 .barra-superior {
     height: 78px;
+    width: 100vw;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -24,7 +23,6 @@ body {
     border-bottom: 1px solid #bdb49f;
 }
 
-
 .enlaces-superiores {
     display: flex;
     justify-content: flex-end;
@@ -32,7 +30,6 @@ body {
     width: 100%;
     margin-left: auto;
 }
-
 
 .enlaces-superiores a,
 .ajustes-navbar summary {
@@ -47,27 +44,22 @@ body {
     white-space: nowrap;
 }
 
-
 .enlaces-superiores a {
     text-decoration: none;
 }
 
-
 .ajustes-navbar {
     position: relative;
 }
-
 
 .ajustes-navbar summary {
     cursor: pointer;
     list-style: none;
 }
 
-
 .ajustes-navbar summary::-webkit-details-marker {
     display: none;
 }
-
 
 .ajustes-navbar[open]>div {
     position: absolute;
@@ -84,17 +76,14 @@ body {
     box-shadow: 0 12px 24px rgba(29, 27, 25, .2);
 }
 
-
 .ajustes-navbar[open]>div a {
     justify-content: start;
 }
-
 
 .contenedor-busqueda {
     position: relative;
     margin: 0 0 14px;
 }
-
 
 .contenedor-busqueda svg {
     position: absolute;
@@ -106,7 +95,6 @@ body {
     stroke: #777c83;
 }
 
-
 .busqueda {
     width: 100%;
     height: 39px;
@@ -117,7 +105,6 @@ body {
     font-size: 11px;
 }
 
-
 .pagina-catalogo {
     min-width: 800px;
     min-height: 700px;
@@ -126,19 +113,16 @@ body {
     color: #1d1b18;
 }
 
-
 .marco-catalogo {
     width: calc(100% - 32px);
     max-width: 1200px;
     margin: 12px auto;
 }
 
-
 .panel-catalogo {
     height: 534px;
     border: 1px solid #28231d;
 }
-
 
 .navegacion-catalogo {
     height: 44px;
@@ -148,14 +132,12 @@ body {
     border-bottom: 1px solid #383229;
 }
 
-
 .titulo-catalogo {
     display: flex;
     align-items: center;
     gap: 9px;
     padding-left: 23px;
 }
-
 
 .titulo-catalogo span {
     width: 20px;
@@ -166,12 +148,10 @@ body {
     background: #c99a49;
 }
 
-
 .busqueda-catalogo {
     position: relative;
     width: 338px;
 }
-
 
 .busqueda-catalogo svg {
     position: absolute;
@@ -184,7 +164,6 @@ body {
     stroke-width: 1.6;
 }
 
-
 .busqueda-catalogo input {
     width: 100%;
     height: 23px;
@@ -193,43 +172,35 @@ body {
     font-size: 7px;
 }
 
-
 .cuerpo-catalogo {
     height: 488px;
     display: grid;
     grid-template-columns: 139px 1fr;
 }
 
-
 .pagina-detalle .marco-catalogo {
     margin-top: 12px;
 }
-
 
 .panel-detalle {
     height: 534px;
 }
 
-
 .pagina-formulario .marco-catalogo {
     margin-top: 12px;
 }
-
 
 .panel-formulario {
     height: 634px;
 }
 
-
 .pagina-listas .marco-catalogo {
     margin-top: 12px;
 }
 
-
 .panel-listas {
     height: 634px;
 }
-
 
 .barra-lateral-biblioteca nav a {
     height: 34px;
@@ -462,6 +433,10 @@ body {
     grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
 }
 
+.pagina-catalogo.pagina-formulario .navegacion-catalogo {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 
 .busqueda-inicio {
     width: min(920px, 100%);
@@ -552,40 +527,19 @@ body {
 
 .hero-inicio {
     position: relative;
+    width: 100vw;
+    max-width: 100vw;
     min-height: 530px;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    gap: 34px;
+    gap: 0;
     overflow: hidden;
     background:
-        radial-gradient(ellipse at 79% 45%, rgba(201, 142, 52, .16), transparent 34%),
-        linear-gradient(112deg, #25323a 0%, #303b40 58%, #3b3d3a 100%);
+        linear-gradient(rgba(24, 25, 24, .52), rgba(24, 25, 24, .52)),
+        url("assets/img/madera-hero.webp") center / 100% 100% no-repeat;
     color: #fbf5e9;
     padding: 54px max(7vw, calc((100vw - 1200px) / 2));
-}
-
-.hero-inicio::before,
-.hero-inicio::after {
-    position: absolute;
-    border: 1px solid rgba(226, 190, 125, .13);
-    border-radius: 50%;
-    content: "";
-    pointer-events: none;
-}
-
-.hero-inicio::before {
-    width: 540px;
-    height: 540px;
-    top: -225px;
-    right: -80px;
-}
-
-.hero-inicio::after {
-    width: 680px;
-    height: 680px;
-    right: -150px;
-    bottom: -450px;
 }
 
 .contenido-hero {
@@ -741,79 +695,6 @@ body {
 .sello-lectura span {
     color: #d4ae6a;
     font-size: 16px;
-}
-
-.ilustracion-hero {
-    position: relative;
-    z-index: 1;
-    min-height: 350px;
-    display: grid;
-    place-items: center;
-}
-
-.ilustracion-hero img {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 500px);
-    filter: drop-shadow(0 28px 30px rgba(7, 14, 18, .35));
-    animation: libro-flota 6s ease-in-out infinite;
-}
-
-.halo-libro {
-    position: absolute;
-    width: min(34vw, 360px);
-    aspect-ratio: 1;
-    border: 1px solid rgba(223, 189, 125, .28);
-    border-radius: 50%;
-    box-shadow: 0 0 0 24px rgba(223, 189, 125, .035), 0 0 0 52px rgba(223, 189, 125, .025);
-}
-
-.nota-flotante {
-    position: absolute;
-    z-index: 2;
-    border: 1px solid rgba(255, 248, 235, .2);
-    border-radius: 5px;
-    background: rgba(31, 42, 48, .82);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
-    color: #f8efdf;
-    font-size: 12px;
-    padding: 10px 13px;
-}
-
-.nota-flotante-superior {
-    top: 14%;
-    right: 2%;
-}
-
-.nota-flotante-superior span,
-.nota-flotante-inferior span {
-    color: #dfbd7d;
-}
-
-.nota-flotante-superior span {
-    margin-right: 6px;
-}
-
-.nota-flotante-inferior {
-    bottom: 11%;
-    left: 2%;
-    color: #ded8cb;
-}
-
-.nota-flotante-inferior span {
-    margin-left: 7px;
-}
-
-.numero-decorativo-inicio {
-    position: absolute;
-    right: 5%;
-    bottom: -100px;
-    color: rgba(255, 255, 255, .025);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 340px;
-    font-weight: 700;
-    line-height: 1;
-    pointer-events: none;
 }
 
 .seccion-descubre {
@@ -1060,6 +941,7 @@ body {
 
 .pie-inicio {
     min-height: 92px;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1096,16 +978,6 @@ body {
     color: #f2d89e;
 }
 
-@keyframes libro-flota {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-9px);
-    }
-}
-
 @media (max-width: 760px) {
     .cabecera-inicio {
         min-height: 68px;
@@ -1136,29 +1008,6 @@ body {
     .contenido-hero h1 {
         max-width: 580px;
         font-size: clamp(40px, 9vw, 60px);
-    }
-
-    .ilustracion-hero {
-        min-height: 270px;
-        margin-top: 8px;
-    }
-
-    .ilustracion-hero img {
-        width: min(100%, 440px);
-    }
-
-    .halo-libro {
-        width: 260px;
-    }
-
-    .nota-flotante-superior {
-        top: 8%;
-        right: 2%;
-    }
-
-    .nota-flotante-inferior {
-        bottom: 5%;
-        left: 2%;
     }
 
     .seccion-descubre {
@@ -1238,15 +1087,6 @@ body {
         align-items: flex-start;
         max-width: 300px;
         line-height: 1.5;
-    }
-
-    .ilustracion-hero {
-        min-height: 220px;
-    }
-
-    .nota-flotante {
-        font-size: 10px;
-        padding: 8px 10px;
     }
 
     .encabezado-seccion-inicio h2 {
@@ -2428,6 +2268,58 @@ body {
 }
 /* FormularioLibro.php */
 
+.pagina-formulario {
+    background: #f5efe3;
+    color: #303330;
+}
+
+.pagina-formulario .marco-formulario {
+    width: min(1120px, calc(100% - 32px));
+    margin: 28px auto 56px;
+}
+
+.pagina-formulario .panel-formulario {
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid #e0d5c1;
+    border-radius: 12px;
+    background: #fffdf8;
+    box-shadow: 0 14px 40px rgba(48, 42, 31, .09);
+}
+
+.pagina-formulario .navegacion-catalogo {
+    min-height: 72px;
+    flex: 0 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 1px solid #e8dfd0;
+    background: #fffdf8;
+    padding: 0 28px;
+}
+
+.pagina-formulario .titulo-catalogo {
+    gap: 10px;
+    padding-left: 0;
+    color: #30373a;
+    text-decoration: none;
+}
+
+.pagina-formulario .titulo-catalogo span {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #c98e34;
+    border-radius: 9px 3px 9px 3px;
+    background: #c98e34;
+    color: #252f36;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.pagina-formulario .titulo-catalogo strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+}
+
 .contenido-formulario {
     width: 100%;
     padding: clamp(22px, 4vw, 48px);
@@ -2463,6 +2355,7 @@ body {
     margin-top: 8px;
     color: #777267;
     font-size: 14px;
+    line-height: 1.6;
 }
 
 .boton-cerrar-formulario {
@@ -2499,7 +2392,7 @@ body {
     margin: 0 0 18px;
     color: #394044;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -2522,10 +2415,11 @@ body {
     min-height: 44px;
     margin-bottom: 17px;
     border-color: #d7cebd;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #fffdf8;
     color: #343734;
     font-size: 14px;
+    transition: border-color .18s ease, box-shadow .18s ease;
 }
 
 .campo-texto::placeholder,
@@ -2549,13 +2443,14 @@ body {
 }
 
 .formulario-libro textarea {
-    min-height: 132px;
+    min-height: 150px;
     border-color: #d7cebd;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #fffdf8;
     color: #343734;
     font-size: 14px;
     line-height: 1.6;
+    padding: 12px 14px;
     resize: vertical;
 }
 
@@ -2567,16 +2462,16 @@ body {
 }
 
 .carga-portada {
-    min-height: 240px;
+    min-height: 260px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    gap: 11px;
-    border: 1px dashed #c9b894;
-    border-radius: 8px;
-    background: #fcf8ef;
-    padding: 22px;
+    gap: 13px;
+    border: 1px dashed #c6ad7d;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fcf8ef, #f8f0e2);
+    padding: 24px;
     text-align: center;
 }
 
@@ -2607,16 +2502,18 @@ body {
     align-items: center;
     justify-content: center;
     border: 1px solid #c9ad76;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #fffdf8;
     color: #75531d;
     padding: 8px 13px;
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
+    transition: background-color .18s ease, border-color .18s ease;
 }
 
 .boton-seleccionar-portada:hover {
+    border-color: #b48b45;
     background: #f2e7d2;
 }
 
@@ -2635,9 +2532,9 @@ body {
 .recomendacion {
     margin-top: 16px;
     border-left: 3px solid #c98e34;
-    border-radius: 0 6px 6px 0;
-    background: #f5ecd9;
-    padding: 14px 15px;
+    border-radius: 0 9px 9px 0;
+    background: #f7f0e3;
+    padding: 16px 17px;
 }
 
 .recomendacion strong {
@@ -2668,7 +2565,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 9px 16px;
     font-size: 13px;
     font-weight: 700;
@@ -2687,18 +2584,27 @@ body {
 }
 
 .boton-enviar-formulario {
-    border: 1px solid #343e42;
-    background: #343e42;
-    color: #fff8eb;
+    border: 1px solid #c98e34;
+    background: #c98e34;
+    color: #252f36;
 }
 
 .boton-enviar-formulario:hover {
-    border-color: #202a2e;
-    background: #202a2e;
-    color: #fff8eb;
+    border-color: #b77c28;
+    background: #b77c28;
+    color: #252f36;
 }
 
 @media (max-width: 680px) {
+    .pagina-formulario .marco-formulario {
+        margin: 18px auto 32px;
+    }
+
+    .pagina-formulario .navegacion-catalogo {
+        min-height: 64px;
+        padding: 0 18px;
+    }
+
     .contenido-formulario {
         padding: 22px 16px;
     }
@@ -2715,6 +2621,34 @@ body {
 
 
 /* libro.php */
+
+.pagina-detalle .titulo-catalogo {
+    gap: 10px;
+    padding-left: 0;
+    color: #30373a;
+    text-decoration: none;
+}
+
+.pagina-detalle .titulo-catalogo span {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #c98e34;
+    border-radius: 9px 3px 9px 3px;
+    background: #c98e34;
+    color: #252f36;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.pagina-detalle .titulo-catalogo strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+}
+
+.pagina-catalogo.pagina-detalle .navegacion-catalogo {
+    grid-template-columns: minmax(0, 1fr);
+}
 
 .contenedor-fichas-libro > .ficha-libro {
     display: none;
@@ -3159,33 +3093,6 @@ body {
 
     .pagina-catalogo .navegacion-catalogo {
         grid-template-columns: 62px 1fr;
-    }
-
-    .pagina-catalogo.pagina-formulario .navegacion-catalogo {
-        height: auto;
-        min-height: 0;
-        flex: 0 0 auto;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 10px;
-        padding: 12px 16px;
-    }
-
-    .pagina-catalogo.pagina-formulario .titulo-catalogo {
-        grid-column: 1;
-        grid-row: 1;
-        padding-left: 0;
-    }
-
-    .pagina-catalogo.pagina-formulario .busqueda-catalogo {
-        width: 100%;
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    .pagina-catalogo.pagina-formulario .busqueda-catalogo input {
-        height: 40px;
-        padding: 0 12px;
-        font-size: 13px;
     }
 
     .titulo-catalogo {

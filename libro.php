@@ -8,20 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-detalle">
-    <header class="barra-superior barra-inicio">
-        <nav class="enlaces-superiores" aria-label="Enlaces a las páginas">
-            <a href="inicio.php">Inicio</a>
-            <a href="catalogo.php" aria-current="page">Catálogo</a>
-            <a href="FormularioLibro.php">Proponer un libro</a>
-            <details class="ajustes-navbar">
-                <summary>Ajustes</summary>
-                <div>
-                    <a href="MisListas.php">Mis listas</a>
-                    <a href="IniciarSesion.php">Iniciar sesión</a>
-                </div>
-            </details>
-        </nav>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <section class="marco-catalogo">
         <main class="panel-catalogo panel-detalle">
@@ -30,9 +17,6 @@
                     <span>BV</span>
                     <strong>BookVerse</strong>
                 </a>
-                <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
-                    <input type="search" name="q" aria-label="Buscar libros" placeholder="Buscar por título o autor">
-                </form>
             </header>
 
             <div class="contenedor-fichas-libro">

@@ -10,19 +10,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-inicio">
-    <header class="barra-superior barra-inicio cabecera-inicio navbar navbar-dark">
-        <a class="marca-inicio navbar-brand" href="inicio.php" aria-label="BookVerse, página de inicio">
-            <span class="icono-marca" aria-hidden="true">B</span>
-            <span>Book<span class="marca-resaltada">Verse</span></span>
-        </a>
-        <nav class="enlaces-superiores navbar-nav ms-auto" aria-label="Navegación principal">
-            <a class="nav-link" href="inicio.php" aria-current="page">Inicio</a>
-            <a class="nav-link" href="catalogo.php">Catálogo</a>
-            <a class="nav-link" href="MisListas.php">Mis listas</a>
-            <a class="nav-link" href="IniciarSesion.php">Iniciar sesión</a>
-            <a class="nav-link enlace-registro-inicio" href="CrearCuenta.php">Crear cuenta</a>
-        </nav>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <section class="hero-inicio" aria-labelledby="titulo-inicio">
@@ -41,13 +29,6 @@
                 </div>
                 <p class="sello-lectura"><span aria-hidden="true"></span> Un lugar para quienes siempre quieren leer una página más</p>
             </div>
-            <div class="ilustracion-hero">
-                <div class="halo-libro" aria-hidden="true"></div>
-                <img src="assets/img/bv_2_libro_entreabierto.svg" alt="Ilustración de un libro abierto, listo para descubrir nuevas historias">
-                <div class="nota-flotante nota-flotante-superior"><span aria-hidden="true"></span> Abre un libro</div>
-                <div class="nota-flotante nota-flotante-inferior">y deja que empiece el viaje <span aria-hidden="true"></span></div>
-            </div>
-            <span class="numero-decorativo-inicio" aria-hidden="true">01</span>
         </section>
 
         <section class="seccion-descubre container" aria-labelledby="titulo-descubre">
@@ -98,7 +79,6 @@
                 <p class="descripcion-destacado">Magia, música y leyendas se entrelazan en una aventura inolvidable. Una lectura ideal para quienes disfrutan de los mundos llenos de misterio.</p>
                 <a class="enlace-destacado-inicio" href="libro.php">Descubrir el libro <span aria-hidden="true"></span></a>
             </div>
-            <span class="invitacion-debate" aria-hidden="true">LECTURA<br>DESTACADA</span>
         </section>
     </main>
 

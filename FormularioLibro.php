@@ -10,20 +10,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-formulario">
-    <header class="barra-superior barra-inicio">
-        <nav class="enlaces-superiores" aria-label="Enlaces a las páginas">
-            <a href="inicio.php">Inicio</a>
-            <a href="catalogo.php">Catálogo</a>
-            <a href="FormularioLibro.php" aria-current="page">Proponer un libro</a>
-            <details class="ajustes-navbar">
-                <summary>Ajustes</summary>
-                <div>
-                    <a href="MisListas.php">Mis listas</a>
-                    <a href="IniciarSesion.php">Iniciar sesión</a>
-                </div>
-            </details>
-        </nav>
-    </header>
+    <?php include 'navbar.php'; ?>
+
     <section class="marco-catalogo marco-formulario">
         <main class="panel-catalogo panel-formulario">
             <header class="navegacion-catalogo">
@@ -31,9 +19,6 @@
                     <span>BV</span>
                     <strong>BookVerse</strong>
                 </a>
-                <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
-                    <input class="form-control" type="search" name="q" aria-label="Buscar libros" placeholder="Buscar por título o autor">
-                </form>
             </header>
             <div class="contenido-formulario">
                 <div class="encabezado-formulario">
@@ -57,7 +42,7 @@
                         <div class="fila-formulario row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="etiqueta-formulario" for="genero">Género</label>
-                                <select class="campo-texto form-select" id="genero" name="genero" required>
+                               <select class="campo-texto form-select" id="genero" name="genero" required>
                                     <option value="" selected disabled>Elige un género</option>
                                     <option value="fantasia">Fantasía</option>
                                     <option value="ciencia-ficcion">Ciencia ficción</option>
