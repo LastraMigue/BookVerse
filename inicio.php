@@ -6,8 +6,6 @@
     <meta name="description" content="Descubre tu próxima lectura en BookVerse: explora libros, guarda tus favoritos y comparte tu pasión por las historias.">
     <title>BookVerse | Un universo de historias</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-inicio">
     <?php include 'navbar.php'; ?>

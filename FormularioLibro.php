@@ -6,8 +6,6 @@
     <meta name="description" content="Propón un libro para que más lectores puedan descubrirlo en BookVerse.">
     <title>Proponer un libro | BookVerse</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-formulario">
     <?php include 'navbar.php'; ?>

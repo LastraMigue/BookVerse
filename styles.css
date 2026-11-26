@@ -1,3 +1,4 @@
+/* ===== BLOQUE COMPARTIDO ===== */
 * {
     box-sizing: border-box;
 }
@@ -12,6 +13,7 @@ body {
     font-family: Georgia, "Times New Roman", serif;
 }
 
+/* ===== navbar.php ===== */
 .barra-superior {
     height: 78px;
     width: 100vw;
@@ -31,8 +33,7 @@ body {
     margin-left: auto;
 }
 
-.enlaces-superiores a,
-.ajustes-navbar summary {
+.enlaces-superiores a {
     height: 24px;
     display: grid;
     place-items: center;
@@ -48,63 +49,7 @@ body {
     text-decoration: none;
 }
 
-.ajustes-navbar {
-    position: relative;
-}
-
-.ajustes-navbar summary {
-    cursor: pointer;
-    list-style: none;
-}
-
-.ajustes-navbar summary::-webkit-details-marker {
-    display: none;
-}
-
-.ajustes-navbar[open]>div {
-    position: absolute;
-    top: calc(100% + 4px);
-    right: 0;
-    z-index: 20;
-    display: grid;
-    gap: 4px;
-    min-width: max-content;
-    padding: 6px;
-    border: 1px solid #c98e34;
-    border-radius: 12px;
-    background: #ead4a9;
-    box-shadow: 0 12px 24px rgba(29, 27, 25, .2);
-}
-
-.ajustes-navbar[open]>div a {
-    justify-content: start;
-}
-
-.contenedor-busqueda {
-    position: relative;
-    margin: 0 0 14px;
-}
-
-.contenedor-busqueda svg {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    width: 18px;
-    height: 18px;
-    transform: translateY(-50%);
-    stroke: #777c83;
-}
-
-.busqueda {
-    width: 100%;
-    height: 39px;
-    border: 1px solid #c8c9cf;
-    border-radius: 2px;
-    padding: 0 12px 0 40px;
-    color: #777;
-    font-size: 11px;
-}
-
+/* ===== catalogo.php, libro.php, FormularioLibro.php, MisListas.php y administracion.php ===== */
 .pagina-catalogo {
     min-width: 800px;
     min-height: 700px;
@@ -178,6 +123,7 @@ body {
     grid-template-columns: 139px 1fr;
 }
 
+/* ===== libro.php ===== */
 .pagina-detalle .marco-catalogo {
     margin-top: 12px;
 }
@@ -186,6 +132,7 @@ body {
     height: 534px;
 }
 
+/* ===== FormularioLibro.php ===== */
 .pagina-formulario .marco-catalogo {
     margin-top: 12px;
 }
@@ -194,6 +141,7 @@ body {
     height: 634px;
 }
 
+/* =====  MisListas.php ===== */
 .pagina-listas .marco-catalogo {
     margin-top: 12px;
 }
@@ -244,6 +192,7 @@ body {
 }
 
 
+/* =====  administracion.php ===== */
 .pagina-administracion .marco-catalogo {
     margin-top: 12px;
 }
@@ -254,6 +203,7 @@ body {
 }
 
 
+/* ===== catalogo.php, libro.php, FormularioLibro.php, MisListas.php y administracion.php ===== */
 .pagina-catalogo {
     min-height: 100vh;
 }
@@ -330,6 +280,7 @@ body {
 }
 
 
+/* ===== navbar.php ===== */
 .barra-inicio {
     height: auto;
     min-height: 68px;
@@ -350,8 +301,7 @@ body {
 }
 
 
-.barra-inicio .enlaces-superiores a,
-.barra-inicio .ajustes-navbar summary {
+.barra-inicio .enlaces-superiores a {
     height: auto;
     min-height: 44px;
     border: 1px solid transparent;
@@ -365,70 +315,31 @@ body {
 }
 
 
-.barra-inicio .enlaces-superiores a:hover,
-.barra-inicio .ajustes-navbar summary:hover,
-.barra-inicio .ajustes-navbar[open] summary {
+.barra-inicio .enlaces-superiores a:hover {
     background: #c98e34;
     color: #1d1b18;
 }
 
 
-.barra-inicio .enlaces-superiores a[aria-current="page"],
-.barra-inicio .ajustes-navbar[open]>div a[aria-current="page"] {
+.barra-inicio .enlaces-superiores a[aria-current="page"] {
     border-color: #c98e34;
     background: #c98e34;
     color: #1d1b18;
 }
 
 
-.barra-inicio .enlaces-superiores a:hover,
-.barra-inicio .ajustes-navbar summary:hover {
+.barra-inicio .enlaces-superiores a:hover {
     transform: translateY(-1px);
 }
 
 
-.barra-inicio .enlaces-superiores a:focus-visible,
-.barra-inicio .ajustes-navbar summary:focus-visible,
-.barra-inicio .ajustes-navbar[open]>div a:focus-visible {
+.barra-inicio .enlaces-superiores a:focus-visible {
     outline: 2px solid #c98e34;
     outline-offset: 3px;
 }
 
 
-.barra-inicio .ajustes-navbar summary::after {
-    width: 7px;
-    height: 7px;
-    display: inline-block;
-    margin-left: 9px;
-    border-right: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    content: "";
-    transform: rotate(45deg) translateY(-2px);
-    transition: transform .18s ease;
-}
-
-
-.barra-inicio .ajustes-navbar[open] summary::after {
-    transform: rotate(225deg) translate(-1px, -1px);
-}
-
-
-.barra-inicio .ajustes-navbar[open]>div a {
-    min-height: 40px;
-    border: 0;
-    border-radius: 8px;
-    color: #3b382f;
-    padding: 8px 14px;
-    font-size: 14px;
-}
-
-
-.barra-inicio .ajustes-navbar[open]>div a:hover {
-    background: #c98e34;
-    color: #1d1b18;
-}
-
-
+/* ===== catalogo.php y FormularioLibro.php ===== */
 .pagina-catalogo .navegacion-catalogo {
     grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
 }
@@ -438,19 +349,7 @@ body {
 }
 
 
-.busqueda-inicio {
-    width: min(920px, 100%);
-    margin: 0 auto 24px;
-}
-
-
-.busqueda-inicio .busqueda {
-    height: 50px;
-    border-color: #b7aa94;
-    padding-left: 44px;
-}
-
-/* inicio.php */
+/* ===== inicio.php ===== */
 
 .pagina-inicio {
     display: block;
@@ -458,13 +357,6 @@ body {
     background: #f5efe3;
     color: #1d1b18;
     font-family: "Segoe UI", Arial, sans-serif;
-}
-
-.cabecera-inicio {
-    min-height: 76px;
-    justify-content: space-between;
-    padding-right: clamp(20px, 7vw, 100px);
-    padding-left: clamp(20px, 7vw, 100px);
 }
 
 .marca-inicio {
@@ -499,30 +391,6 @@ body {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 21px;
     font-weight: 800;
-}
-
-.cabecera-inicio .enlaces-superiores {
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-}
-
-.cabecera-inicio .enlaces-superiores a {
-    min-height: 42px;
-    padding: 9px 13px;
-    font-size: 13px;
-}
-
-.cabecera-inicio .enlaces-superiores .enlace-registro-inicio {
-    border: 1px solid #c98e34;
-    border-radius: 999px;
-    background: #c98e34;
-    color: #24292c;
-}
-
-.cabecera-inicio .enlaces-superiores .enlace-registro-inicio:hover {
-    background: #e0b65f;
-    color: #24292c;
 }
 
 .hero-inicio {
@@ -941,18 +809,6 @@ body {
     margin-top: 20px;
 }
 
-.invitacion-debate {
-    position: absolute;
-    right: 35px;
-    bottom: 26px;
-    color: rgba(109, 91, 60, .45);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: .15em;
-    line-height: 1.7;
-    text-align: right;
-}
-
 .pie-inicio {
     min-height: 92px;
     width: 100vw;
@@ -993,22 +849,6 @@ body {
 }
 
 @media (max-width: 760px) {
-    .cabecera-inicio {
-        min-height: 68px;
-        gap: 12px;
-        padding: 10px 18px;
-    }
-
-    .cabecera-inicio .enlaces-superiores {
-        gap: 2px;
-    }
-
-    .cabecera-inicio .enlaces-superiores a {
-        min-height: 38px;
-        padding: 6px 9px;
-        font-size: 12px;
-    }
-
     .hero-inicio {
         grid-template-columns: 1fr;
         gap: 0;
@@ -1052,29 +892,9 @@ body {
         font-size: 19px;
     }
 
-    .invitacion-debate {
-        display: none;
-    }
 }
 
 @media (max-width: 520px) {
-    .cabecera-inicio {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 12px 18px 10px;
-    }
-
-    .cabecera-inicio .enlaces-superiores {
-        width: 100%;
-        justify-content: flex-start;
-        margin: 0;
-    }
-
-    .cabecera-inicio .enlaces-superiores a {
-        padding-right: 8px;
-        padding-left: 8px;
-    }
-
     .hero-inicio {
         padding-top: 40px;
     }
@@ -1127,7 +947,7 @@ body {
     }
 }
 
-/* catalogo.php */
+/* ===== catalogo.php ===== */
 
 .pagina-catalogo-principal {
     background: #f5efe3;
@@ -1705,7 +1525,7 @@ body {
     }
 }
 
-/* MisListas.php */
+/* =====MisListas.php ===== */
 
 .pagina-listas {
     background: #f5efe3;
@@ -2280,7 +2100,7 @@ body {
         margin-left: 52px;
     }
 }
-/* FormularioLibro.php */
+/* ===== FormularioLibro.php ===== */
 
 .pagina-formulario {
     background: #f5efe3;
@@ -2634,7 +2454,7 @@ body {
 }
 
 
-/* libro.php */
+/* ===== libro.php ===== */
 
 .pagina-detalle .titulo-catalogo {
     gap: 10px;
@@ -2765,7 +2585,7 @@ body {
     object-position: center 35%;
 }
 
-.portada-detalle img[src$="bv_1_libro_cerrado.svg"] {
+.portada-detalle img.portada-ilustrada {
     object-fit: contain;
     background: linear-gradient(145deg, #d5c19b, #a98c5a);
     padding: 10px;
@@ -3067,6 +2887,7 @@ body {
 }
 
 @media (max-width: 980px) {
+    /* ===== RESPONSIVE COMPARTIDO: catalogo.php, libro.php, FormularioLibro.php, MisListas.php y administracion.php ===== */
     .pagina-catalogo {
         min-width: 0;
     }
@@ -3090,6 +2911,7 @@ body {
 }
 
 @media (max-width: 680px) {
+    /* ===== RESPONSIVE: navbar.php ===== */
     .barra-inicio {
         padding: 8px 12px;
     }
@@ -3098,21 +2920,23 @@ body {
         justify-content: center;
     }
 
-    .barra-inicio .enlaces-superiores a,
-    .barra-inicio .ajustes-navbar summary {
+    .barra-inicio .enlaces-superiores a {
         min-height: 38px;
         padding: 7px 10px;
         font-size: 12px;
     }
 
+    /* ===== NAVEGACION COMPARTIDA: catalogo.php, FormularioLibro.php, MisListas.php y administracion.php ===== */
     .pagina-catalogo .navegacion-catalogo {
         grid-template-columns: 62px 1fr;
     }
 
+    /* ===== COMPARTIDO: catalogo.php, libro.php, FormularioLibro.php, MisListas.php y administracion.php ===== */
     .titulo-catalogo {
         padding-left: 10px;
     }
 
+    /* ===== RESPONSIVE: libro.php ===== */
     .contenido-principal-detalle {
         padding: 18px 16px 24px;
     }
@@ -3141,6 +2965,7 @@ body {
     }
 }
 
+/* ===== CrearCuenta.php e IniciarSesion.php ===== */
 .pagina-acceso {
     min-height: 100vh;
     display: flex;
@@ -3294,14 +3119,6 @@ body {
     box-shadow: 0 0 0 3px rgba(201, 142, 52, .14);
 }
 
-.opciones-acceso {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin: 6px 0 8px;
-}
-
 .opcion-recordar {
     display: flex;
     align-items: flex-start;
@@ -3425,6 +3242,106 @@ body {
     }
 }
 
+/* ===== navbar.php ===== */
+.barra-inicio .navbar-bookverse {
+    width: 100%;
+    padding: 0;
+}
+
+.barra-inicio .navbar-marca {
+    color: #f3e7d4;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.barra-inicio .navbar-marca:hover {
+    color: #d7b16e;
+}
+
+.barra-inicio .navbar-toggler {
+    border-color: rgba(239, 226, 207, .55);
+}
+
+.barra-inicio .navbar-toggler:focus {
+    box-shadow: 0 0 0 .2rem rgba(201, 142, 52, .35);
+}
+
+.barra-inicio .dropdown-menu {
+    min-width: 180px;
+    border: 1px solid #d5c7ad;
+    border-radius: 9px;
+    background: #f7f1e5;
+    padding: 6px;
+    box-shadow: 0 12px 24px rgba(29, 27, 25, .2);
+}
+
+.barra-inicio .enlaces-superiores .dropdown-item {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #3b382f;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.barra-inicio .enlaces-superiores .dropdown-item:hover,
+.barra-inicio .enlaces-superiores .dropdown-item:focus {
+    background: #ead4a9;
+    color: #1d1b18;
+}
+
+@media (max-width: 991.98px) {
+    .barra-inicio .navbar-bookverse {
+        flex-wrap: wrap;
+    }
+
+    .barra-inicio .enlaces-superiores {
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        padding: 8px 0 2px;
+    }
+
+    .barra-inicio .enlaces-superiores .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        justify-items: start;
+        border-radius: 6px;
+        padding: 9px 12px;
+    }
+
+    .barra-inicio .enlaces-superiores .nav-link:hover,
+    .barra-inicio .enlaces-superiores .nav-link:focus {
+        transform: none;
+    }
+
+    .barra-inicio .enlaces-superiores .dropdown-menu {
+        border: 0;
+        background: rgba(255, 255, 255, .08);
+        box-shadow: none;
+        padding-left: 10px;
+    }
+
+    .barra-inicio .enlaces-superiores .dropdown-item {
+        color: #efe2cf;
+    }
+
+    .barra-inicio .enlaces-superiores .dropdown-item:hover,
+    .barra-inicio .enlaces-superiores .dropdown-item:focus {
+        background: #c98e34;
+        color: #1d1b18;
+    }
+}
+
+/* ===== administracion.php ===== */
 .pagina-catalogo.pagina-administracion {
     min-width: 320px;
     background: #eddfc7;

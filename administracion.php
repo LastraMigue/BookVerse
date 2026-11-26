@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Revisa las propuestas de libros de BookVerse.">
     <title>Administración | BookVerse</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-administracion">
     <?php include 'navbar.php'; ?>

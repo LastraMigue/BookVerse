@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Consulta portadas, sinopsis y detalles de libros seleccionados por BookVerse.">
     <title>Detalles del libro | BookVerse</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-detalle">
     <?php include 'navbar.php'; ?>
@@ -30,7 +29,7 @@
                             </nav>
                             <div class="resumen-libro">
                                 <div class="portada-detalle">
-                                    <img src="assets/img/bv_1_libro_cerrado.svg" alt="Ilustración de un libro cerrado para El nombre del viento">
+                                    <img class="portada-ilustrada" src="assets/img/bv_1_libro_cerrado.svg" alt="Ilustración de un libro cerrado para El nombre del viento">
                                 </div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Fantasía épica</p>
