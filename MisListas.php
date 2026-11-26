@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Organiza tus próximas lecturas y vuelve a los libros que más te gustan en BookVerse.">
     <title>Mis listas | BookVerse</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-listas">
     <?php include 'navbar.php'; ?>

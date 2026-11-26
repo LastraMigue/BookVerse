@@ -6,8 +6,6 @@
     <meta name="description" content="Crea tu cuenta en BookVerse para guardar libros y organizar tus lecturas.">
     <title>Crear cuenta | BookVerse</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-acceso">
     <?php include 'navbar.php'; ?>
