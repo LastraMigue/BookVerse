@@ -37,16 +37,16 @@ hizo, con qué licencia se usa, cómo hay que atribuirlo, en qué formato está 
 
 | Archivo | Uso | Imágenes de origen | Autoría | Licencia | Formato | Duración | Peso final | Cómo se hizo | Herramienta |
 |---|---|---|---|---|---|---|---|---|---|
-| img/icono-libro.gif | Icono animado de un libro abierto como presentacion del catalogo | Ninguna: no se parte de fotografías ni de recursos de terceros, el dibujo se genera por código | Elaboración propia del equipo (asistida por IA) | Recurso propio, uso libre dentro del proyecto | | GIF animado, 64×64 px, con fondo transparente | 12 fotogramas, 1,5 s en bucle | 11 KB | Libro dibujado a mano con formas geométricas y animado fotograma a fotograma: en cada uno la página avanza un poco y el libro se balancea. Después se unen los 12 en un GIF que se repite sin fin | Python con la librería Pillow |
+| assets/media/icono-libro.gif | Icono animado de un libro abierto como presentacion del catalogo | Ninguna: no se parte de fotografías ni de recursos de terceros, el dibujo se genera por código | Elaboración propia del equipo (asistida por IA) | Recurso propio, uso libre dentro del proyecto | | GIF animado, 64×64 px, con fondo transparente | 12 fotogramas, 1,5 s en bucle | 11 KB | Libro dibujado a mano con formas geométricas y animado fotograma a fotograma: en cada uno la página avanza un poco y el libro se balancea. Después se unen los 12 en un GIF que se repite sin fin | Python con la librería Pillow |
 
 ---
 
 ## 5. Tipografías
 
-| Familia | Uso | Fuente | Licencia | Atribución | Cómo se carga |
-|---|---|---|---|---|---|
-| PT Serif | Títulos (h1–h3), texto de los logos SVG y citas | https://fonts.google.com/specimen/PT+Serif | SIL Open Font License 1.1 (ParaType) | No requiere en la web; el archivo `OFL.txt` acompaña a las fuentes en `assets/fonts/` | Alojada en el proyecto (`assets/fonts/`) y declarada con `@font-face` |
-| PT Sans | Texto corrido, interfaz, formularios y botones | https://fonts.google.com/specimen/PT+Sans | SIL Open Font License 1.1 (ParaType) | No requiere en la web; el archivo `OFL.txt` acompaña a las fuentes en `assets/fonts/` | Alojada en el proyecto (`assets/fonts/`) y declarada con `@font-face` |
+| Familia | Uso | Fuente | 
+|---|---|---|
+| PT Serif | Títulos (h1–h3), texto de los logos SVG y citas | https://fonts.google.com/specimen/PT+Serif | 
+| PT Sans | Texto corrido, interfaz, formularios y botones | https://fonts.google.com/specimen/PT+Sans |
 
 ---
 
