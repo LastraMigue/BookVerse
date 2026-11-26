@@ -7,20 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-catalogo pagina-administracion">
-    <header class="barra-superior barra-inicio">
-        <nav class="enlaces-superiores" aria-label="Enlaces a las páginas">
-            <a href="inicio.php">Inicio</a>
-            <a href="catalogo.php">Catálogo</a>
-            <a href="FormularioLibro.php">Formulario</a>
-            <details class="ajustes-navbar">
-                <summary>Ajustes</summary>
-                <div>
-                    <a href="MisListas.php">Listas</a>
-                    <a href="IniciarSesion.php">Login</a>
-                </div>
-            </details>
-        </nav>
-    </header>
+    <?php include 'navbar.php'; ?>
+
     <section class="marco-catalogo marco-administracion">
         <main class="panel-catalogo panel-administracion">
             <header class="navegacion-catalogo">
