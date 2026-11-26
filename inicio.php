@@ -14,6 +14,7 @@
 
     <main>
         <section class="hero-inicio" aria-labelledby="titulo-inicio">
+            <img class="imagen-fondo-hero" src="assets/img/madera-hero.webp" alt="" aria-hidden="true">
             <div class="contenido-hero">
                 <p class="rotulo-inicio"><span aria-hidden="true"></span> Tu próxima aventura empieza aquí</p>
                 <h1 id="titulo-inicio">Hay historias que te encuentran. <em>Encuentra la tuya.</em></h1>
