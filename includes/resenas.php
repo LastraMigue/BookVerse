@@ -1,13 +1,9 @@
 <?php
-/**
- * BookVerse — Lógica de gestión de reseñas
- */
+// BookVerse — Lógica de gestión de reseñas
 
 require_once __DIR__ . '/conexion.php';
 
-/**
- * 1. Obtiene todas las reseñas asociadas a un libro publicado con sentencias preparadas.
- */
+// 1. Obtiene todas las reseñas asociadas a un libro publicado con sentencias preparadas
 function obtenerResenasPorLibro(PDO $pdo, int $libroId): array
 {
     try {
@@ -27,9 +23,7 @@ function obtenerResenasPorLibro(PDO $pdo, int $libroId): array
     }
 }
 
-/**
- * 2. Calcula la valoración media en estrellas (AVG) y el total de reseñas de un libro.
- */
+// 2. Calcula la valoración media en estrellas (AVG) y el total de reseñas de un libro
 function obtenerMediaValoracion(PDO $pdo, int $libroId): array
 {
     try {
@@ -52,9 +46,7 @@ function obtenerMediaValoracion(PDO $pdo, int $libroId): array
     }
 }
 
-/**
- * 3. Comprueba si un usuario ya ha publicado una reseña sobre un libro (restricción UNIQUE).
- */
+// 3. Comprueba si un usuario ya ha publicado una reseña sobre un libro (restricción UNIQUE)
 function usuarioYaReseno(PDO $pdo, int $libroId, int $usuarioId): bool
 {
     try {
@@ -71,9 +63,7 @@ function usuarioYaReseno(PDO $pdo, int $libroId, int $usuarioId): bool
     }
 }
 
-/**
- * 4. Valida en servidor los datos brutos recibidos del formulario de reseña.
- */
+// 4. Valida en servidor los datos brutos recibidos del formulario de reseña
 function validarDatosResena($valoracion, $texto): array
 {
     $errores = [];
@@ -100,9 +90,7 @@ function validarDatosResena($valoracion, $texto): array
     ];
 }
 
-/**
- * 5. Inserta una nueva reseña de forma segura con sentencias preparadas.
- */
+// 5. Inserta una nueva reseña de forma segura con sentencias preparadas
 function insertarResena(PDO $pdo, int $libroId, int $usuarioId, int $valoracion, string $texto): array
 {
     // Validar datos de entrada
@@ -157,33 +145,27 @@ function insertarResena(PDO $pdo, int $libroId, int $usuarioId, int $valoracion,
     }
 }
 
-/**
- * 6. Sanitiza y escapa de forma segura los datos de las reseñas contra ataques XSS
- * para que el integrante encargado del marcado HTML pueda renderizarlas de forma segura.
- */
+// 6. Sanitiza y escapa de forma segura los datos de las reseñas contra ataques XSS
 function escaparResenasParaVista(array $resenas): array
 {
     return array_map(function ($r) {
         return [
-            'id'             => (int)$r['id'],
-            'libro_id'       => (int)$r['libro_id'],
-            'usuario_id'     => (int)$r['usuario_id'],
-            'valoracion'     => (int)$r['valoracion'],
-            'usuario_nombre' => htmlspecialchars((string)($r['usuario_nombre'] ?? ''), ENT_QUOTES, 'UTF-8'),
-            'texto'          => htmlspecialchars((string)($r['texto'] ?? ''), ENT_QUOTES, 'UTF-8'),
+            'id'               => (int)$r['id'],
+            'libro_id'         => (int)$r['libro_id'],
+            'usuario_id'       => (int)$r['usuario_id'],
+            'valoracion'       => (int)$r['valoracion'],
+            'usuario_nombre'   => htmlspecialchars((string)($r['usuario_nombre'] ?? ''), ENT_QUOTES, 'UTF-8'),
+            'texto'            => htmlspecialchars((string)($r['texto'] ?? ''), ENT_QUOTES, 'UTF-8'),
             'texto_formateado' => nl2br(htmlspecialchars((string)($r['texto'] ?? ''), ENT_QUOTES, 'UTF-8')),
-            'fecha'          => htmlspecialchars((string)($r['fecha'] ?? ''), ENT_QUOTES, 'UTF-8')
+            'fecha'            => htmlspecialchars((string)($r['fecha'] ?? ''), ENT_QUOTES, 'UTF-8')
         ];
     }, $resenas);
 }
 
-/**
- * 7. Ejecuta la redirección automática tras guardar una reseña.
- */
+// 7. Ejecuta la redirección automática tras guardar una reseña
 function redirigirTrasGuardarResena(int $libroId, bool $guardadoÉxito = true): void
 {
     $parametro = $guardadoÉxito ? 'guardado=1' : 'error=1';
-    // Redireccionar a la pantalla que corresponda (index.php como ejemplo, revisarlo más adelante)
     header("Location: index.php?id={$libroId}&{$parametro}");
     exit;
 }
