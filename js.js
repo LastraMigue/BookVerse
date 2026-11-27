@@ -2,7 +2,7 @@ const form = document.getElementById("loginForm");
 const error = document.getElementById("error");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault(); // evita que se recargue la página
+  e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
   const pass = document.getElementById("pass").value;
@@ -22,5 +22,5 @@ form.addEventListener("submit", (e) => {
   }
 
   error.textContent = "";
-  form.submit(); // o enviar con fetch al servidor
+  form.submit(); 
 });
