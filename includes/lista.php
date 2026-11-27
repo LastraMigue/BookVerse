@@ -1,16 +1,10 @@
 <?php
-/**
- * BookVerse — Lógica de gestión de listas de lectura (MVP)
- *
- * Funciones CRUD sobre la tabla 'lista_lecturas' -> Listar, añadir, editar y eliminar.
- * Se utiliza un $usuarioId por parámetro provisionalmente hasta definir el login.
- */
+// BookVerse — Lógica de gestión de listas de lectura (MVP)
+// Funciones CRUD sobre la tabla 'lista_lecturas' -> Listar, añadir, editar y eliminar.
 
 require_once __DIR__ . '/conexion.php';
 
-/**
- * 1. Seleccionar todos los libros de la lista de un usuario.
- */
+// 1. Seleccionar todos los libros de la lista de un usuario
 function obtenerListaUsuario(PDO $pdo, int $usuarioId): array
 {
     try {
@@ -30,9 +24,7 @@ function obtenerListaUsuario(PDO $pdo, int $usuarioId): array
     }
 }
 
-/**
- * 2. Añadir libro a la lista del usuario (comprobando existencia y duplicados).
- */
+// 2. Añadir libro a la lista del usuario (comprobando existencia y duplicados)
 function anadirLibroLista(PDO $pdo, int $usuarioId, int $libroId, string $estado = 'quiero_leer'): array
 {
     $estadosValidos = ['quiero_leer', 'leyendo', 'leido'];
@@ -71,9 +63,7 @@ function anadirLibroLista(PDO $pdo, int $usuarioId, int $libroId, string $estado
     }
 }
 
-/**
- * 3. Editar estado de un libro en la lista del usuario.
- */
+// 3. Editar estado de un libro en la lista del usuario
 function editarEstadoLibro(PDO $pdo, int $usuarioId, int $libroId, string $nuevoEstado): array
 {
     $estadosValidos = ['quiero_leer', 'leyendo', 'leido'];
@@ -101,9 +91,7 @@ function editarEstadoLibro(PDO $pdo, int $usuarioId, int $libroId, string $nuevo
     }
 }
 
-/**
- * 4. Eliminar un libro de la lista del usuario.
- */
+// 4. Eliminar un libro de la lista del usuario
 function eliminarLibroLista(PDO $pdo, int $usuarioId, int $libroId): array
 {
     try {
