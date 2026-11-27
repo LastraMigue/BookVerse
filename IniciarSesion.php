@@ -77,8 +77,6 @@ $urlRedirect = filter_input(INPUT_GET, 'redirect', FILTER_SANITIZE_URL);
     <meta name="description" content="Inicia sesión en BookVerse y continúa organizando tus próximas lecturas.">
     <title>Iniciar sesión | BookVerse</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-acceso">
     <?php include 'navbar.php'; ?>
