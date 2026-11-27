@@ -1,7 +1,5 @@
 <?php
 // BookVerse — Sistema de Autenticación y Control de Acceso
-// Archivo: includes/auth.php
-// Rol: Integrante 1 (Backend núcleo, base de datos y Git)
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -50,6 +48,13 @@ function cerrarSesionUsuario(): void
 function obtenerUsuarioAutenticado(): ?array
 {
     return $_SESSION['usuario'] ?? null;
+}
+
+// Devuelve el ID numérico del usuario en sesión o null si es invitado
+function obtenerUsuarioIdSesion(): ?int
+{
+    $usuario = obtenerUsuarioAutenticado();
+    return $usuario ? (int)$usuario['id'] : null;
 }
 
 // Comprueba si hay una persona usuaria con sesión activa

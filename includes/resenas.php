@@ -23,7 +23,7 @@ function obtenerResenasPorLibro(PDO $pdo, int $libroId): array
     }
 }
 
-// 2. Calcula la valoración media en estrellas (AVG) y el total de reseñas de un libro
+// 2. Calcula la valoración media en estrellas y el total de reseñas de un libro
 function obtenerMediaValoracion(PDO $pdo, int $libroId): array
 {
     try {
@@ -46,24 +46,34 @@ function obtenerMediaValoracion(PDO $pdo, int $libroId): array
     }
 }
 
-// 3. Comprueba si un usuario ya ha publicado una reseña sobre un libro (restricción UNIQUE)
-function usuarioYaReseno(PDO $pdo, int $libroId, int $usuarioId): bool
+// 3. Obtiene la reseña específica de un usuario para un libro concreto (o null si no existe)
+function obtenerResenaDeUsuario(PDO $pdo, int $libroId, int $usuarioId): ?array
 {
     try {
-        $sql = "SELECT 1 FROM resenas WHERE libro_id = :libro_id AND usuario_id = :usuario_id LIMIT 1";
+        $sql = "SELECT id, libro_id, usuario_id, valoracion, texto, fecha 
+                FROM resenas 
+                WHERE libro_id = :libro_id AND usuario_id = :usuario_id 
+                LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':libro_id'   => $libroId,
             ':usuario_id' => $usuarioId
         ]);
-        return (bool)$stmt->fetchColumn();
+        $resena = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resena ?: null;
     } catch (PDOException $e) {
-        error_log("Error al verificar reseña previa: " . $e->getMessage());
-        return false;
+        error_log("Error al consultar reseña previa: " . $e->getMessage());
+        return null;
     }
 }
 
-// 4. Valida en servidor los datos brutos recibidos del formulario de reseña
+// 4. Comprueba si un usuario ya ha publicado una reseña sobre un libro (restricción UNIQUE)
+function usuarioYaReseno(PDO $pdo, int $libroId, int $usuarioId): bool
+{
+    return obtenerResenaDeUsuario($pdo, $libroId, $usuarioId) !== null;
+}
+
+// 5. Valida en servidor los datos brutos recibidos del formulario de reseña
 function validarDatosResena($valoracion, $texto): array
 {
     $errores = [];
@@ -71,7 +81,7 @@ function validarDatosResena($valoracion, $texto): array
     // Validar tipo y rango numérico (1 a 5 estrellas)
     $valInt = filter_var($valoracion, FILTER_VALIDATE_INT);
     if ($valInt === false || $valInt < 1 || $valInt > 5) {
-        $errores[] = "La valoración debe ser un valor entero entre 1 y 5 estrellas.";
+        $errores[] = "La valoración debe ser un número entero entre 1 y 5 estrellas.";
     }
 
     // Validar texto no vacío y longitud mínima
@@ -79,7 +89,7 @@ function validarDatosResena($valoracion, $texto): array
     if ($textoLimpio === '') {
         $errores[] = "El comentario de la reseña es obligatorio.";
     } elseif (mb_strlen($textoLimpio) < 5) {
-        $errores[] = "El comentario debe tener una longitud mínima de 5 caracteres.";
+        $errores[] = "El comentario debe tener al menos 5 caracteres.";
     }
 
     return [
@@ -90,10 +100,9 @@ function validarDatosResena($valoracion, $texto): array
     ];
 }
 
-// 5. Inserta una nueva reseña de forma segura con sentencias preparadas
-function insertarResena(PDO $pdo, int $libroId, int $usuarioId, int $valoracion, string $texto): array
+// 6. Inserta una nueva reseña o edita la existente si el usuario ya opinó (Upsert seguro)
+function guardarOActualizarResena(PDO $pdo, int $libroId, int $usuarioId, int $valoracion, string $texto): array
 {
-    // Validar datos de entrada
     $validacion = validarDatosResena($valoracion, $texto);
     if (!$validacion['valido']) {
         return [
@@ -103,49 +112,93 @@ function insertarResena(PDO $pdo, int $libroId, int $usuarioId, int $valoracion,
     }
 
     try {
-        // Verificar que el libro existe y está publicado en el catálogo
+        // Verificar que el libro existe y está publicado
         $stmtLibro = $pdo->prepare("SELECT id FROM libros WHERE id = :libro_id AND estado = 'publicado'");
         $stmtLibro->execute([':libro_id' => $libroId]);
         if (!$stmtLibro->fetch()) {
             return [
                 'exito'   => false,
-                'mensaje' => 'Solo se pueden enviar reseñas para libros publicados.'
+                'mensaje' => 'Solo se pueden enviar reseñas para libros publicados en el catálogo.'
             ];
         }
 
-        // Verificar que el usuario no haya publicado ya para este libro
-        if (usuarioYaReseno($pdo, $libroId, $usuarioId)) {
+        $resenaExistente = obtenerResenaDeUsuario($pdo, $libroId, $usuarioId);
+
+        if ($resenaExistente) {
+            // Actualizar reseña existente
+            $sql = "UPDATE resenas 
+                    SET valoracion = :valoracion, texto = :texto, fecha = CURRENT_TIMESTAMP 
+                    WHERE libro_id = :libro_id AND usuario_id = :usuario_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':valoracion' => $validacion['valoracion'],
+                ':texto'      => $validacion['texto'],
+                ':libro_id'   => $libroId,
+                ':usuario_id' => $usuarioId
+            ]);
+
             return [
-                'exito'   => false,
-                'mensaje' => 'Ya has publicado una reseña para este libro.'
+                'exito'   => true,
+                'mensaje' => '¡Tu reseña ha sido actualizada con éxito!'
+            ];
+        } else {
+            // Insertar nueva reseña
+            $sql = "INSERT INTO resenas (libro_id, usuario_id, valoracion, texto) 
+                    VALUES (:libro_id, :usuario_id, :valoracion, :texto)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':libro_id'   => $libroId,
+                ':usuario_id' => $usuarioId,
+                ':valoracion' => $validacion['valoracion'],
+                ':texto'      => $validacion['texto']
+            ]);
+
+            return [
+                'exito'   => true,
+                'mensaje' => '¡Tu reseña ha sido publicada con éxito!'
             ];
         }
-
-        // Inserción segura mediante sentencia preparada
-        $sql = "INSERT INTO resenas (libro_id, usuario_id, valoracion, texto) 
-                VALUES (:libro_id, :usuario_id, :valoracion, :texto)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':libro_id'   => $libroId,
-            ':usuario_id' => $usuarioId,
-            ':valoracion' => $validacion['valoracion'],
-            ':texto'      => $validacion['texto']
-        ]);
-
-        return [
-            'exito'   => true,
-            'mensaje' => 'Reseña guardada correctamente.'
-        ];
     } catch (PDOException $e) {
-        error_log("Error al insertar reseña: " . $e->getMessage());
+        error_log("Error al guardar/actualizar reseña: " . $e->getMessage());
         return [
             'exito'   => false,
-            'mensaje' => 'Error de servidor al guardar la reseña.'
+            'mensaje' => 'Ocurrió un error en el servidor al procesar tu reseña.'
         ];
     }
 }
 
-// 6. Sanitiza y escapa de forma segura los datos de las reseñas contra ataques XSS
+// 7. Elimina una reseña comprobando estrictamente en el servidor que pertenece al usuario
+function eliminarResenaPropia(PDO $pdo, int $resenaId, int $usuarioId): array
+{
+    try {
+        $sql = "DELETE FROM resenas WHERE id = :resena_id AND usuario_id = :usuario_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':resena_id'   => $resenaId,
+            ':usuario_id' => $usuarioId
+        ]);
+
+        if ($stmt->rowCount() > 0) {
+            return [
+                'exito'   => true,
+                'mensaje' => 'Tu reseña ha sido eliminada correctamente.'
+            ];
+        }
+
+        return [
+            'exito'   => false,
+            'mensaje' => 'No se encontró la reseña o no tienes permisos para eliminarla.'
+        ];
+    } catch (PDOException $e) {
+        error_log("Error al eliminar reseña: " . $e->getMessage());
+        return [
+            'exito'   => false,
+            'mensaje' => 'No se pudo eliminar la reseña por un error del servidor.'
+        ];
+    }
+}
+
+// 8. Sanitiza y escapa de forma segura los datos de las reseñas contra ataques XSS
 function escaparResenasParaVista(array $resenas): array
 {
     return array_map(function ($r) {
@@ -162,10 +215,24 @@ function escaparResenasParaVista(array $resenas): array
     }, $resenas);
 }
 
-// 7. Ejecuta la redirección automática tras guardar una reseña
-function redirigirTrasGuardarResena(int $libroId, bool $guardadoÉxito = true): void
+// 9. Formatea la media de estrellas y total de reseñas con fallback textual seguro
+function renderizarTextoMedia(?float $media, int $total): string
 {
-    $parametro = $guardadoÉxito ? 'guardado=1' : 'error=1';
-    header("Location: index.php?id={$libroId}&{$parametro}");
-    exit;
+    if ($total === 0 || $media === null) {
+        return "No ratings yet"; // "Sin valoraciones aún"
+    }
+    $textoValoraciones = ($total === 1) ? "1 valoración" : "{$total} valoraciones";
+    return number_format($media, 1, ',', '.') . " de 5 · " . $textoValoraciones;
+}
+
+// 10. Genera la representación visual en caracteres de estrellas (ej. ★★★★☆)
+function renderizarEstrellasVisuales(?float $media): string
+{
+    if ($media === null || $media <= 0) {
+        return "☆☆☆☆☆";
+    }
+    $redondeado = (int)round($media);
+    $estrellasLlenas = min(5, max(0, $redondeado));
+    $estrellasVacias = 5 - $estrellasLlenas;
+    return str_repeat("★", $estrellasLlenas) . str_repeat("☆", $estrellasVacias);
 }

@@ -1,3 +1,25 @@
+<?php
+// BookVerse — Catálogo de Libros
+
+require_once __DIR__ . '/includes/conexion.php';
+require_once __DIR__ . '/includes/resenas.php';
+
+// Mapeo entre slug del catálogo y el ID del libro en la BD
+$mapaLibrosCatalogo = [
+    'el-nombre-del-viento'           => 3,
+    'dracula'                        => 8,
+    'orgullo-y-prejuicio'            => 6,
+    'el-sabueso-de-los-baskerville' => 5,
+    'cien-anos-de-soledad'           => 1
+];
+
+// Cargar estadísticas reales de valoración desde la base de datos
+$mediasLibros = [];
+foreach ($mapaLibrosCatalogo as $slug => $id) {
+    $stats = obtenerMediaValoracion($pdo, $id);
+    $mediasLibros[$slug] = $stats;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +39,6 @@
                     <strong>BookVerse</strong>
                 </a>
                 <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
-                    
                     <input type="search" name="q" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
                 </form>
             </header>
@@ -62,6 +83,8 @@
                     </div>
 
                     <div class="cuadricula-libros">
+                        <!-- El nombre del viento -->
+                        <?php $s = $mediasLibros['el-nombre-del-viento']; ?>
                         <a class="enlace-tarjeta-libro" href="libro.php#el-nombre-del-viento">
                             <article class="tarjeta-libro" id="libro-fantasia">
                                 <div class="portada-libro portada-viento" role="img" aria-label="Portada ilustrada de El nombre del viento">
@@ -74,11 +97,16 @@
                                     <h3>El nombre del viento</h3>
                                     <p class="autor-libro">Patrick Rothfuss</p>
                                     <p class="descripcion-libro">Magia, música y leyendas en una aventura de formación y misterio.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,8 de 5"><span aria-hidden="true">★★★★★</span><b>4,8</b></div>
+                                    <div class="valoracion-libro" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($s['media'], $s['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <span aria-hidden="true"><?= renderizarEstrellasVisuales($s['media']) ?></span>
+                                        <b><?= $s['media'] !== null ? number_format($s['media'], 1, ',', '.') : 'Sin valoraciones aún' ?></b>
+                                    </div>
                                 </div>
                             </article>
                         </a>
 
+                        <!-- Drácula -->
+                        <?php $s = $mediasLibros['dracula']; ?>
                         <a class="enlace-tarjeta-libro" href="libro.php#dracula">
                             <article class="tarjeta-libro" id="libro-terror">
                                 <img class="portada-libro" src="assets/img/dracula.webp" alt="Portada clásica de Drácula">
@@ -87,11 +115,16 @@
                                     <h3>Drácula</h3>
                                     <p class="autor-libro">Bram Stoker</p>
                                     <p class="descripcion-libro">Un clásico inquietante sobre un misterioso conde y su leyenda.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,7 de 5"><span aria-hidden="true">★★★★★</span><b>4,7</b></div>
+                                    <div class="valoracion-libro" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($s['media'], $s['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <span aria-hidden="true"><?= renderizarEstrellasVisuales($s['media']) ?></span>
+                                        <b><?= $s['media'] !== null ? number_format($s['media'], 1, ',', '.') : 'Sin valoraciones aún' ?></b>
+                                    </div>
                                 </div>
                             </article>
                         </a>
 
+                        <!-- Orgullo y prejuicio -->
+                        <?php $s = $mediasLibros['orgullo-y-prejuicio']; ?>
                         <a class="enlace-tarjeta-libro" href="libro.php#orgullo-y-prejuicio">
                             <article class="tarjeta-libro" id="libro-romance">
                                 <img class="portada-libro" src="assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio">
@@ -100,11 +133,16 @@
                                     <h3>Orgullo y prejuicio</h3>
                                     <p class="autor-libro">Jane Austen</p>
                                     <p class="descripcion-libro">Ingenio, primeras impresiones y una historia que sigue conquistando lectores.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
+                                    <div class="valoracion-libro" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($s['media'], $s['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <span aria-hidden="true"><?= renderizarEstrellasVisuales($s['media']) ?></span>
+                                        <b><?= $s['media'] !== null ? number_format($s['media'], 1, ',', '.') : 'Sin valoraciones aún' ?></b>
+                                    </div>
                                 </div>
                             </article>
                         </a>
 
+                        <!-- El sabueso de los Baskerville -->
+                        <?php $s = $mediasLibros['el-sabueso-de-los-baskerville']; ?>
                         <a class="enlace-tarjeta-libro" href="libro.php#el-sabueso-de-los-baskerville">
                             <article class="tarjeta-libro" id="libro-misterio">
                                 <img class="portada-libro" src="assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville">
@@ -113,11 +151,16 @@
                                     <h3>El sabueso de los Baskerville</h3>
                                     <p class="autor-libro">Arthur Conan Doyle</p>
                                     <p class="descripcion-libro">Sherlock Holmes investiga una leyenda oscura en los páramos ingleses.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,6 de 5"><span aria-hidden="true">★★★★★</span><b>4,6</b></div>
+                                    <div class="valoracion-libro" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($s['media'], $s['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <span aria-hidden="true"><?= renderizarEstrellasVisuales($s['media']) ?></span>
+                                        <b><?= $s['media'] !== null ? number_format($s['media'], 1, ',', '.') : 'Sin valoraciones aún' ?></b>
+                                    </div>
                                 </div>
                             </article>
                         </a>
 
+                        <!-- Cien años de soledad -->
+                        <?php $s = $mediasLibros['cien-anos-de-soledad']; ?>
                         <a class="enlace-tarjeta-libro" href="libro.php#cien-anos-de-soledad">
                             <article class="tarjeta-libro" id="libro-realismo">
                                 <img class="portada-libro" src="assets/img/cien-anos-de-soledad.webp" alt="Portada de Cien años de soledad">
@@ -126,7 +169,10 @@
                                     <h3>Cien años de soledad</h3>
                                     <p class="autor-libro">Gabriel García Márquez</p>
                                     <p class="descripcion-libro">La saga de una familia y un pueblo donde lo extraordinario forma parte de lo cotidiano.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
+                                    <div class="valoracion-libro" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($s['media'], $s['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <span aria-hidden="true"><?= renderizarEstrellasVisuales($s['media']) ?></span>
+                                        <b><?= $s['media'] !== null ? number_format($s['media'], 1, ',', '.') : 'Sin valoraciones aún' ?></b>
+                                    </div>
                                 </div>
                             </article>
                         </a>

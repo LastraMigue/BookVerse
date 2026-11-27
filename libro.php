@@ -1,3 +1,98 @@
+<?php
+// BookVerse — Detalle del Libro y Gestión de Reseñas
+// Rol: Backend y Base de Datos (PDO, Sesiones y Seguridad ILERNA)
+
+require_once __DIR__ . '/includes/conexion.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/resenas.php';
+
+// Mapeo entre slug de URL / ancla y el ID real del libro en la BD
+$mapaLibros = [
+    'el-nombre-del-viento'           => 3,
+    'dracula'                        => 8,
+    'orgullo-y-prejuicio'            => 6,
+    'el-sabueso-de-los-baskerville' => 5,
+    'cien-anos-de-soledad'           => 1
+];
+
+// Obtener sesión de usuario (null si es invitado)
+$usuarioActual = obtenerUsuarioAutenticado();
+$usuarioId = $usuarioActual ? (int)$usuarioActual['id'] : null;
+
+// Mensajes flash
+$mensajeExito = '';
+$mensajeError = '';
+
+// Procesar acciones POST (guardar/actualizar o eliminar reseña)
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $accion = filter_input(INPUT_POST, 'accion', FILTER_DEFAULT);
+
+    if ($accion === 'guardar_resena') {
+        if (!$usuarioId) {
+            $slugRetorno = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
+            header('Location: IniciarSesion.php?redirect=' . urlencode('libro.php#' . $slugRetorno));
+            exit;
+        }
+
+        $libroIdForm = filter_input(INPUT_POST, 'libro_id', FILTER_VALIDATE_INT);
+        $valoracion = filter_input(INPUT_POST, 'valoracion', FILTER_VALIDATE_INT);
+        $texto = $_POST['texto'] ?? '';
+        $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
+
+        if (!$libroIdForm) {
+            $mensajeError = "ID de libro no válido.";
+        } else {
+            $res = guardarOActualizarResena($pdo, $libroIdForm, $usuarioId, (int)$valoracion, (string)$texto);
+            if ($res['exito']) {
+                header("Location: libro.php?guardado=1#" . $slug);
+                exit;
+            } else {
+                $mensajeError = $res['mensaje'];
+            }
+        }
+    } elseif ($accion === 'eliminar_resena') {
+        if (!$usuarioId) {
+            header('Location: IniciarSesion.php');
+            exit;
+        }
+
+        $resenaId = filter_input(INPUT_POST, 'resena_id', FILTER_VALIDATE_INT);
+        $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
+
+        if ($resenaId) {
+            $res = eliminarResenaPropia($pdo, $resenaId, $usuarioId);
+            if ($res['exito']) {
+                header("Location: libro.php?eliminado=1#" . $slug);
+                exit;
+            } else {
+                $mensajeError = $res['mensaje'];
+            }
+        }
+    }
+}
+
+if (isset($_GET['guardado'])) {
+    $mensajeExito = "¡Tu reseña ha sido procesada con éxito!";
+} elseif (isset($_GET['eliminado'])) {
+    $mensajeExito = "Tu reseña ha sido eliminada.";
+}
+
+// Cargar estadísticas y reseñas reales de la base de datos para cada libro
+$datosLibros = [];
+foreach ($mapaLibros as $slug => $id) {
+    $stats = obtenerMediaValoracion($pdo, $id);
+    $listaResenas = obtenerResenasPorLibro($pdo, $id);
+    $miResena = $usuarioId ? obtenerResenaDeUsuario($pdo, $id, $usuarioId) : null;
+
+    $datosLibros[$slug] = [
+        'id'        => $id,
+        'media'     => $stats['media'],
+        'total'     => $stats['total'],
+        'resenas'   => escaparResenasParaVista($listaResenas),
+        'mi_resena' => $miResena
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +113,21 @@
                 </a>
             </header>
 
+            <?php if (!empty($mensajeExito)): ?>
+                <div class="alert alert-success m-3" role="alert">
+                    <?= htmlspecialchars($mensajeExito, ENT_QUOTES, 'UTF-8') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($mensajeError)): ?>
+                <div class="alert alert-danger m-3" role="alert">
+                    <?= htmlspecialchars($mensajeError, ENT_QUOTES, 'UTF-8') ?>
+                </div>
+            <?php endif; ?>
+
             <div class="contenedor-fichas-libro">
+                <!-- ================= FICHA 1: EL NOMBRE DEL VIENTO ================= -->
+                <?php $d = $datosLibros['el-nombre-del-viento']; ?>
                 <article class="ficha-libro" id="el-nombre-del-viento">
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
@@ -35,10 +144,23 @@
                                     <p class="etiqueta-genero">Fantasía épica</p>
                                     <h1>El nombre del viento</h1>
                                     <small>Patrick Rothfuss</small>
-                                    <div class="estrellas-detalle" aria-label="Valoración de ejemplo: 4,8 de 5"><b>★★★★★</b></div>
-                                    <p class="dato-valoraciones">4,8 de 5 · 1.248 valoraciones de ejemplo</p>
+                                    <div class="estrellas-detalle" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <b><?= renderizarEstrellasVisuales($d['media']) ?></b>
+                                    </div>
+                                    <p class="dato-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
+                                    
                                     <button class="boton-agregar-lista" type="button">Añadir a mi lista</button>
-                                    <button class="boton-agregar-estanteria" type="button">Guardar en estantería</button>
+                                    
+                                    <!-- Botón para Abrir Ventana Emergente (Modal) o Redirigir a Login -->
+                                    <?php if ($usuarioId): ?>
+                                        <button class="boton-agregar-estanteria" type="button" data-bs-toggle="modal" data-bs-target="#modalResena-el-nombre-del-viento">
+                                            <?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href="IniciarSesion.php?redirect=<?= urlencode('libro.php#el-nombre-del-viento') ?>" class="boton-agregar-estanteria text-decoration-none d-inline-flex align-items-center justify-content-center">
+                                            Añadir reseña
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <section class="sinopsis">
@@ -57,25 +179,86 @@
                             </dl>
                             <div class="seccion-valoracion">
                                 <h2>Valoraciones</h2>
-                                <div class="valoracion-media"><strong>4,8</strong><span>★★★★★</span></div>
-                                <p class="aviso-valoraciones">Puntuaciones ilustrativas para esta selección de ejemplo.</p>
-                                <div class="barras-valoracion">
-                                    <div><b>5</b><i><span style="width: 82%"></span></i><em>82%</em></div>
-                                    <div><b>4</b><i><span style="width: 12%"></span></i><em>12%</em></div>
-                                    <div><b>3</b><i><span style="width: 4%"></span></i><em>4%</em></div>
-                                    <div><b>2</b><i><span style="width: 1%"></span></i><em>1%</em></div>
-                                    <div><b>1</b><i><span style="width: 1%"></span></i><em>1%</em></div>
+                                <div class="valoracion-media">
+                                    <strong><?= $d['media'] !== null ? number_format($d['media'], 1, ',', '.') : '—' ?></strong>
+                                    <span><?= renderizarEstrellasVisuales($d['media']) ?></span>
                                 </div>
+                                <p class="aviso-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Marina López</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una historia fascinante, con un mundo lleno de detalles y una voz narrativa inolvidable.</p></div></article>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>David Martín</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Me atraparon la música y los misterios. Una lectura perfecta para perderse un rato.</p></div></article>
+                                <div class="encabezado-resenas">
+                                    <h2>Reseñas de la comunidad</h2>
+                                    <a href="catalogo.php">Volver</a>
+                                </div>
+                                <?php if (empty($d['resenas'])): ?>
+                                    <p class="text-muted small">Sé el primero en compartir tu opinión sobre este libro.</p>
+                                <?php else: ?>
+                                    <?php foreach ($d['resenas'] as $r): ?>
+                                        <article>
+                                            <div class="imagen-perfil" aria-hidden="true"></div>
+                                            <div>
+                                                <strong><?= $r['usuario_nombre'] ?></strong>
+                                                <div><span><?= renderizarEstrellasVisuales((float)$r['valoracion']) ?></span></div>
+                                                <p><?= $r['texto_formateado'] ?></p>
+                                                <?php if ($usuarioId && $r['usuario_id'] === $usuarioId): ?>
+                                                    <form method="POST" action="libro.php#el-nombre-del-viento" onsubmit="return confirm('¿Seguro que deseas eliminar tu reseña?');" class="mt-1">
+                                                        <input type="hidden" name="accion" value="eliminar_resena">
+                                                        <input type="hidden" name="resena_id" value="<?= $r['id'] ?>">
+                                                        <input type="hidden" name="slug" value="el-nombre-del-viento">
+                                                        <button type="submit" class="btn btn-sm btn-link text-danger p-0 border-0" style="font-size: 11px;">Eliminar mi reseña</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </section>
                         </aside>
                     </div>
+
+                    <!-- Modal Reseña para El Nombre del Viento -->
+                    <?php if ($usuarioId): ?>
+                    <div class="modal fade" id="modalResena-el-nombre-del-viento" tabindex="-1" aria-labelledby="labelModal-el-nombre-del-viento" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelModal-el-nombre-del-viento"><?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <form method="POST" action="libro.php#el-nombre-del-viento">
+                                    <input type="hidden" name="accion" value="guardar_resena">
+                                    <input type="hidden" name="libro_id" value="<?= $d['id'] ?>">
+                                    <input type="hidden" name="slug" value="el-nombre-del-viento">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="val-viento" class="form-label font-monospace">Puntuación (de 1 a 5 estrellas):</label>
+                                            <select name="valoracion" id="val-viento" class="form-select" required>
+                                                <?php $miVal = $d['mi_resena']['valoracion'] ?? 5; ?>
+                                                <option value="5" <?= $miVal == 5 ? 'selected' : '' ?>>★★★★★ (5 estrellas - Obra maestra)</option>
+                                                <option value="4" <?= $miVal == 4 ? 'selected' : '' ?>>★★★★☆ (4 estrellas - Muy bueno)</option>
+                                                <option value="3" <?= $miVal == 3 ? 'selected' : '' ?>>★★★☆☆ (3 estrellas - Bueno)</option>
+                                                <option value="2" <?= $miVal == 2 ? 'selected' : '' ?>>★★☆☆☆ (2 estrellas - Regular)</option>
+                                                <option value="1" <?= $miVal == 1 ? 'selected' : '' ?>>★☆☆☆☆ (1 estrella - No me gustó)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txt-viento" class="form-label">Tu opinión sobre el libro:</label>
+                                            <textarea name="texto" id="txt-viento" class="form-control" rows="4" placeholder="Escribe al menos 5 caracteres sobre lo que te ha parecido..." minlength="5" required><?= htmlspecialchars($d['mi_resena']['texto'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-warning"><?= $d['mi_resena'] ? 'Actualizar reseña' : 'Publicar reseña' ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </article>
 
+                <!-- ================= FICHA 2: DRACULA ================= -->
+                <?php $d = $datosLibros['dracula']; ?>
                 <article class="ficha-libro" id="dracula">
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
@@ -90,16 +273,28 @@
                                     <p class="etiqueta-genero">Terror gótico</p>
                                     <h1>Drácula</h1>
                                     <small>Bram Stoker</small>
-                                    <div class="estrellas-detalle" aria-label="Valoración de ejemplo: 4,7 de 5"><b>★★★★★</b></div>
-                                    <p class="dato-valoraciones">4,7 de 5 · 860 valoraciones de ejemplo</p>
+                                    <div class="estrellas-detalle" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <b><?= renderizarEstrellasVisuales($d['media']) ?></b>
+                                    </div>
+                                    <p class="dato-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
+                                    
                                     <button class="boton-agregar-lista" type="button">Añadir a mi lista</button>
-                                    <button class="boton-agregar-estanteria" type="button">Guardar en estantería</button>
+                                    
+                                    <?php if ($usuarioId): ?>
+                                        <button class="boton-agregar-estanteria" type="button" data-bs-toggle="modal" data-bs-target="#modalResena-dracula">
+                                            <?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href="IniciarSesion.php?redirect=<?= urlencode('libro.php#dracula') ?>" class="boton-agregar-estanteria text-decoration-none d-inline-flex align-items-center justify-content-center">
+                                            Añadir reseña
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <section class="sinopsis">
                                 <h2>Sinopsis</h2>
-                                <p>A través de diarios y cartas, un grupo de personajes reconstruye el avance de una presencia misteriosa desde Transilvania hasta Inglaterra.</p>
-                                <p>La novela epistolar de Bram Stoker convirtió a su conde en una de las figuras más reconocibles del terror gótico.</p>
+                                <p>Jonathan Harker viaja a los Cárpatos para cerrar una venta inmobiliaria con el conde Drácula, sin imaginar la pesadilla que está a punto de desatar sobre Inglaterra.</p>
+                                <p>La obra definitiva sobre el mito del vampiro contada a través de diarios, cartas y telegramas que mantienen la tensión hasta el final.</p>
                             </section>
                         </div>
                         <aside class="barra-lateral-detalle">
@@ -112,135 +307,342 @@
                             </dl>
                             <div class="seccion-valoracion">
                                 <h2>Valoraciones</h2>
-                                <div class="valoracion-media"><strong>4,7</strong><span>★★★★★</span></div>
-                                <p class="aviso-valoraciones">Puntuaciones ilustrativas para esta selección de ejemplo.</p>
-                                <div class="barras-valoracion">
-                                    <div><b>5</b><i><span style="width: 75%"></span></i><em>75%</em></div>
-                                    <div><b>4</b><i><span style="width: 16%"></span></i><em>16%</em></div>
-                                    <div><b>3</b><i><span style="width: 6%"></span></i><em>6%</em></div>
-                                    <div><b>2</b><i><span style="width: 2%"></span></i><em>2%</em></div>
-                                    <div><b>1</b><i><span style="width: 1%"></span></i><em>1%</em></div>
+                                <div class="valoracion-media">
+                                    <strong><?= $d['media'] !== null ? number_format($d['media'], 1, ',', '.') : '—' ?></strong>
+                                    <span><?= renderizarEstrellasVisuales($d['media']) ?></span>
                                 </div>
+                                <p class="aviso-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Clara Méndez</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>La narración en forma de diarios crea una atmósfera inquietante que sigue funcionando.</p></div></article>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Javier Ruiz</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Un clásico entretenido y lleno de suspense, ideal para leer de noche.</p></div></article>
+                                <div class="encabezado-resenas">
+                                    <h2>Reseñas de la comunidad</h2>
+                                    <a href="catalogo.php">Volver</a>
+                                </div>
+                                <?php if (empty($d['resenas'])): ?>
+                                    <p class="text-muted small">Sé el primero en compartir tu opinión sobre este libro.</p>
+                                <?php else: ?>
+                                    <?php foreach ($d['resenas'] as $r): ?>
+                                        <article>
+                                            <div class="imagen-perfil" aria-hidden="true"></div>
+                                            <div>
+                                                <strong><?= $r['usuario_nombre'] ?></strong>
+                                                <div><span><?= renderizarEstrellasVisuales((float)$r['valoracion']) ?></span></div>
+                                                <p><?= $r['texto_formateado'] ?></p>
+                                                <?php if ($usuarioId && $r['usuario_id'] === $usuarioId): ?>
+                                                    <form method="POST" action="libro.php#dracula" onsubmit="return confirm('¿Seguro que deseas eliminar tu reseña?');" class="mt-1">
+                                                        <input type="hidden" name="accion" value="eliminar_resena">
+                                                        <input type="hidden" name="resena_id" value="<?= $r['id'] ?>">
+                                                        <input type="hidden" name="slug" value="dracula">
+                                                        <button type="submit" class="btn btn-sm btn-link text-danger p-0 border-0" style="font-size: 11px;">Eliminar mi reseña</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </section>
                         </aside>
                     </div>
+
+                    <!-- Modal Drácula -->
+                    <?php if ($usuarioId): ?>
+                    <div class="modal fade" id="modalResena-dracula" tabindex="-1" aria-labelledby="labelModal-dracula" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelModal-dracula"><?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <form method="POST" action="libro.php#dracula">
+                                    <input type="hidden" name="accion" value="guardar_resena">
+                                    <input type="hidden" name="libro_id" value="<?= $d['id'] ?>">
+                                    <input type="hidden" name="slug" value="dracula">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="val-dracula" class="form-label font-monospace">Puntuación (de 1 a 5 estrellas):</label>
+                                            <select name="valoracion" id="val-dracula" class="form-select" required>
+                                                <?php $miVal = $d['mi_resena']['valoracion'] ?? 5; ?>
+                                                <option value="5" <?= $miVal == 5 ? 'selected' : '' ?>>★★★★★ (5 estrellas - Obra maestra)</option>
+                                                <option value="4" <?= $miVal == 4 ? 'selected' : '' ?>>★★★★☆ (4 estrellas - Muy bueno)</option>
+                                                <option value="3" <?= $miVal == 3 ? 'selected' : '' ?>>★★★☆☆ (3 estrellas - Bueno)</option>
+                                                <option value="2" <?= $miVal == 2 ? 'selected' : '' ?>>★★☆☆☆ (2 estrellas - Regular)</option>
+                                                <option value="1" <?= $miVal == 1 ? 'selected' : '' ?>>★☆☆☆☆ (1 estrella - No me gustó)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txt-dracula" class="form-label">Tu opinión sobre el libro:</label>
+                                            <textarea name="texto" id="txt-dracula" class="form-control" rows="4" placeholder="Escribe al menos 5 caracteres sobre lo que te ha parecido..." minlength="5" required><?= htmlspecialchars($d['mi_resena']['texto'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-warning"><?= $d['mi_resena'] ? 'Actualizar reseña' : 'Publicar reseña' ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </article>
 
+                <!-- ================= FICHA 3: ORGULLO Y PREJUICIO ================= -->
+                <?php $d = $datosLibros['orgullo-y-prejuicio']; ?>
                 <article class="ficha-libro" id="orgullo-y-prejuicio">
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
                                 <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-romance">Romance · Clásico</a><span></span>
+                                <a href="catalogo.php#libro-romance">Romance clásico</a><span></span>
                                 <b>Orgullo y prejuicio</b>
                             </nav>
                             <div class="resumen-libro">
                                 <div class="portada-detalle"><img src="assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio, de Jane Austen"></div>
                                 <div class="informacion-resumen">
-                                    <p class="etiqueta-genero">Romance · Clásico</p>
+                                    <p class="etiqueta-genero">Romance clásico</p>
                                     <h1>Orgullo y prejuicio</h1>
                                     <small>Jane Austen</small>
-                                    <div class="estrellas-detalle" aria-label="Valoración de ejemplo: 4,9 de 5"><b>★★★★★</b></div>
-                                    <p class="dato-valoraciones">4,9 de 5 · 2.150 valoraciones de ejemplo</p>
+                                    <div class="estrellas-detalle" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <b><?= renderizarEstrellasVisuales($d['media']) ?></b>
+                                    </div>
+                                    <p class="dato-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
+                                    
                                     <button class="boton-agregar-lista" type="button">Añadir a mi lista</button>
-                                    <button class="boton-agregar-estanteria" type="button">Guardar en estantería</button>
+                                    
+                                    <?php if ($usuarioId): ?>
+                                        <button class="boton-agregar-estanteria" type="button" data-bs-toggle="modal" data-bs-target="#modalResena-orgullo-y-prejuicio">
+                                            <?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href="IniciarSesion.php?redirect=<?= urlencode('libro.php#orgullo-y-prejuicio') ?>" class="boton-agregar-estanteria text-decoration-none d-inline-flex align-items-center justify-content-center">
+                                            Añadir reseña
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <section class="sinopsis">
                                 <h2>Sinopsis</h2>
-                                <p>Elizabeth Bennet conoce al reservado señor Darcy en una sociedad marcada por las apariencias, las expectativas familiares y las diferencias de carácter.</p>
-                                <p>Jane Austen combina humor y observación social en una historia sobre prejuicios, primeras impresiones y afectos.</p>
+                                <p>Elizabeth Bennet y el señor Darcy deben aprender a mirar más allá de sus primeras impresiones en una sociedad donde las apariencias lo son todo.</p>
+                                <p>Una comedia romántica brillante e irónica que sigue viva más de dos siglos después de su publicación.</p>
                             </section>
                         </div>
                         <aside class="barra-lateral-detalle">
                             <h2>Detalles del libro</h2>
                             <dl>
                                 <dt>Publicación</dt><dd>1813</dd>
-                                <dt>Origen</dt><dd>Inglaterra</dd>
+                                <dt>Origen</dt><dd>Reino Unido</dd>
                                 <dt>Idioma original</dt><dd>Inglés</dd>
-                                <dt>Género</dt><dd>Romance · Clásico</dd>
+                                <dt>Género</dt><dd>Romance clásico</dd>
                             </dl>
                             <div class="seccion-valoracion">
                                 <h2>Valoraciones</h2>
-                                <div class="valoracion-media"><strong>4,9</strong><span>★★★★★</span></div>
-                                <p class="aviso-valoraciones">Puntuaciones ilustrativas para esta selección de ejemplo.</p>
-                                <div class="barras-valoracion">
-                                    <div><b>5</b><i><span style="width: 86%"></span></i><em>86%</em></div>
-                                    <div><b>4</b><i><span style="width: 10%"></span></i><em>10%</em></div>
-                                    <div><b>3</b><i><span style="width: 3%"></span></i><em>3%</em></div>
-                                    <div><b>2</b><i><span style="width: 1%"></span></i><em>1%</em></div>
-                                    <div><b>1</b><i><span style="width: 0%"></span></i><em>0%</em></div>
+                                <div class="valoracion-media">
+                                    <strong><?= $d['media'] !== null ? number_format($d['media'], 1, ',', '.') : '—' ?></strong>
+                                    <span><?= renderizarEstrellasVisuales($d['media']) ?></span>
                                 </div>
+                                <p class="aviso-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Lucía Torres</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Elizabeth es un personaje brillante y los diálogos siguen teniendo muchísimo encanto.</p></div></article>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Paula García</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una historia ingeniosa, cálida y perfecta para volver a leer.</p></div></article>
+                                <div class="encabezado-resenas">
+                                    <h2>Reseñas de la comunidad</h2>
+                                    <a href="catalogo.php">Volver</a>
+                                </div>
+                                <?php if (empty($d['resenas'])): ?>
+                                    <p class="text-muted small">Sé el primero en compartir tu opinión sobre este libro.</p>
+                                <?php else: ?>
+                                    <?php foreach ($d['resenas'] as $r): ?>
+                                        <article>
+                                            <div class="imagen-perfil" aria-hidden="true"></div>
+                                            <div>
+                                                <strong><?= $r['usuario_nombre'] ?></strong>
+                                                <div><span><?= renderizarEstrellasVisuales((float)$r['valoracion']) ?></span></div>
+                                                <p><?= $r['texto_formateado'] ?></p>
+                                                <?php if ($usuarioId && $r['usuario_id'] === $usuarioId): ?>
+                                                    <form method="POST" action="libro.php#orgullo-y-prejuicio" onsubmit="return confirm('¿Seguro que deseas eliminar tu reseña?');" class="mt-1">
+                                                        <input type="hidden" name="accion" value="eliminar_resena">
+                                                        <input type="hidden" name="resena_id" value="<?= $r['id'] ?>">
+                                                        <input type="hidden" name="slug" value="orgullo-y-prejuicio">
+                                                        <button type="submit" class="btn btn-sm btn-link text-danger p-0 border-0" style="font-size: 11px;">Eliminar mi reseña</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </section>
                         </aside>
                     </div>
+
+                    <!-- Modal Orgullo y Prejuicio -->
+                    <?php if ($usuarioId): ?>
+                    <div class="modal fade" id="modalResena-orgullo-y-prejuicio" tabindex="-1" aria-labelledby="labelModal-orgullo-y-prejuicio" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelModal-orgullo-y-prejuicio"><?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <form method="POST" action="libro.php#orgullo-y-prejuicio">
+                                    <input type="hidden" name="accion" value="guardar_resena">
+                                    <input type="hidden" name="libro_id" value="<?= $d['id'] ?>">
+                                    <input type="hidden" name="slug" value="orgullo-y-prejuicio">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="val-orgullo" class="form-label font-monospace">Puntuación (de 1 a 5 estrellas):</label>
+                                            <select name="valoracion" id="val-orgullo" class="form-select" required>
+                                                <?php $miVal = $d['mi_resena']['valoracion'] ?? 5; ?>
+                                                <option value="5" <?= $miVal == 5 ? 'selected' : '' ?>>★★★★★ (5 estrellas - Obra maestra)</option>
+                                                <option value="4" <?= $miVal == 4 ? 'selected' : '' ?>>★★★★☆ (4 estrellas - Muy bueno)</option>
+                                                <option value="3" <?= $miVal == 3 ? 'selected' : '' ?>>★★★☆☆ (3 estrellas - Bueno)</option>
+                                                <option value="2" <?= $miVal == 2 ? 'selected' : '' ?>>★★☆☆☆ (2 estrellas - Regular)</option>
+                                                <option value="1" <?= $miVal == 1 ? 'selected' : '' ?>>★☆☆☆☆ (1 estrella - No me gustó)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txt-orgullo" class="form-label">Tu opinión sobre el libro:</label>
+                                            <textarea name="texto" id="txt-orgullo" class="form-control" rows="4" placeholder="Escribe al menos 5 caracteres sobre lo que te ha parecido..." minlength="5" required><?= htmlspecialchars($d['mi_resena']['texto'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-warning"><?= $d['mi_resena'] ? 'Actualizar reseña' : 'Publicar reseña' ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </article>
 
+                <!-- ================= FICHA 4: EL SABUESO DE LOS BASKERVILLE ================= -->
+                <?php $d = $datosLibros['el-sabueso-de-los-baskerville']; ?>
                 <article class="ficha-libro" id="el-sabueso-de-los-baskerville">
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
                                 <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-misterio">Misterio</a><span></span>
+                                <a href="catalogo.php#libro-misterio">Misterio victoriano</a><span></span>
                                 <b>El sabueso de los Baskerville</b>
                             </nav>
                             <div class="resumen-libro">
-                                <div class="portada-detalle"><img src="assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville, de Arthur Conan Doyle"></div>
+                                <div class="portada-detalle"><img src="assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración para El sabueso de los Baskerville, de Arthur Conan Doyle"></div>
                                 <div class="informacion-resumen">
-                                    <p class="etiqueta-genero">Misterio</p>
+                                    <p class="etiqueta-genero">Misterio victoriano</p>
                                     <h1>El sabueso de los Baskerville</h1>
                                     <small>Arthur Conan Doyle</small>
-                                    <div class="estrellas-detalle" aria-label="Valoración de ejemplo: 4,6 de 5"><b>★★★★★</b></div>
-                                    <p class="dato-valoraciones">4,6 de 5 · 654 valoraciones de ejemplo</p>
+                                    <div class="estrellas-detalle" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <b><?= renderizarEstrellasVisuales($d['media']) ?></b>
+                                    </div>
+                                    <p class="dato-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
+                                    
                                     <button class="boton-agregar-lista" type="button">Añadir a mi lista</button>
-                                    <button class="boton-agregar-estanteria" type="button">Guardar en estantería</button>
+                                    
+                                    <?php if ($usuarioId): ?>
+                                        <button class="boton-agregar-estanteria" type="button" data-bs-toggle="modal" data-bs-target="#modalResena-el-sabueso-de-los-baskerville">
+                                            <?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href="IniciarSesion.php?redirect=<?= urlencode('libro.php#el-sabueso-de-los-baskerville') ?>" class="boton-agregar-estanteria text-decoration-none d-inline-flex align-items-center justify-content-center">
+                                            Añadir reseña
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <section class="sinopsis">
                                 <h2>Sinopsis</h2>
-                                <p>Sherlock Holmes y el doctor Watson investigan una antigua leyenda familiar en los páramos de Dartmoor.</p>
-                                <p>Una novela de misterio que mezcla deducción, suspense y una atmósfera gótica inolvidable.</p>
+                                <p>Una antigua maldición parece perseguir a los herederos de la familia Baskerville en los brumosos páramos de Dartmoor.</p>
+                                <p>Sherlock Holmes y el doctor Watson deberán desentrañar si se trata de un monstruo legendario o de un crimen meticulosamente planeado.</p>
                             </section>
                         </div>
                         <aside class="barra-lateral-detalle">
                             <h2>Detalles del libro</h2>
                             <dl>
                                 <dt>Publicación</dt><dd>1902</dd>
-                                <dt>Origen</dt><dd>Escocia</dd>
+                                <dt>Origen</dt><dd>Reino Unido</dd>
                                 <dt>Idioma original</dt><dd>Inglés</dd>
                                 <dt>Género</dt><dd>Misterio</dd>
                             </dl>
                             <div class="seccion-valoracion">
                                 <h2>Valoraciones</h2>
-                                <div class="valoracion-media"><strong>4,6</strong><span>★★★★★</span></div>
-                                <p class="aviso-valoraciones">Puntuaciones ilustrativas para esta selección de ejemplo.</p>
-                                <div class="barras-valoracion">
-                                    <div><b>5</b><i><span style="width: 70%"></span></i><em>70%</em></div>
-                                    <div><b>4</b><i><span style="width: 19%"></span></i><em>19%</em></div>
-                                    <div><b>3</b><i><span style="width: 7%"></span></i><em>7%</em></div>
-                                    <div><b>2</b><i><span style="width: 3%"></span></i><em>3%</em></div>
-                                    <div><b>1</b><i><span style="width: 1%"></span></i><em>1%</em></div>
+                                <div class="valoracion-media">
+                                    <strong><?= $d['media'] !== null ? number_format($d['media'], 1, ',', '.') : '—' ?></strong>
+                                    <span><?= renderizarEstrellasVisuales($d['media']) ?></span>
                                 </div>
+                                <p class="aviso-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Andrés Gil</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>El paisaje y el misterio crean una tensión estupenda hasta el desenlace.</p></div></article>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Elena Martín</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Una gran historia de Holmes, con pistas que invitan a intentar resolver el caso.</p></div></article>
+                                <div class="encabezado-resenas">
+                                    <h2>Reseñas de la comunidad</h2>
+                                    <a href="catalogo.php">Volver</a>
+                                </div>
+                                <?php if (empty($d['resenas'])): ?>
+                                    <p class="text-muted small">Sé el primero en compartir tu opinión sobre este libro.</p>
+                                <?php else: ?>
+                                    <?php foreach ($d['resenas'] as $r): ?>
+                                        <article>
+                                            <div class="imagen-perfil" aria-hidden="true"></div>
+                                            <div>
+                                                <strong><?= $r['usuario_nombre'] ?></strong>
+                                                <div><span><?= renderizarEstrellasVisuales((float)$r['valoracion']) ?></span></div>
+                                                <p><?= $r['texto_formateado'] ?></p>
+                                                <?php if ($usuarioId && $r['usuario_id'] === $usuarioId): ?>
+                                                    <form method="POST" action="libro.php#el-sabueso-de-los-baskerville" onsubmit="return confirm('¿Seguro que deseas eliminar tu reseña?');" class="mt-1">
+                                                        <input type="hidden" name="accion" value="eliminar_resena">
+                                                        <input type="hidden" name="resena_id" value="<?= $r['id'] ?>">
+                                                        <input type="hidden" name="slug" value="el-sabueso-de-los-baskerville">
+                                                        <button type="submit" class="btn btn-sm btn-link text-danger p-0 border-0" style="font-size: 11px;">Eliminar mi reseña</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </section>
                         </aside>
                     </div>
+
+                    <!-- Modal El Sabueso de los Baskerville -->
+                    <?php if ($usuarioId): ?>
+                    <div class="modal fade" id="modalResena-el-sabueso-de-los-baskerville" tabindex="-1" aria-labelledby="labelModal-el-sabueso-de-los-baskerville" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelModal-el-sabueso-de-los-baskerville"><?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <form method="POST" action="libro.php#el-sabueso-de-los-baskerville">
+                                    <input type="hidden" name="accion" value="guardar_resena">
+                                    <input type="hidden" name="libro_id" value="<?= $d['id'] ?>">
+                                    <input type="hidden" name="slug" value="el-sabueso-de-los-baskerville">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="val-baskerville" class="form-label font-monospace">Puntuación (de 1 a 5 estrellas):</label>
+                                            <select name="valoracion" id="val-baskerville" class="form-select" required>
+                                                <?php $miVal = $d['mi_resena']['valoracion'] ?? 5; ?>
+                                                <option value="5" <?= $miVal == 5 ? 'selected' : '' ?>>★★★★★ (5 estrellas - Obra maestra)</option>
+                                                <option value="4" <?= $miVal == 4 ? 'selected' : '' ?>>★★★★☆ (4 estrellas - Muy bueno)</option>
+                                                <option value="3" <?= $miVal == 3 ? 'selected' : '' ?>>★★★☆☆ (3 estrellas - Bueno)</option>
+                                                <option value="2" <?= $miVal == 2 ? 'selected' : '' ?>>★★☆☆☆ (2 estrellas - Regular)</option>
+                                                <option value="1" <?= $miVal == 1 ? 'selected' : '' ?>>★☆☆☆☆ (1 estrella - No me gustó)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txt-baskerville" class="form-label">Tu opinión sobre el libro:</label>
+                                            <textarea name="texto" id="txt-baskerville" class="form-control" rows="4" placeholder="Escribe al menos 5 caracteres sobre lo que te ha parecido..." minlength="5" required><?= htmlspecialchars($d['mi_resena']['texto'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-warning"><?= $d['mi_resena'] ? 'Actualizar reseña' : 'Publicar reseña' ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </article>
 
+                <!-- ================= FICHA 5: CIEN AÑOS DE SOLEDAD ================= -->
+                <?php $d = $datosLibros['cien-anos-de-soledad']; ?>
                 <article class="ficha-libro" id="cien-anos-de-soledad">
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
@@ -255,10 +657,22 @@
                                     <p class="etiqueta-genero">Realismo mágico</p>
                                     <h1>Cien años de soledad</h1>
                                     <small>Gabriel García Márquez</small>
-                                    <div class="estrellas-detalle" aria-label="Valoración de ejemplo: 4,9 de 5"><b>★★★★★</b></div>
-                                    <p class="dato-valoraciones">4,9 de 5 · 1.870 valoraciones de ejemplo</p>
+                                    <div class="estrellas-detalle" aria-label="Valoración: <?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?>">
+                                        <b><?= renderizarEstrellasVisuales($d['media']) ?></b>
+                                    </div>
+                                    <p class="dato-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
+                                    
                                     <button class="boton-agregar-lista" type="button">Añadir a mi lista</button>
-                                    <button class="boton-agregar-estanteria" type="button">Guardar en estantería</button>
+                                    
+                                    <?php if ($usuarioId): ?>
+                                        <button class="boton-agregar-estanteria" type="button" data-bs-toggle="modal" data-bs-target="#modalResena-cien-anos-de-soledad">
+                                            <?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href="IniciarSesion.php?redirect=<?= urlencode('libro.php#cien-anos-de-soledad') ?>" class="boton-agregar-estanteria text-decoration-none d-inline-flex align-items-center justify-content-center">
+                                            Añadir reseña
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <section class="sinopsis">
@@ -277,23 +691,82 @@
                             </dl>
                             <div class="seccion-valoracion">
                                 <h2>Valoraciones</h2>
-                                <div class="valoracion-media"><strong>4,9</strong><span>★★★★★</span></div>
-                                <p class="aviso-valoraciones">Puntuaciones ilustrativas para esta selección de ejemplo.</p>
-                                <div class="barras-valoracion">
-                                    <div><b>5</b><i><span style="width: 88%"></span></i><em>88%</em></div>
-                                    <div><b>4</b><i><span style="width: 8%"></span></i><em>8%</em></div>
-                                    <div><b>3</b><i><span style="width: 3%"></span></i><em>3%</em></div>
-                                    <div><b>2</b><i><span style="width: 1%"></span></i><em>1%</em></div>
-                                    <div><b>1</b><i><span style="width: 0%"></span></i><em>0%</em></div>
+                                <div class="valoracion-media">
+                                    <strong><?= $d['media'] !== null ? number_format($d['media'], 1, ',', '.') : '—' ?></strong>
+                                    <span><?= renderizarEstrellasVisuales($d['media']) ?></span>
                                 </div>
+                                <p class="aviso-valoraciones"><?= htmlspecialchars(renderizarTextoMedia($d['media'], $d['total']), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Sofía Reyes</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Macondo se queda contigo mucho después de cerrar el libro. Una lectura única.</p></div></article>
-                                <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Miguel Santos</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una saga familiar imaginativa y llena de imágenes que sorprenden en cada capítulo.</p></div></article>
+                                <div class="encabezado-resenas">
+                                    <h2>Reseñas de la comunidad</h2>
+                                    <a href="catalogo.php">Volver</a>
+                                </div>
+                                <?php if (empty($d['resenas'])): ?>
+                                    <p class="text-muted small">Sé el primero en compartir tu opinión sobre este libro.</p>
+                                <?php else: ?>
+                                    <?php foreach ($d['resenas'] as $r): ?>
+                                        <article>
+                                            <div class="imagen-perfil" aria-hidden="true"></div>
+                                            <div>
+                                                <strong><?= $r['usuario_nombre'] ?></strong>
+                                                <div><span><?= renderizarEstrellasVisuales((float)$r['valoracion']) ?></span></div>
+                                                <p><?= $r['texto_formateado'] ?></p>
+                                                <?php if ($usuarioId && $r['usuario_id'] === $usuarioId): ?>
+                                                    <form method="POST" action="libro.php#cien-anos-de-soledad" onsubmit="return confirm('¿Seguro que deseas eliminar tu reseña?');" class="mt-1">
+                                                        <input type="hidden" name="accion" value="eliminar_resena">
+                                                        <input type="hidden" name="resena_id" value="<?= $r['id'] ?>">
+                                                        <input type="hidden" name="slug" value="cien-anos-de-soledad">
+                                                        <button type="submit" class="btn btn-sm btn-link text-danger p-0 border-0" style="font-size: 11px;">Eliminar mi reseña</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </section>
                         </aside>
                     </div>
+
+                    <!-- Modal Cien años de soledad -->
+                    <?php if ($usuarioId): ?>
+                    <div class="modal fade" id="modalResena-cien-anos-de-soledad" tabindex="-1" aria-labelledby="labelModal-cien-anos-de-soledad" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelModal-cien-anos-de-soledad"><?= $d['mi_resena'] ? 'Editar mi reseña' : 'Añadir reseña' ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <form method="POST" action="libro.php#cien-anos-de-soledad">
+                                    <input type="hidden" name="accion" value="guardar_resena">
+                                    <input type="hidden" name="libro_id" value="<?= $d['id'] ?>">
+                                    <input type="hidden" name="slug" value="cien-anos-de-soledad">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="val-soledad" class="form-label font-monospace">Puntuación (de 1 a 5 estrellas):</label>
+                                            <select name="valoracion" id="val-soledad" class="form-select" required>
+                                                <?php $miVal = $d['mi_resena']['valoracion'] ?? 5; ?>
+                                                <option value="5" <?= $miVal == 5 ? 'selected' : '' ?>>★★★★★ (5 estrellas - Obra maestra)</option>
+                                                <option value="4" <?= $miVal == 4 ? 'selected' : '' ?>>★★★★☆ (4 estrellas - Muy bueno)</option>
+                                                <option value="3" <?= $miVal == 3 ? 'selected' : '' ?>>★★★☆☆ (3 estrellas - Bueno)</option>
+                                                <option value="2" <?= $miVal == 2 ? 'selected' : '' ?>>★★☆☆☆ (2 estrellas - Regular)</option>
+                                                <option value="1" <?= $miVal == 1 ? 'selected' : '' ?>>★☆☆☆☆ (1 estrella - No me gustó)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txt-soledad" class="form-label">Tu opinión sobre el libro:</label>
+                                            <textarea name="texto" id="txt-soledad" class="form-control" rows="4" placeholder="Escribe al menos 5 caracteres sobre lo que te ha parecido..." minlength="5" required><?= htmlspecialchars($d['mi_resena']['texto'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-warning"><?= $d['mi_resena'] ? 'Actualizar reseña' : 'Publicar reseña' ?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </article>
             </div>
         </main>
