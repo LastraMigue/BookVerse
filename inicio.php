@@ -28,7 +28,15 @@
                     <a class="boton-hero-secundario" href="CrearCuenta.php">Únete a BookVerse</a>
                 </div>
                 <p class="sello-lectura"><span aria-hidden="true"></span> Un lugar para quienes siempre quieren leer una página más</p>
+                
             </div>
+
+           
+            <div  class="video-hero" aria-hidden="true"> 
+                    <video class="video" class="w-100" controls autoplay muted loop playsinline>
+                        <source src="assets/video/Videopresentacion.mp4" type="video/mp4">
+                    </video>
+                </div>  
         </section>
 
         <section class="seccion-descubre container" aria-labelledby="titulo-descubre">
@@ -87,5 +95,8 @@
         <p>Un universo de historias, a un libro de distancia.</p>
         <a href="catalogo.php">Encuentra tu próxima lectura <span aria-hidden="true">→</span></a>
     </footer>
+
+    <script src="js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

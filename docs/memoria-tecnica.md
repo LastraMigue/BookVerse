@@ -218,8 +218,6 @@ Es el flujo que distingue a este proyecto y conviene saber explicarlo entero:
 
 ## 6. Cliente frente a servidor
 
-*(Integrante 4)*
-
 El reparto es explícito: **el cliente mejora la experiencia, el servidor decide**.
 
 | Tarea | Cliente (JavaScript) | Servidor (PHP) |

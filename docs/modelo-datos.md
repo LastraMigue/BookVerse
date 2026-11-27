@@ -8,7 +8,7 @@ Este documento describe detalladamente la arquitectura de datos relacional para 
 
 A continuación se muestra el esquema visual del modelo de datos:
 
-![Diagrama Entidad-Relación de BookVerse](img/diagrama-er.png)
+![Diagrama Entidad-Relación de BookVerse](/assets/img/diagrams/diagrama-er.png)
 
 ### Representación en formato Mermaid
 
