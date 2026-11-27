@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Revisa las propuestas de libros de BookVerse.">
     <title>Administración | BookVerse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/estructura.css">
+    <link rel="stylesheet" href="css/navegacion-biblioteca.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/administracion.css">
 </head>
 <body class="pagina-catalogo pagina-administracion">
     <?php include 'navbar.php'; ?>
@@ -12,10 +18,6 @@
     <section class="marco-catalogo marco-administracion">
         <main class="panel-catalogo panel-administracion">
             <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
-                    <span>BV</span>
-                    <strong>BookVerse</strong>
-                </a>
                 <p class="etiqueta-panel-admin">Panel de administración</p>
             </header>
 

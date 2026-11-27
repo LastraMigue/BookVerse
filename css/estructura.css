@@ -1,0 +1,133 @@
+.pagina-catalogo {
+    min-width: 800px;
+    min-height: 700px;
+    display: block;
+    background: #eddfc7;
+    color: #1d1b18;
+}
+
+.marco-catalogo {
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    margin: 12px auto;
+}
+
+.panel-catalogo {
+    height: 534px;
+    border: 1px solid #28231d;
+}
+
+.navegacion-catalogo {
+    height: 44px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    border-bottom: 1px solid #383229;
+}
+
+.busqueda-catalogo {
+    position: relative;
+    width: 338px;
+}
+
+.busqueda-catalogo svg {
+    position: absolute;
+    left: 11px;
+    top: 7px;
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: #777;
+    stroke-width: 1.6;
+}
+
+.busqueda-catalogo input {
+    width: 100%;
+    height: 23px;
+    border: 1px solid #bfc0bf;
+    padding: 0 10px 0 28px;
+    font-size: 7px;
+}
+
+.cuerpo-catalogo {
+    height: 488px;
+    display: grid;
+    grid-template-columns: 139px 1fr;
+}
+
+/* Shared layout and responsive behavior */
+.pagina-catalogo {
+    min-height: 100vh;
+}
+
+.marco-catalogo {
+    margin-bottom: 0;
+}
+
+.panel-catalogo,
+.panel-detalle,
+.panel-formulario,
+.panel-listas,
+.panel-administracion {
+    height: auto;
+    min-height: 534px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-formulario,
+.panel-listas,
+.panel-administracion {
+    min-height: 634px;
+}
+
+.navegacion-catalogo {
+    flex: 0 0 44px;
+}
+
+.cuerpo-catalogo,
+.cuerpo-detalle,
+.contenido-formulario,
+.cuerpo-listas,
+.cuerpo-administracion {
+    flex: 1 0 auto;
+    height: auto;
+}
+
+.cuerpo-catalogo,
+.cuerpo-detalle {
+    min-height: 488px;
+}
+
+.navegacion-catalogo {
+    grid-template-columns: minmax(150px, .8fr) minmax(220px, 1.4fr) minmax(300px, 1.8fr);
+    gap: 12px;
+    padding: 0 16px;
+}
+
+.busqueda-catalogo {
+    width: 100%;
+    min-width: 0;
+}
+
+.cuerpo-catalogo,
+.cuerpo-listas,
+.cuerpo-administracion {
+    grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+}
+
+@media (max-width: 980px) {
+    .pagina-catalogo {
+        min-width: 0;
+    }
+
+    .marco-catalogo {
+        width: calc(100% - 24px);
+    }
+}
+
+@media (max-width: 680px) {
+    .pagina-catalogo .navegacion-catalogo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

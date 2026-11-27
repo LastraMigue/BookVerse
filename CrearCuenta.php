@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Crea tu cuenta en BookVerse para guardar libros y organizar tus lecturas.">
     <title>Crear cuenta | BookVerse</title>
-    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/CrearCuenta.css">
 </head>
 <body class="pagina-acceso">
     <?php include 'navbar.php'; ?>
 
     <main class="marco-acceso marco-registro">
         <aside class="panel-bienvenida-acceso">
-            <a class="marca-inicio" href="inicio.php"><span class="icono-marca" aria-hidden="true">B</span><span>Book<span class="marca-resaltada">Verse</span></span></a>
             <div class="contenido-bienvenida-acceso">
                 <p class="subtitulo-acceso">Un universo de historias</p>
                 <h1>Tu próxima lectura favorita empieza contigo.</h1>

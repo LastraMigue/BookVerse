@@ -1,0 +1,538 @@
+
+.pagina-catalogo-principal {
+    background: #f5efe3;
+    color: #303330;
+}
+
+.pagina-catalogo-principal .marco-catalogo {
+    width: min(1240px, calc(100% - 40px));
+    margin: 24px auto 48px;
+}
+
+.pagina-catalogo-principal .panel-catalogo {
+    overflow: hidden;
+    border: 1px solid #e0d5c1;
+    border-radius: 10px;
+    background: #fffdf8;
+    box-shadow: 0 14px 40px rgba(48, 42, 31, .09);
+}
+
+.pagina-catalogo-principal .navegacion-catalogo {
+    min-height: 72px;
+    display: grid;
+    flex: 0 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    border-bottom: 1px solid #e8dfd0;
+    background: #fffdf8;
+    padding: 0 28px;
+}
+
+.pagina-catalogo-principal .busqueda-catalogo {
+    width: min(100%, 520px);
+    justify-self: end;
+}
+
+.pagina-catalogo-principal .busqueda-catalogo input {
+    height: 40px;
+    border: 1px solid #ddd3c1;
+    border-radius: 6px;
+    background: #faf7f0;
+    padding-left: 36px;
+    font-size: 13px;
+}
+
+.pagina-catalogo-principal .busqueda-catalogo input:focus {
+    border-color: #c69646;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(201, 142, 52, .12);
+}
+
+.pagina-catalogo-principal .busqueda-catalogo svg {
+    top: 12px;
+}
+
+.presentacion-catalogo {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 87% 35%, rgba(201, 142, 52, .18), transparent 30%),
+        linear-gradient(110deg, #25323a, #3b4140);
+    color: #fff8eb;
+    padding: 37px clamp(24px, 5vw, 58px) 32px;
+}
+
+.rotulo-catalogo {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 10px;
+    color: #dfbd7d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.presentacion-catalogo h1 {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0;
+    color: #fffaf1;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(32px, 4vw, 47px);
+    font-weight: 500;
+    letter-spacing: -.035em;
+    line-height: 1.1;
+}
+
+.descripcion-presentacion-catalogo {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 12px 0 0;
+    color: #d3d4d0;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.resumen-catalogo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 21px;
+    color: #d0cfc8;
+    font-size: 11px;
+}
+
+.resumen-catalogo span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.resumen-catalogo strong {
+    color: #dfbd7d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+}
+
+.barra-lateral-catalogo {
+    min-width: 0;
+    border-right: 1px solid #e8dfd0;
+    background: #f8f3e9;
+    padding: 25px 18px;
+}
+
+.encabezado-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.encabezado-filtros h2 {
+    margin: 0;
+    color: #3a3d39;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+}
+
+.encabezado-filtros>span {
+    color: #9c8b6c;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.enlaces-generos {
+    display: grid;
+    gap: 5px;
+}
+
+.enlaces-generos a {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border-radius: 5px;
+    color: #625e54;
+    padding: 7px 8px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.enlaces-generos a:hover,
+.enlaces-generos a:focus-visible {
+    background: #efe3cc;
+    color: #634514;
+}
+
+.enlaces-generos a>span {
+    color: #b48539;
+    font-size: 10px;
+}
+
+.enlaces-generos a>b {
+    margin-left: auto;
+    color: #9d9380;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.nota-catalogo {
+    margin-top: 24px;
+    border: 1px solid #e5d8be;
+    border-radius: 7px;
+    background: #f1e7d4;
+    padding: 14px;
+}
+
+.nota-catalogo>span {
+    color: #ad7d2f;
+    font-size: 20px;
+}
+
+.nota-catalogo p {
+    margin: 7px 0;
+    color: #514d44;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.nota-catalogo a {
+    color: #8e611e;
+    font-size: 10px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.nota-catalogo a:hover {
+    text-decoration: underline;
+}
+
+.resultados-catalogo {
+    min-width: 0;
+    padding: 27px clamp(18px, 3vw, 34px) 36px;
+}
+
+.encabezado-resultados {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 19px;
+}
+
+.encabezado-resultados p {
+    margin: 0 0 5px;
+    color: #a47121;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.encabezado-resultados h2 {
+    margin: 0;
+    color: #373b39;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.encabezado-resultados small {
+    display: block;
+    margin-top: 5px;
+    color: #807a6d;
+    font-size: 11px;
+}
+
+.etiqueta-seleccion {
+    flex: 0 0 auto;
+    border: 1px solid #e2d4b8;
+    border-radius: 999px;
+    background: #fbf5e9;
+    color: #876128;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.cuadricula-libros {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.tarjeta-libro {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e6dece;
+    border-radius: 7px;
+    background: #fffdf8;
+    box-shadow: 0 4px 14px rgba(45, 41, 32, .045);
+    scroll-margin-top: 18px;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.enlace-tarjeta-libro {
+    display: block;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.enlace-tarjeta-libro:hover,
+.enlace-tarjeta-libro:focus-visible {
+    color: inherit;
+    text-decoration: none;
+}
+
+.enlace-tarjeta-libro:hover .tarjeta-libro,
+.enlace-tarjeta-libro:focus-visible .tarjeta-libro {
+    transform: translateY(-3px);
+    border-color: #d6c39d;
+    box-shadow: 0 12px 24px rgba(45, 41, 32, .1);
+}
+
+.enlace-tarjeta-libro:focus-visible {
+    outline: 2px solid #a47121;
+    outline-offset: 3px;
+}
+
+.portada-libro {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    display: block;
+    object-fit: cover;
+    object-position: center 35%;
+    border-bottom: 1px solid #e6dece;
+    background: #e8dcc5;
+}
+
+.portada-viento {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(20, 32, 38, .45), transparent 10%),
+        radial-gradient(ellipse at 70% 22%, rgba(220, 184, 116, .35), transparent 48%),
+        linear-gradient(145deg, #385563, #1d3039 75%);
+    color: #f7e9c9;
+    padding: 15px 16px;
+}
+
+.portada-viento>span {
+    color: #dfbd7d;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.portada-viento>strong {
+    margin-top: auto;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.portada-viento>small {
+    margin-top: 8px;
+    color: #e2d4b7;
+    font-size: 10px;
+}
+
+.datos-libro {
+    padding: 13px 13px 14px;
+}
+
+.genero-libro {
+    display: inline-block;
+    margin-bottom: 7px;
+    border-radius: 999px;
+    background: #f1e6d1;
+    color: #8b5c1d;
+    padding: 4px 7px;
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.datos-libro h3 {
+    min-height: 36px;
+    margin: 0;
+    color: #333936;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.autor-libro {
+    margin: 5px 0 8px;
+    color: #81796b;
+    font-size: 10px;
+}
+
+.descripcion-libro {
+    min-height: 48px;
+    margin: 0;
+    color: #6f6a5e;
+    font-size: 10px;
+    line-height: 1.55;
+}
+
+.valoracion-libro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 11px;
+    border-top: 1px solid #eee7da;
+    padding-top: 9px;
+}
+
+.valoracion-libro>span {
+    color: #bd8732;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.valoracion-libro>b {
+    color: #625843;
+    font-size: 10px;
+}
+
+@media (max-width: 980px) {
+    .pagina-catalogo-principal .marco-catalogo {
+        width: calc(100% - 28px);
+    }
+
+    .cuerpo-catalogo {
+        grid-template-columns: 180px minmax(0, 1fr);
+    }
+
+    .cuadricula-libros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .pagina-catalogo-principal .marco-catalogo {
+        width: calc(100% - 20px);
+        margin-top: 12px;
+    }
+
+    .pagina-catalogo-principal .navegacion-catalogo {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px 16px;
+    }
+
+    .pagina-catalogo-principal .busqueda-catalogo {
+        width: 100%;
+    }
+
+    .cuerpo-catalogo {
+        grid-template-columns: 1fr;
+    }
+
+    .barra-lateral-catalogo {
+        border-right: 0;
+        border-bottom: 1px solid #e8dfd0;
+        padding: 18px 16px;
+    }
+
+    .enlaces-generos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .enlaces-generos a {
+        min-height: 34px;
+        border: 1px solid #e4dac8;
+        background: #fffdf8;
+        padding: 6px 9px;
+        font-size: 10px;
+    }
+
+    .enlaces-generos a>b {
+        display: none;
+    }
+
+    .nota-catalogo {
+        margin-top: 14px;
+    }
+
+    .presentacion-catalogo {
+        padding: 30px 21px 25px;
+    }
+
+    .resultados-catalogo {
+        padding: 22px 14px 26px;
+    }
+
+    .encabezado-resultados {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cuadricula-libros {
+        gap: 11px;
+    }
+
+    .datos-libro {
+        padding: 11px 10px;
+    }
+
+    .datos-libro h3 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .cuadricula-libros {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-libro {
+        display: grid;
+        grid-template-columns: 115px minmax(0, 1fr);
+    }
+
+    .portada-libro {
+        height: auto;
+        min-height: 0;
+        align-self: start;
+        border-right: 1px solid #e6dece;
+        border-bottom: 0;
+    }
+
+    .portada-viento {
+        padding: 12px 10px;
+    }
+
+    .portada-viento>strong {
+        font-size: 17px;
+    }
+
+    .datos-libro h3 {
+        min-height: 0;
+    }
+
+    .descripcion-libro {
+        min-height: 0;
+    }
+
+    .valoracion-libro {
+        margin-top: 7px;
+    }
+}
