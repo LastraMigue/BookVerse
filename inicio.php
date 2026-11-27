@@ -6,14 +6,13 @@
     <meta name="description" content="Descubre tu próxima lectura en BookVerse: explora libros, guarda tus favoritos y comparte tu pasión por las historias.">
     <title>BookVerse | Un universo de historias</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pagina-inicio">
     <?php include 'navbar.php'; ?>
 
     <main>
         <section class="hero-inicio" aria-labelledby="titulo-inicio">
+            <img class="imagen-fondo-hero" src="assets/img/madera-hero.webp" alt="" aria-hidden="true">
             <div class="contenido-hero">
                 <p class="rotulo-inicio"><span aria-hidden="true"></span> Tu próxima aventura empieza aquí</p>
                 <h1 id="titulo-inicio">Hay historias que te encuentran. <em>Encuentra la tuya.</em></h1>
