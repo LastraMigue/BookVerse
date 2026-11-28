@@ -152,6 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
     </main>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="validacion_de_acceso.js"></script>
+    <script src="validaciones.js"></script>
 </body>
 </html>
