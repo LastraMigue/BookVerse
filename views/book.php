@@ -6,10 +6,10 @@
     <meta name="description" content="Consulta portadas, sinopsis y detalles de libros seleccionados por BookVerse.">
     <title>Detalles del libro | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="../css/base.css">
 </head>
 <body class="pagina-catalogo pagina-detalle">
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <section class="marco-catalogo">
         <main class="panel-catalogo panel-detalle">
@@ -18,13 +18,13 @@
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
-                                <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-fantasia">Fantasía épica</a><span></span>
+                                <a href="catalog.php">Catálogo</a><span></span>
+                                <a href="catalog.php#libro-fantasia">Fantasía épica</a><span></span>
                                 <b>El nombre del viento</b>
                             </nav>
                             <div class="resumen-libro">
                                 <div class="portada-detalle">
-                                    <img class="portada-ilustrada" src="assets/img/bv_1_libro_cerrado.svg" alt="Ilustración de un libro cerrado para El nombre del viento">
+                                    <img class="portada-ilustrada" src="../assets/img/bv_1_libro_cerrado.svg" alt="Ilustración de un libro cerrado para El nombre del viento">
                                 </div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Fantasía épica</p>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
+                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalog.php">Volver</a></div>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Marina López</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una historia fascinante, con un mundo lleno de detalles y una voz narrativa inolvidable.</p></div></article>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>David Martín</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Me atraparon la música y los misterios. Una lectura perfecta para perderse un rato.</p></div></article>
                             </section>
@@ -75,12 +75,12 @@
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
-                                <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-terror">Terror gótico</a><span></span>
+                                <a href="catalog.php">Catálogo</a><span></span>
+                                <a href="catalog.php#libro-terror">Terror gótico</a><span></span>
                                 <b>Drácula</b>
                             </nav>
                             <div class="resumen-libro">
-                                <div class="portada-detalle"><img src="assets/img/dracula.webp" alt="Portada clásica de Drácula, de Bram Stoker"></div>
+                                <div class="portada-detalle"><img src="../assets/img/dracula.webp" alt="Portada clásica de Drácula, de Bram Stoker"></div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Terror gótico</p>
                                     <h1>Drácula</h1>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
+                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalog.php">Volver</a></div>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Clara Méndez</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>La narración en forma de diarios crea una atmósfera inquietante que sigue funcionando.</p></div></article>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Javier Ruiz</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Un clásico entretenido y lleno de suspense, ideal para leer de noche.</p></div></article>
                             </section>
@@ -130,12 +130,12 @@
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
-                                <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-romance">Romance · Clásico</a><span></span>
+                                <a href="catalog.php">Catálogo</a><span></span>
+                                <a href="catalog.php#libro-romance">Romance · Clásico</a><span></span>
                                 <b>Orgullo y prejuicio</b>
                             </nav>
                             <div class="resumen-libro">
-                                <div class="portada-detalle"><img src="assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio, de Jane Austen"></div>
+                                <div class="portada-detalle"><img src="../assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio, de Jane Austen"></div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Romance · Clásico</p>
                                     <h1>Orgullo y prejuicio</h1>
@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
+                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalog.php">Volver</a></div>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Lucía Torres</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Elizabeth es un personaje brillante y los diálogos siguen teniendo muchísimo encanto.</p></div></article>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Paula García</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una historia ingeniosa, cálida y perfecta para volver a leer.</p></div></article>
                             </section>
@@ -185,12 +185,12 @@
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
-                                <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-misterio">Misterio</a><span></span>
+                                <a href="catalog.php">Catálogo</a><span></span>
+                                <a href="catalog.php#libro-misterio">Misterio</a><span></span>
                                 <b>El sabueso de los Baskerville</b>
                             </nav>
                             <div class="resumen-libro">
-                                <div class="portada-detalle"><img src="assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville, de Arthur Conan Doyle"></div>
+                                <div class="portada-detalle"><img src="../assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville, de Arthur Conan Doyle"></div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Misterio</p>
                                     <h1>El sabueso de los Baskerville</h1>
@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
+                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalog.php">Volver</a></div>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Andrés Gil</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>El paisaje y el misterio crean una tensión estupenda hasta el desenlace.</p></div></article>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Elena Martín</strong><div><span aria-label="4 de 5 estrellas">★★★★☆</span></div><p>Una gran historia de Holmes, con pistas que invitan a intentar resolver el caso.</p></div></article>
                             </section>
@@ -240,12 +240,12 @@
                     <div class="cuerpo-detalle">
                         <div class="contenido-principal-detalle">
                             <nav class="migas-de-pan" aria-label="Ruta de navegación">
-                                <a href="catalogo.php">Catálogo</a><span></span>
-                                <a href="catalogo.php#libro-realismo">Realismo mágico</a><span></span>
+                                <a href="catalog.php">Catálogo</a><span></span>
+                                <a href="catalog.php#libro-realismo">Realismo mágico</a><span></span>
                                 <b>Cien años de soledad</b>
                             </nav>
                             <div class="resumen-libro">
-                                <div class="portada-detalle"><img src="assets/img/cien-anos-de-soledad.webp" alt="Portada de Cien años de soledad, de Gabriel García Márquez"></div>
+                                <div class="portada-detalle"><img src="../assets/img/cien-anos-de-soledad.webp" alt="Portada de Cien años de soledad, de Gabriel García Márquez"></div>
                                 <div class="informacion-resumen">
                                     <p class="etiqueta-genero">Realismo mágico</p>
                                     <h1>Cien años de soledad</h1>
@@ -283,7 +283,7 @@
                                 </div>
                             </div>
                             <section class="resenas">
-                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalogo.php">Volver</a></div>
+                                <div class="encabezado-resenas"><h2>Reseñas de ejemplo</h2><a href="catalog.php">Volver</a></div>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Sofía Reyes</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Macondo se queda contigo mucho después de cerrar el libro. Una lectura única.</p></div></article>
                                 <article><div class="imagen-perfil" aria-hidden="true"></div><div><strong>Miguel Santos</strong><div><span aria-label="5 de 5 estrellas">★★★★★</span></div><p>Una saga familiar imaginativa y llena de imágenes que sorprenden en cada capítulo.</p></div></article>
                             </section>
@@ -293,5 +293,7 @@
             </div>
         </main>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

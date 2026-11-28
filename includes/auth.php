@@ -1,7 +1,5 @@
 <?php
-// BookVerse — Sistema de Autenticación y Control de Acceso
-// Archivo: includes/auth.php
-// Rol: Integrante 1 (Backend núcleo, base de datos y Git)
+// BookVerse — Sistema de autenticación y control de acceso
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -10,10 +8,8 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/conexion.php';
 
 // Inicia la sesión para un usuario autenticado y regenera el ID de sesión
-// para mitigar ataques de fijación de sesión (Session Fixation).
 function iniciarSesionUsuario(array $usuario): void
 {
-    // Regenerar el ID de sesión de forma segura
     session_regenerate_id(true);
 
     $_SESSION['usuario'] = [
@@ -64,61 +60,53 @@ function esAdmin(): bool
     return estaAutenticado() && !empty($_SESSION['usuario']['es_admin']);
 }
 
-// Exige que la persona usuaria haya iniciado sesión.
-// Si no tiene sesión, la redirige a IniciarSesion.php.
-// Si es administrador, lo redirige a administracion.php según las reglas del proyecto.
+// Exige que la persona usuaria haya iniciado sesión
 function exigirSesion(?string $urlRetorno = null): void
 {
     if (!estaAutenticado()) {
         $param = $urlRetorno ? '?redirect=' . urlencode($urlRetorno) : '';
-        header('Location: IniciarSesion.php' . $param);
+        header('Location: /BookVerse/auth/login.php' . $param);
         exit;
     }
 
-    // Regla del proyecto: el administrador solo ve moderación
     if (esAdmin()) {
-        header('Location: administracion.php');
+        header('Location: /BookVerse/views/administration.php');
         exit;
     }
 }
 
-// Exige privilegios de administrador.
-// Si no está autenticado, redirige a IniciarSesion.php.
-// Si es usuario estándar sin permisos de administración, lo redirige al catálogo.
+// Exige privilegios de administrador
 function exigirAdmin(): void
 {
     if (!estaAutenticado()) {
-        header('Location: IniciarSesion.php');
+        header('Location: /BookVerse/auth/login.php');
         exit;
     }
 
     if (!esAdmin()) {
-        header('Location: catalogo.php');
+        header('Location: /BookVerse/views/catalog.php');
         exit;
     }
 }
 
-// Redirige a los usuarios que ya tienen una sesión activa.
-// Se utiliza en las páginas de acceso (IniciarSesion.php y CrearCuenta.php).
+// Redirige a usuarios que ya tienen sesión activa (para login/register)
 function redirigirSiAutenticado(): void
 {
     if (estaAutenticado()) {
         if (esAdmin()) {
-            header('Location: administracion.php');
+            header('Location: /BookVerse/views/administration.php');
         } else {
-            header('Location: catalogo.php');
+            header('Location: /BookVerse/views/catalog.php');
         }
         exit;
     }
 }
 
-// Control de acceso para páginas públicas (inicio, catálogo, detalle de libro).
-// Regla técnica del proyecto: Si el administrador intenta abrir cualquier otra
-// página de la aplicación que no sea moderación, el servidor lo redirige a moderación.
+// Control de acceso para páginas públicas
 function verificarAccesoPaginaPublica(): void
 {
     if (esAdmin()) {
-        header('Location: administracion.php');
+        header('Location: /BookVerse/views/administration.php');
         exit;
     }
 }
