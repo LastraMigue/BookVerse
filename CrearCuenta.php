@@ -151,5 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="enlace-registro">¿Ya tienes una cuenta? <a href="IniciarSesion.php">Inicia sesión</a></p>
         </section>
     </main>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="validacion_de_acceso.js"></script>
 </body>
 </html>

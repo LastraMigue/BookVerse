@@ -70,5 +70,6 @@
     <footer class="pie-inicio">
         <p>Un universo de historias, a un libro de distancia.</p>
     </footer>
+    
 </body>
 </html>

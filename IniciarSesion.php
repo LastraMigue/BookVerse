@@ -131,5 +131,7 @@ $urlRedirect = filter_input(INPUT_GET, 'redirect', FILTER_SANITIZE_URL);
             <p class="enlace-registro">¿Aún no tienes cuenta? <a href="CrearCuenta.php">Únete a BookVerse</a></p>
         </section>
     </main>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="validacion_de_acceso.js"></script>
 </body>
 </html>
