@@ -121,10 +121,10 @@ $urlRedirect = filter_input(INPUT_GET, 'redirect', FILTER_SANITIZE_URL);
                 <?php endif; ?>
 
                 <label class="etiqueta-acceso" for="email">Correo electrónico</label>
-                <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>" >
 
                 <label class="etiqueta-acceso" for="password">Contraseña</label>
-                <input class="form-control" id="password" name="password" type="password" autocomplete="current-password" placeholder="Escribe tu contraseña" required>
+                <input class="form-control" id="password" name="password" type="password" autocomplete="current-password" placeholder="Escribe tu contraseña" >
 
                 <button class="btn boton-acceso" type="submit">Entrar en mi cuenta <span aria-hidden="true">→</span></button>
             </form>

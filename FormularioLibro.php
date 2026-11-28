@@ -27,15 +27,15 @@
                     <div class="campos-formulario col-12 col-lg-7">
                         <h2>Datos del libro</h2>
                         <label class="etiqueta-formulario" for="titulo">Título</label>
-                        <input class="campo-texto form-control" id="titulo" name="titulo" type="text" autocomplete="off" placeholder="Ej.: El nombre del viento" required>
+                        <input class="campo-texto form-control" id="titulo" name="titulo" type="text" autocomplete="off" placeholder="Ej.: El nombre del viento" >
 
                         <label class="etiqueta-formulario" for="autor">Autor o autora</label>
-                        <input class="campo-texto form-control" id="autor" name="autor" type="text" autocomplete="off" placeholder="Ej.: Patrick Rothfuss" required>
+                        <input class="campo-texto form-control" id="autor" name="autor" type="text" autocomplete="off" placeholder="Ej.: Patrick Rothfuss" >
 
                         <div class="fila-formulario row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="etiqueta-formulario" for="genero">Género</label>
-                               <select class="campo-texto form-select" id="genero" name="genero" required>
+                               <select class="campo-texto form-select" id="genero" name="genero" >
                                     <option value="" selected disabled>Elige un género</option>
                                     <option value="fantasia">Fantasía</option>
                                     <option value="ciencia-ficcion">Ciencia ficción</option>
@@ -53,7 +53,7 @@
                         </div>
 
                         <label class="etiqueta-formulario" for="sinopsis">Sinopsis</label>
-                        <textarea class="form-control" id="sinopsis" name="sinopsis" rows="5" maxlength="1500" placeholder="Cuéntales a otros lectores de qué trata..." required></textarea>
+                        <textarea class="form-control" id="sinopsis" name="sinopsis" rows="5" maxlength="1500" placeholder="Cuéntales a otros lectores de qué trata..." ></textarea>
                         <small class="contador-caracteres">Hasta 1.500 caracteres. Evita incluir el final de la historia.</small>
                     </div>
                     <div class="columna-portada col-12 col-lg-5">
