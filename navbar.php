@@ -15,13 +15,8 @@ $haySesion = isset($_SESSION['usuario']);
                 <li class="nav-item"><a class="nav-link" href="inicio.php">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="catalogo.php">Catálogo</a></li>
                 <li class="nav-item"><a class="nav-link" href="FormularioLibro.php">Proponer un libro</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ajustes</a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="MisListas.php">Mis listas</a></li>
-                        <li><a class="dropdown-item" href="IniciarSesion.php">Iniciar sesión</a></li>
-                    </ul>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="MisListas.php">Mis listas</a></li>
+                <li class="nav-item"><a class="nav-link" href="IniciarSesion.php">Iniciar sesión</a></li>
             </ul>
         </div>
     </nav>
