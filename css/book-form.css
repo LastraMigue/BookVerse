@@ -1,0 +1,316 @@
+.pagina-formulario .marco-catalogo {
+    margin-top: 12px;
+}
+
+.pagina-formulario {
+    background: #f5efe3;
+    color: #303330;
+}
+
+.pagina-formulario .marco-formulario {
+    width: min(1120px, calc(100% - 32px));
+    margin: 28px auto 56px;
+}
+
+.pagina-formulario .panel-formulario {
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid #e0d5c1;
+    border-radius: 12px;
+    background: #fffdf8;
+    box-shadow: 0 14px 40px rgba(48, 42, 31, .09);
+}
+
+.contenido-formulario {
+    width: 100%;
+    padding: clamp(22px, 4vw, 48px);
+}
+
+.encabezado-formulario {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.encabezado-formulario p {
+    margin: 0 0 8px;
+    color: #a47121;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.encabezado-formulario h1 {
+    margin: 0;
+    color: #30373a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 500;
+    letter-spacing: -.03em;
+}
+
+.encabezado-formulario small {
+    display: block;
+    margin-top: 8px;
+    color: #777267;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.boton-cerrar-formulario {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #ded5c4;
+    border-radius: 50%;
+    color: #71695d;
+    font-size: 23px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.boton-cerrar-formulario:hover {
+    border-color: #c98e34;
+    background: #f5ead5;
+    color: #513913;
+}
+
+.separador-formulario {
+    height: 1px;
+    margin: 24px 0;
+    background: #e4dac8;
+}
+
+.formulario-libro {
+    color: #363a39;
+}
+
+.formulario-libro h2 {
+    margin: 0 0 18px;
+    color: #394044;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.formulario-libro h2 span {
+    color: #8d8678;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.etiqueta-formulario {
+    display: block;
+    margin: 0 0 7px;
+    color: #46463f;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo-texto {
+    min-height: 44px;
+    margin-bottom: 17px;
+    border-color: #d7cebd;
+    border-radius: 8px;
+    background-color: #fffdf8;
+    color: #343734;
+    font-size: 14px;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.campo-texto::placeholder,
+.formulario-libro textarea::placeholder {
+    color: #a29a8c;
+}
+
+.campo-texto:focus,
+.formulario-libro textarea:focus {
+    border-color: #c69646;
+    box-shadow: 0 0 0 3px rgba(201, 142, 52, .14);
+}
+
+.fila-formulario {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.fila-formulario select {
+    width: 100%;
+}
+
+.formulario-libro textarea {
+    min-height: 150px;
+    border-color: #d7cebd;
+    border-radius: 8px;
+    background: #fffdf8;
+    color: #343734;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+.contador-caracteres {
+    display: block;
+    margin-top: 7px;
+    color: #898273;
+    font-size: 11px;
+}
+
+.carga-portada {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 13px;
+    border: 1px dashed #c6ad7d;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fcf8ef, #f8f0e2);
+    padding: 24px;
+    text-align: center;
+}
+
+.simbolo-carga {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #efe3cc;
+    color: #91641f;
+    font-size: 24px;
+}
+
+.carga-portada strong {
+    color: #3d4140;
+    font-size: 13px;
+}
+
+.carga-portada small {
+    color: #827a6c;
+    font-size: 11px;
+}
+
+.boton-seleccionar-portada {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c9ad76;
+    border-radius: 8px;
+    background: #fffdf8;
+    color: #75531d;
+    padding: 8px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .18s ease, border-color .18s ease;
+}
+
+.boton-seleccionar-portada:hover {
+    border-color: #b48b45;
+    background: #f2e7d2;
+}
+
+.entrada-portada:focus-visible+.boton-seleccionar-portada {
+    outline: 2px solid #c98e34;
+    outline-offset: 3px;
+}
+
+.carga-portada em {
+    color: #908777;
+    font-size: 10px;
+    font-style: normal;
+    line-height: 1.5;
+}
+
+.recomendacion {
+    margin-top: 16px;
+    border-left: 3px solid #c98e34;
+    border-radius: 0 9px 9px 0;
+    background: #f7f0e3;
+    padding: 16px 17px;
+}
+
+.recomendacion strong {
+    color: #59451f;
+    font-size: 12px;
+}
+
+.recomendacion p {
+    margin: 5px 0 0;
+    color: #746b5d;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    border-top: 1px solid #e4dac8;
+    padding-top: 20px;
+}
+
+.boton-cancelar-formulario,
+.boton-enviar-formulario {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.boton-cancelar-formulario {
+    border: 1px solid #d5cbb8;
+    color: #5f5b52;
+}
+
+.boton-cancelar-formulario:hover {
+    border-color: #b7a88d;
+    background: #f4eddf;
+    color: #393832;
+}
+
+.boton-enviar-formulario {
+    border: 1px solid #c98e34;
+    background: #c98e34;
+    color: #252f36;
+}
+
+.boton-enviar-formulario:hover {
+    border-color: #b77c28;
+    background: #b77c28;
+    color: #252f36;
+}
+
+@media (max-width: 680px) {
+    .pagina-formulario .marco-formulario {
+        margin: 18px auto 32px;
+    }
+
+    .contenido-formulario {
+        padding: 22px 16px;
+    }
+
+    .acciones-formulario {
+        flex-direction: column-reverse;
+    }
+
+    .boton-cancelar-formulario,
+    .boton-enviar-formulario {
+        width: 100%;
+    }
+}

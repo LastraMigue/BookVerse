@@ -1,0 +1,487 @@
+.pagina-administracion .marco-catalogo {
+    margin-top: 12px;
+}
+
+.pagina-catalogo.pagina-administracion {
+    min-width: 320px;
+    background: #eddfc7;
+}
+
+.pagina-administracion .marco-administracion {
+    width: min(1200px, calc(100% - 40px));
+    margin: 24px auto 40px;
+}
+
+.pagina-administracion .panel-administracion {
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid #d5c7ad;
+    border-radius: 10px;
+    background: #fffdf8;
+    box-shadow: 0 16px 42px rgba(48, 39, 25, .12);
+}
+
+.pagina-administracion .navegacion-catalogo {
+    min-height: 68px;
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom-color: #e8dfd0;
+    padding: 0 clamp(18px, 3vw, 34px);
+}
+
+.etiqueta-panel-admin {
+    margin: 0;
+    color: #797367;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cuerpo-administracion {
+    display: grid;
+    grid-template-columns: 225px minmax(0, 1fr);
+    min-height: 600px;
+}
+
+.barra-lateral-administracion {
+    border-right: 1px solid #e8dfd0;
+    background: #f7f1e5;
+    padding: 28px 18px;
+}
+
+.barra-lateral-administracion .rotulo-biblioteca {
+    margin: 0 0 6px;
+    color: #a47121;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.barra-lateral-administracion h2 {
+    margin: 0;
+    color: #333a3a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.barra-lateral-administracion .descripcion-biblioteca {
+    margin: 8px 0 22px;
+    color: #777267;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.barra-lateral-administracion nav {
+    display: grid;
+    gap: 7px;
+}
+
+.barra-lateral-administracion nav a {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #514d44;
+    padding: 8px 10px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.barra-lateral-administracion nav a:hover,
+.barra-lateral-administracion nav a.seleccionado {
+    border-color: #e5d8be;
+    background: #eee4d0;
+    color: #333a3a;
+}
+
+.barra-lateral-administracion nav a b {
+    min-width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #e7dbc4;
+    color: #66573b;
+    font-size: 10px;
+}
+
+.contenido-moderacion {
+    min-width: 0;
+    padding: 30px clamp(18px, 3vw, 34px) 40px;
+}
+
+.encabezado-moderacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.encabezado-moderacion .rotulo-listas {
+    margin-bottom: 6px;
+}
+
+.encabezado-moderacion h1 {
+    margin: 0;
+    color: #333a3a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 500;
+    letter-spacing: -.03em;
+}
+
+.descripcion-moderacion {
+    margin: 7px 0 0;
+    color: #777267;
+    font-size: 12px;
+}
+
+.cuenta-pendientes {
+    min-width: 100px;
+    display: grid;
+    justify-items: center;
+    border: 1px solid #e5d8be;
+    border-radius: 7px;
+    background: #f7f1e5;
+    padding: 10px 14px;
+}
+
+.cuenta-pendientes strong {
+    color: #8e611e;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.cuenta-pendientes span {
+    margin-top: 5px;
+    color: #777267;
+    font-size: 10px;
+}
+
+.nota-moderacion {
+    margin: 0 0 15px;
+    color: #80796c;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.pestanas-reportes {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #e8dfd0;
+}
+
+.pestanas-reportes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid transparent;
+    color: #777267;
+    padding: 10px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pestanas-reportes a:hover,
+.pestanas-reportes a.activo {
+    border-bottom-color: #a47121;
+    color: #513913;
+}
+
+.pestanas-reportes a span {
+    min-width: 20px;
+    border-radius: 10px;
+    background: #eee4d0;
+    padding: 2px 6px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.lista-moderacion {
+    scroll-margin-top: 20px;
+}
+
+.lista-publicados {
+    margin-top: 38px;
+}
+
+.encabezado-lista-moderacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 14px;
+}
+
+.encabezado-lista-moderacion h2 {
+    margin: 0;
+    color: #333a3a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.encabezado-lista-moderacion p {
+    margin: 5px 0 0;
+    color: #777267;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.estado-moderacion {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.estado-pendiente {
+    border-color: #ead9b5;
+    background: #fbf2df;
+    color: #805818;
+}
+
+.estado-publicado {
+    border-color: #c9dfcc;
+    background: #edf6ed;
+    color: #376244;
+}
+
+.tarjeta-moderacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    border: 1px solid #e8dfd0;
+    border-radius: 7px;
+    background: #fffefa;
+    padding: 16px;
+}
+
+.tarjeta-moderacion + .tarjeta-moderacion {
+    margin-top: 10px;
+}
+
+.datos-moderacion {
+    min-width: 0;
+}
+
+.titulo-y-estado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+}
+
+.titulo-y-estado h3 {
+    margin: 0;
+    color: #333a3a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.autor-moderacion {
+    margin: 4px 0 8px;
+    color: #625e54;
+    font-size: 12px;
+}
+
+.detalle-moderacion {
+    margin: 0;
+    color: #777267;
+    font-size: 10px;
+}
+
+.detalle-moderacion strong {
+    margin-right: 5px;
+    color: #514d44;
+}
+
+.descripcion-libro-moderacion {
+    max-width: 720px;
+    margin: 10px 0 8px;
+    color: #625e54;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.origen-moderacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    color: #80796c;
+    font-size: 10px;
+}
+
+.origen-moderacion strong {
+    color: #514d44;
+}
+
+.acciones-moderacion {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.boton-moderacion {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 7px 12px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 750;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.boton-aprobar {
+    border-color: #477451;
+    background: #477451;
+    color: #fff;
+}
+
+.boton-aprobar:hover {
+    border-color: #31583a;
+    background: #31583a;
+}
+
+.boton-rechazar {
+    border-color: #d7b4ad;
+    background: #fff8f6;
+    color: #914d42;
+}
+
+.boton-rechazar:hover {
+    border-color: #914d42;
+    background: #f8e9e5;
+}
+
+.boton-editar {
+    border-color: #c9a25e;
+    background: #f8f0df;
+    color: #72511b;
+}
+
+.boton-editar:hover {
+    border-color: #a1742b;
+    background: #eee0c2;
+}
+
+.boton-eliminar {
+    border-color: #914d42;
+    background: #914d42;
+    color: #fff;
+}
+
+.boton-eliminar:hover {
+    border-color: #71392f;
+    background: #71392f;
+}
+
+.boton-moderacion:focus-visible,
+.pestanas-reportes a:focus-visible,
+.barra-lateral-administracion nav a:focus-visible {
+    outline: 3px solid #c99a49;
+    outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+    .pagina-administracion .marco-administracion {
+        width: calc(100% - 24px);
+        margin-top: 14px;
+    }
+
+    .cuerpo-administracion {
+        grid-template-columns: 1fr;
+    }
+
+    .barra-lateral-administracion {
+        border-right: 0;
+        border-bottom: 1px solid #e8dfd0;
+        padding: 20px;
+    }
+
+    .barra-lateral-administracion .descripcion-biblioteca {
+        margin-bottom: 12px;
+    }
+
+    .barra-lateral-administracion nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contenido-moderacion {
+        padding-top: 24px;
+    }
+}
+
+@media (max-width: 520px) {
+    .pagina-administracion .navegacion-catalogo {
+        min-height: 58px;
+        padding: 0 14px;
+    }
+
+    .etiqueta-panel-admin {
+        font-size: 10px;
+        text-align: right;
+    }
+
+    .barra-lateral-administracion {
+        padding: 17px 14px;
+    }
+
+    .contenido-moderacion {
+        padding: 22px 14px 30px;
+    }
+
+    .encabezado-moderacion {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .cuenta-pendientes {
+        min-width: 78px;
+        padding: 8px;
+    }
+
+    .encabezado-lista-moderacion {
+        align-items: flex-start;
+    }
+
+    .encabezado-lista-moderacion > .estado-moderacion {
+        display: none;
+    }
+
+    .tarjeta-moderacion {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .acciones-moderacion {
+        justify-content: flex-start;
+    }
+
+    .boton-moderacion {
+        flex: 1 1 100px;
+    }
+}

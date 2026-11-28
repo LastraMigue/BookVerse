@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Consulta portadas, sinopsis y detalles de libros seleccionados por BookVerse.">
     <title>Detalles del libro | BookVerse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body class="pagina-catalogo pagina-detalle">
     <?php include 'navbar.php'; ?>
 
     <section class="marco-catalogo">
         <main class="panel-catalogo panel-detalle">
-            <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
-                    <span>BV</span>
-                    <strong>BookVerse</strong>
-                </a>
-            </header>
-
             <div class="contenedor-fichas-libro">
                 <article class="ficha-libro" id="el-nombre-del-viento">
                     <div class="cuerpo-detalle">

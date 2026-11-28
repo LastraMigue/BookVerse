@@ -1,0 +1,37 @@
+.barra-lateral-biblioteca nav a {
+    min-height: 40px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #eeeae2;
+}
+
+.barra-lateral-biblioteca nav a.seleccionado {
+    height: 35px;
+    border: 1px solid #1f1d19;
+    background: #eee4d0;
+    padding: 0 8px;
+}
+
+.barra-lateral-biblioteca nav a.seleccionado b {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #c29850;
+}
+
+.simbolo-menu,
+.simbolo-menu-cuadrado {
+    width: 9px;
+    height: 9px;
+    display: block;
+    border: 1px solid #555;
+}
+
+.simbolo-menu {
+    background: #c39a58;
+}

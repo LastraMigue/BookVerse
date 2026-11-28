@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Organiza tus próximas lecturas y vuelve a los libros que más te gustan en BookVerse.">
     <title>Mis listas | BookVerse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body class="pagina-catalogo pagina-listas">
     <?php include 'navbar.php'; ?>
@@ -12,10 +14,6 @@
     <section class="marco-catalogo marco-listas">
         <main class="panel-catalogo panel-listas">
             <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
-                    <span>BV</span>
-                    <strong>BookVerse</strong>
-                </a>
                 <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="10.5" cy="10.5" r="6.5"></circle>
