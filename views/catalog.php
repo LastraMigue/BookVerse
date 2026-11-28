@@ -1,9 +1,25 @@
+<?php
+// BookVerse — Catálogo público (solo libros publicados)
+
+require_once __DIR__ . '/../includes/libros.php';
+
+$busqueda = trim($_GET['q'] ?? '');
+$generoIdFiltro = filter_input(INPUT_GET, 'genero', FILTER_VALIDATE_INT) ?: null;
+
+$generos = obtenerGeneros($pdo);
+$librosPublicados = obtenerLibrosPublicados($pdo, $busqueda !== '' ? $busqueda : null, $generoIdFiltro);
+
+$mensajeExito = '';
+if (isset($_GET['mensaje']) && $_GET['mensaje'] === 'libro_pendiente') {
+    $mensajeExito = "Tu libro está pendiente de verificación.";
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explora una selección de libros de BookVerse y encuentra tu próxima lectura favorita.">
+    <meta name="description" content="Explora los libros publicados de BookVerse y encuentra tu próxima lectura favorita.">
     <title>Catálogo de libros | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
@@ -15,17 +31,23 @@
         <main class="panel-catalogo">
             <header class="navegacion-catalogo">
                 <form class="busqueda-catalogo" role="search" action="catalog.php" method="get">
-                    <input type="search" name="q" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
+                    <input type="search" name="q" value="<?= htmlspecialchars($busqueda, ENT_QUOTES, 'UTF-8') ?>" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
                 </form>
             </header>
+
+            <?php if ($mensajeExito !== ''): ?>
+                <div class="alert alert-success mx-3 mt-3" role="alert">
+                    <?= htmlspecialchars($mensajeExito, ENT_QUOTES, 'UTF-8') ?>
+                </div>
+            <?php endif; ?>
 
             <section class="presentacion-catalogo" aria-labelledby="titulo-catalogo">
                 <p class="rotulo-catalogo">La biblioteca de BookVerse</p>
                 <h1 id="titulo-catalogo">Una buena historia siempre te encuentra.</h1>
-                <p class="descripcion-presentacion-catalogo">Explora esta selección de clásicos y aventuras inolvidables. Elige un género, déjate llevar y descubre qué leer después.</p>
+                <p class="descripcion-presentacion-catalogo">Explora los libros publicados de nuestra comunidad. Elige un género, déjate llevar y descubre qué leer después.</p>
                 <div class="resumen-catalogo">
-                    <span><strong>5</strong> libros de ejemplo</span>
-                    <span><strong>5</strong> mundos por descubrir</span>
+                    <span><strong><?= count($librosPublicados) ?></strong> libros publicados</span>
+                    <span><strong><?= count($generos) ?></strong> géneros disponibles</span>
                 </div>
             </section>
 
@@ -33,14 +55,14 @@
                 <aside class="barra-lateral-catalogo">
                     <div class="encabezado-filtros">
                         <h2>Explora por género</h2>
-                        <span>Selección</span>
+                        <span><a href="catalog.php">Todos</a></span>
                     </div>
-                    <nav class="enlaces-generos" aria-label="Géneros de la selección">
-                        <a href="#libro-fantasia"> Fantasía <b>1</b></a>
-                        <a href="#libro-terror"> Terror <b>1</b></a>
-                        <a href="#libro-romance"> Romance <b>1</b></a>
-                        <a href="#libro-misterio"> Misterio <b>1</b></a>
-                        <a href="#libro-realismo"> Realismo mágico <b>1</b></a>
+                    <nav class="enlaces-generos" aria-label="Géneros del catálogo">
+                        <?php foreach ($generos as $genero): ?>
+                            <a href="catalog.php?genero=<?= (int)$genero['id'] ?>" <?= $generoIdFiltro === (int)$genero['id'] ? 'class="fw-bold"' : '' ?>>
+                                <?= htmlspecialchars($genero['nombre'], ENT_QUOTES, 'UTF-8') ?>
+                            </a>
+                        <?php endforeach; ?>
                     </nav>
                     <div class="nota-catalogo">
                         <p>¿Tienes otro libro en mente?</p>
@@ -53,81 +75,36 @@
                         <div>
                             <p>Empieza a explorar</p>
                             <h2 id="titulo-seleccion">Historias para descubrir</h2>
-                            <small>Una pequeña selección para inspirar tu próxima lectura.</small>
+                            <small>Solo se muestran libros aprobados y publicados en el catálogo.</small>
                         </div>
-                        <span class="etiqueta-seleccion">Selección de ejemplo</span>
+                        <span class="etiqueta-seleccion">Catálogo público</span>
                     </div>
 
-                    <div class="cuadricula-libros">
-                        <a class="enlace-tarjeta-libro" href="book.php#el-nombre-del-viento">
-                            <article class="tarjeta-libro" id="libro-fantasia">
-                                <div class="portada-libro portada-viento" role="img" aria-label="Portada ilustrada de El nombre del viento">
-                                    <span>BOOKVERSE</span>
-                                    <strong>El nombre<br>del viento</strong>
-                                    <small>Patrick Rothfuss</small>
-                                </div>
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Fantasía épica</span>
-                                    <h3>El nombre del viento</h3>
-                                    <p class="autor-libro">Patrick Rothfuss</p>
-                                    <p class="descripcion-libro">Magia, música y leyendas en una aventura de formación y misterio.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,8 de 5"><span aria-hidden="true">★★★★★</span><b>4,8</b></div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <a class="enlace-tarjeta-libro" href="book.php#dracula">
-                            <article class="tarjeta-libro" id="libro-terror">
-                                <img class="portada-libro" src="../assets/img/dracula.webp" alt="Portada clásica de Drácula">
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Terror gótico</span>
-                                    <h3>Drácula</h3>
-                                    <p class="autor-libro">Bram Stoker</p>
-                                    <p class="descripcion-libro">Un clásico inquietante sobre un misterioso conde y su leyenda.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,7 de 5"><span aria-hidden="true">★★★★★</span><b>4,7</b></div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <a class="enlace-tarjeta-libro" href="book.php#orgullo-y-prejuicio">
-                            <article class="tarjeta-libro" id="libro-romance">
-                                <img class="portada-libro" src="../assets/img/orgullo-y-prejuicio.webp" alt="Portada de Orgullo y prejuicio">
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Romance · Clásico</span>
-                                    <h3>Orgullo y prejuicio</h3>
-                                    <p class="autor-libro">Jane Austen</p>
-                                    <p class="descripcion-libro">Ingenio, primeras impresiones y una historia que sigue conquistando lectores.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <a class="enlace-tarjeta-libro" href="book.php#el-sabueso-de-los-baskerville">
-                            <article class="tarjeta-libro" id="libro-misterio">
-                                <img class="portada-libro" src="../assets/img/el-sabueso-de-los-baskerville.webp" alt="Ilustración de El sabueso de los Baskerville">
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Misterio</span>
-                                    <h3>El sabueso de los Baskerville</h3>
-                                    <p class="autor-libro">Arthur Conan Doyle</p>
-                                    <p class="descripcion-libro">Sherlock Holmes investiga una leyenda oscura en los páramos ingleses.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,6 de 5"><span aria-hidden="true">★★★★★</span><b>4,6</b></div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <a class="enlace-tarjeta-libro" href="book.php#cien-anos-de-soledad">
-                            <article class="tarjeta-libro" id="libro-realismo">
-                                <img class="portada-libro" src="../assets/img/cien-anos-de-soledad.webp" alt="Portada de Cien años de soledad">
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Realismo mágico</span>
-                                    <h3>Cien años de soledad</h3>
-                                    <p class="autor-libro">Gabriel García Márquez</p>
-                                    <p class="descripcion-libro">La saga de una familia y un pueblo donde lo extraordinario forma parte de lo cotidiano.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,9 de 5"><span aria-hidden="true">★★★★★</span><b>4,9</b></div>
-                                </div>
-                            </article>
-                        </a>
-                    </div>
+                    <?php if (empty($librosPublicados)): ?>
+                        <div class="alert alert-info" role="alert">
+                            No se encontraron libros publicados con los criterios seleccionados.
+                        </div>
+                    <?php else: ?>
+                        <div class="cuadricula-libros">
+                            <?php foreach ($librosPublicados as $libro): ?>
+                                <a class="enlace-tarjeta-libro" href="book.php?id=<?= (int)$libro['id'] ?>">
+                                    <article class="tarjeta-libro">
+                                        <div class="portada-libro portada-viento" role="img" aria-label="Portada de <?= htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <span>BOOKVERSE</span>
+                                            <strong><?= htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8') ?></strong>
+                                            <small><?= htmlspecialchars($libro['autor'], ENT_QUOTES, 'UTF-8') ?></small>
+                                        </div>
+                                        <div class="datos-libro">
+                                            <span class="genero-libro"><?= htmlspecialchars($libro['genero_nombre'], ENT_QUOTES, 'UTF-8') ?></span>
+                                            <h3><?= htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8') ?></h3>
+                                            <p class="autor-libro"><?= htmlspecialchars($libro['autor'], ENT_QUOTES, 'UTF-8') ?></p>
+                                            <p class="descripcion-libro"><?= htmlspecialchars($libro['descripcion'], ENT_QUOTES, 'UTF-8') ?></p>
+                                        </div>
+                                    </article>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </section>
             </div>
         </main>
