@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
 </head>
+
 <body class="pagina-catalogo pagina-catalogo-principal">
     <?php include 'navbar.php'; ?>
 
@@ -15,7 +17,7 @@
         <main class="panel-catalogo">
             <header class="navegacion-catalogo">
                 <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
-                    
+
                     <input type="search" name="q" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
                 </form>
             </header>
@@ -25,8 +27,8 @@
                 <h1 id="titulo-catalogo">Una buena historia siempre te encuentra.</h1>
                 <p class="descripcion-presentacion-catalogo">Explora esta selección de clásicos y aventuras inolvidables. Elige un género, déjate llevar y descubre qué leer después.</p>
                 <div class="resumen-catalogo">
-                    <span><strong>5</strong> libros de ejemplo</span>
-                    <span><strong>5</strong> mundos por descubrir</span>
+                    <span><strong>4</strong> libros de ejemplo</span>
+                    <span><strong>4</strong> mundos por descubrir</span>
                 </div>
             </section>
 
@@ -60,23 +62,6 @@
                     </div>
 
                     <div class="cuadricula-libros">
-                        <a class="enlace-tarjeta-libro" href="libro.php#el-nombre-del-viento">
-                            <article class="tarjeta-libro" id="libro-fantasia">
-                                <div class="portada-libro portada-viento" role="img" aria-label="Portada ilustrada de El nombre del viento">
-                                    <span>BOOKVERSE</span>
-                                    <strong>El nombre<br>del viento</strong>
-                                    <small>Patrick Rothfuss</small>
-                                </div>
-                                <div class="datos-libro">
-                                    <span class="genero-libro">Fantasía épica</span>
-                                    <h3>El nombre del viento</h3>
-                                    <p class="autor-libro">Patrick Rothfuss</p>
-                                    <p class="descripcion-libro">Magia, música y leyendas en una aventura de formación y misterio.</p>
-                                    <div class="valoracion-libro" aria-label="Valoración de ejemplo: 4,8 de 5"><span aria-hidden="true">★★★★★</span><b>4,8</b></div>
-                                </div>
-                            </article>
-                        </a>
-
                         <a class="enlace-tarjeta-libro" href="libro.php#dracula">
                             <article class="tarjeta-libro" id="libro-terror">
                                 <img class="portada-libro" src="assets/img/dracula.webp" alt="Portada clásica de Drácula">
@@ -134,4 +119,5 @@
         </main>
     </section>
 </body>
+
 </html>

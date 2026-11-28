@@ -124,6 +124,18 @@
     transform: translateY(-1px);
 }
 
+.barra-inicio .enlaces-superiores .nav-link:active {
+    background: #a96f1b;
+    color: #fff8eb;
+    transform: scale(.96);
+}
+
+.barra-inicio .menu-ajustes .boton-tema:active {
+    background: #d8b36d;
+    color: #302719;
+    transform: scale(.98);
+}
+
 .barra-inicio .enlaces-superiores a:focus-visible {
     outline: 2px solid #c98e34;
     outline-offset: 3px;
@@ -151,6 +163,10 @@
 
 .barra-inicio .navbar-toggler:focus {
     box-shadow: 0 0 0 .2rem rgba(201, 142, 52, .35);
+}
+
+.barra-inicio .navbar-toggler:active {
+    background: #c98e34;
 }
 
 @media (max-width: 991.98px) {
