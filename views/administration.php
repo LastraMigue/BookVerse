@@ -6,10 +6,10 @@
     <meta name="description" content="Revisa las propuestas de libros de BookVerse.">
     <title>Administración | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="../css/base.css">
 </head>
 <body class="pagina-catalogo pagina-administracion">
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <section class="marco-catalogo marco-administracion">
         <main class="panel-catalogo panel-administracion">
@@ -85,15 +85,15 @@
                         <article class="tarjeta-moderacion">
                             <div class="datos-moderacion">
                                 <div class="titulo-y-estado">
-                                    <h3>Revolución en la granja</h3>
+                                    <h3>Fahrenheit 451</h3>
                                     <span class="estado-moderacion estado-pendiente">Pendiente</span>
                                 </div>
-                                <p class="autor-moderacion">George Orwell</p>
-                                <p class="detalle-moderacion"><strong>ISBN</strong> 978-8499890944</p>
-                                <p class="descripcion-libro-moderacion">Sátira alegórica en la que los animales de una granja se rebelan contra los humanos, solo para caer bajo la tiranía de los cerdos.</p>
-                                <p class="origen-moderacion">Propuesto por <strong>Clara Gómez</strong><span aria-hidden="true">·</span>16 nov. 2026</p>
+                                <p class="autor-moderacion">Ray Bradbury</p>
+                                <p class="detalle-moderacion"><strong>ISBN</strong> 978-8445077634</p>
+                                <p class="descripcion-libro-moderacion">En un futuro distópico, los bomberos queman libros en lugar de apagar incendios. Una novela fundamental sobre la censura y el conocimiento.</p>
+                                <p class="origen-moderacion">Propuesto por <strong>Clara Vidal</strong><span aria-hidden="true">·</span>16 nov. 2026</p>
                             </div>
-                            <div class="acciones-moderacion" aria-label="Acciones para Revolución en la granja">
+                            <div class="acciones-moderacion" aria-label="Acciones para Fahrenheit 451">
                                 <button class="boton-moderacion boton-aprobar" type="button">Aprobar</button>
                                 <button class="boton-moderacion boton-rechazar" type="button">Rechazar</button>
                             </div>
@@ -175,5 +175,7 @@
             </div>
         </main>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,11 +1,7 @@
 <?php
-// BookVerse — Registro de Nuevo Usuario
-// Archivo: CrearCuenta.php
-// Rol: Integrante 1 (Backend núcleo, base de datos y Git)
+// BookVerse — Registro de nuevo usuario
+require_once __DIR__ . '/../includes/auth.php';
 
-require_once __DIR__ . '/includes/auth.php';
-
-// Si ya tiene sesión, redirigir según su rol
 redirigirSiAutenticado();
 
 $errores = [];
@@ -19,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmPassword = $_POST['confirm_password'] ?? '';
     $terms = isset($_POST['terms']);
 
-    // 1. Validaciones en servidor
     if (empty($nombre)) {
         $errores[] = "Por favor, introduce tu nombre.";
     } elseif (mb_strlen($nombre) < 2 || mb_strlen($nombre) > 100) {
@@ -48,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Debes aceptar los términos para crear tu cuenta.";
     }
 
-    // 2. Comprobar unicidad de email en la base de datos
     if (empty($errores)) {
         try {
             $stmtCheck = $pdo->prepare("SELECT id FROM usuarios WHERE email = :email LIMIT 1");
@@ -62,16 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // 3. Inserción segura con password_hash y es_admin forzado a 0
     if (empty($errores)) {
         try {
-            // Cifrado de contraseña con BCRYPT
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
-            // SEGURIDAD: es_admin se fuerza explícitamente a 0 para impedir cualquier elevación de privilegios
-            $sql = "INSERT INTO usuarios (nombre, email, password_hash, es_admin, fecha_registro) 
+            // SEGURIDAD: es_admin forzado a 0 siempre
+            $sql = "INSERT INTO usuarios (nombre, email, password_hash, es_admin, fecha_registro)
                     VALUES (:nombre, :email, :password_hash, 0, CURRENT_TIMESTAMP)";
-            
+
             $stmtInsert = $pdo->prepare($sql);
             $stmtInsert->execute([
                 ':nombre'        => $nombre,
@@ -79,8 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':password_hash' => $passwordHash
             ]);
 
-            // Redirección con mensaje de éxito hacia el login
-            header('Location: IniciarSesion.php?registro=exito');
+            header('Location: login.php?registro=exito');
             exit;
         } catch (PDOException $e) {
             error_log("Error al registrar usuario: " . $e->getMessage());
@@ -97,10 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="Crea tu cuenta en BookVerse para guardar libros y organizar tus lecturas.">
     <title>Crear cuenta | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="../css/base.css">
 </head>
 <body class="pagina-acceso">
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <main class="marco-acceso marco-registro">
         <aside class="panel-bienvenida-acceso">
@@ -108,13 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="subtitulo-acceso">Un universo de historias</p>
                 <h1>Tu próxima lectura favorita empieza contigo.</h1>
                 <p class="texto-bienvenida-acceso">Crea tu espacio, guarda los títulos que te llaman y construye una lista a la que siempre quieras volver.</p>
-                <img src="assets/img/bv_2_libro_entreabierto.svg" alt="" aria-hidden="true">
+                <img src="../assets/img/bv_2_libro_entreabierto.svg" alt="" aria-hidden="true">
             </div>
             <p class="nota-bienvenida-acceso">Una comunidad para lectores curiosos.</p>
         </aside>
 
         <section class="tarjeta-acceso" aria-labelledby="titulo-registro">
-            <a class="enlace-volver-acceso" href="inicio.php">← Volver a BookVerse</a>
+            <a class="enlace-volver-acceso" href="../views/home.php">← Volver a BookVerse</a>
             <p class="subtitulo-acceso">Empieza tu próxima aventura</p>
             <h2 id="titulo-registro">Crea tu cuenta</h2>
             <p class="introduccion-acceso">Un espacio para guardar, descubrir y compartir tus lecturas favoritas.</p>
@@ -129,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <form class="formulario-acceso" action="CrearCuenta.php" method="post">
+            <form class="formulario-acceso" action="register.php" method="post">
                 <label class="etiqueta-acceso" for="nombre">Nombre</label>
                 <input class="form-control" id="nombre" name="nombre" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" value="<?= htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8') ?>" required>
 
@@ -148,10 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </label>
                 <button class="btn boton-acceso" type="submit">Crear mi cuenta <span aria-hidden="true">→</span></button>
             </form>
-            <p class="enlace-registro">¿Ya tienes una cuenta? <a href="IniciarSesion.php">Inicia sesión</a></p>
+            <p class="enlace-registro">¿Ya tienes una cuenta? <a href="login.php">Inicia sesión</a></p>
         </section>
     </main>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="validaciones.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

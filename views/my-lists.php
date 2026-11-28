@@ -6,15 +6,15 @@
     <meta name="description" content="Organiza tus próximas lecturas y vuelve a los libros que más te gustan en BookVerse.">
     <title>Mis listas | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="../css/base.css">
 </head>
 <body class="pagina-catalogo pagina-listas">
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <section class="marco-catalogo marco-listas">
         <main class="panel-catalogo panel-listas">
             <header class="navegacion-catalogo">
-                <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
+                <form class="busqueda-catalogo" role="search" action="catalog.php" method="get">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="10.5" cy="10.5" r="6.5"></circle>
                         <path d="M15.5 15.5L20 20"></path>
@@ -37,7 +37,7 @@
                     <div class="invitacion-listas">
                         <span aria-hidden="true"></span>
                         <p>¿Buscas una nueva lectura?</p>
-                        <a href="catalogo.php">Explorar el catálogo <span aria-hidden="true"></span></a>
+                        <a href="catalog.php">Explorar el catálogo <span aria-hidden="true"></span></a>
                     </div>
                 </aside>
 
@@ -48,7 +48,7 @@
                             <h1 id="titulo-listas">Mis listas</h1>
                             <small>Organiza tus lecturas y guarda los libros que quieres descubrir.</small>
                         </div>
-                        <a class="boton-descubrir-listas" href="catalogo.php"><span aria-hidden="true"></span> Encontrar libros</a>
+                        <a class="boton-descubrir-listas" href="catalog.php"><span aria-hidden="true"></span> Encontrar libros</a>
                     </div>
 
                     <div class="resumen-listas" aria-label="Resumen de ejemplo">
@@ -69,18 +69,18 @@
                                 <span class="cantidad-lista">3 libros</span>
                             </header>
                             <div class="libros-lista">
-                                <a class="libro-lista" href="libro.php#el-nombre-del-viento">
-                                    <img class="portada-miniatura" src="assets/img/bv_1_libro_cerrado.svg" alt="">
+                                <a class="libro-lista" href="book.php#el-nombre-del-viento">
+                                    <img class="portada-miniatura" src="../assets/img/bv_1_libro_cerrado.svg" alt="">
                                     <span class="datos-miniatura"><strong>El nombre del viento</strong><small>Patrick Rothfuss</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
-                                <a class="libro-lista" href="libro.php#dracula">
-                                    <img class="portada-miniatura" src="assets/img/dracula.webp" alt="">
+                                <a class="libro-lista" href="book.php#dracula">
+                                    <img class="portada-miniatura" src="../assets/img/dracula.webp" alt="">
                                     <span class="datos-miniatura"><strong>Drácula</strong><small>Bram Stoker</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
-                                <a class="libro-lista" href="libro.php#orgullo-y-prejuicio">
-                                    <img class="portada-miniatura" src="assets/img/orgullo-y-prejuicio.webp" alt="">
+                                <a class="libro-lista" href="book.php#orgullo-y-prejuicio">
+                                    <img class="portada-miniatura" src="../assets/img/orgullo-y-prejuicio.webp" alt="">
                                     <span class="datos-miniatura"><strong>Orgullo y prejuicio</strong><small>Jane Austen</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
@@ -97,13 +97,13 @@
                                 <span class="cantidad-lista">2 libros</span>
                             </header>
                             <div class="libros-lista">
-                                <a class="libro-lista" href="libro.php#cien-anos-de-soledad">
-                                    <img class="portada-miniatura" src="assets/img/cien-anos-de-soledad.webp" alt="">
+                                <a class="libro-lista" href="book.php#cien-anos-de-soledad">
+                                    <img class="portada-miniatura" src="../assets/img/cien-anos-de-soledad.webp" alt="">
                                     <span class="datos-miniatura"><strong>Cien años de soledad</strong><small>Gabriel García Márquez</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
-                                <a class="libro-lista" href="libro.php#el-sabueso-de-los-baskerville">
-                                    <img class="portada-miniatura" src="assets/img/el-sabueso-de-los-baskerville.webp" alt="">
+                                <a class="libro-lista" href="book.php#el-sabueso-de-los-baskerville">
+                                    <img class="portada-miniatura" src="../assets/img/el-sabueso-de-los-baskerville.webp" alt="">
                                     <span class="datos-miniatura"><strong>El sabueso de los Baskerville</strong><small>Arthur Conan Doyle</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
@@ -120,18 +120,18 @@
                                 <span class="cantidad-lista">3 libros</span>
                             </header>
                             <div class="libros-lista">
-                                <a class="libro-lista" href="libro.php#orgullo-y-prejuicio">
-                                    <img class="portada-miniatura" src="assets/img/orgullo-y-prejuicio.webp" alt="">
+                                <a class="libro-lista" href="book.php#orgullo-y-prejuicio">
+                                    <img class="portada-miniatura" src="../assets/img/orgullo-y-prejuicio.webp" alt="">
                                     <span class="datos-miniatura"><strong>Orgullo y prejuicio</strong><small>Jane Austen</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
-                                <a class="libro-lista" href="libro.php#el-sabueso-de-los-baskerville">
-                                    <img class="portada-miniatura" src="assets/img/el-sabueso-de-los-baskerville.webp" alt="">
+                                <a class="libro-lista" href="book.php#el-sabueso-de-los-baskerville">
+                                    <img class="portada-miniatura" src="../assets/img/el-sabueso-de-los-baskerville.webp" alt="">
                                     <span class="datos-miniatura"><strong>El sabueso de los Baskerville</strong><small>Arthur Conan Doyle</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
-                                <a class="libro-lista" href="libro.php#dracula">
-                                    <img class="portada-miniatura" src="assets/img/dracula.webp" alt="">
+                                <a class="libro-lista" href="book.php#dracula">
+                                    <img class="portada-miniatura" src="../assets/img/dracula.webp" alt="">
                                     <span class="datos-miniatura"><strong>Drácula</strong><small>Bram Stoker</small></span>
                                     <span class="flecha-libro-lista" aria-hidden="true">↗</span>
                                 </a>
@@ -144,12 +144,14 @@
                                 <h2>Tu biblioteca puede seguir creciendo</h2>
                                 <p>Explora el catálogo y encuentra nuevas historias para añadir a tus listas.</p>
                             </div>
-                            <a href="catalogo.php">Ver catálogo <span aria-hidden="true"></span></a>
+                            <a href="catalog.php">Ver catálogo <span aria-hidden="true"></span></a>
                         </aside>
                     </div>
                 </section>
             </div>
         </main>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
