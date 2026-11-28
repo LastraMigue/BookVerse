@@ -29,13 +29,14 @@
                 <p class="sello-lectura"><span aria-hidden="true"></span> Un lugar para quienes siempre quieren leer una página más</p>
                 
             </div>
-
-           
-            <div  class="video-hero" aria-hidden="true"> 
+             <div  class="video-hero" aria-hidden="true"> 
                     <video class="video" class="w-100" controls autoplay muted loop playsinline>
                         <source src="assets/video/Videopresentacion.mp4" type="video/mp4">
                     </video>
                 </div>  
+
+           
+           
         </section>
 
         <section class="seccion-descubre container" aria-labelledby="titulo-descubre">

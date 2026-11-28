@@ -12,7 +12,57 @@ body {
     color: #1d1b19;
     font-family: Georgia, "Times New Roman", serif;
 }
+section.hero-inicio {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 5%;
+    overflow: hidden;
+}
 
+section.hero-inicio .imagen-fondo-hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+section.hero-inicio .contenido-hero,
+section.hero-inicio .video-hero {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    top: auto;
+    right: auto;
+    transform: none;
+}
+
+section.hero-inicio .video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 760px) {
+    section.hero-inicio {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    section.hero-inicio .contenido-hero,
+    section.hero-inicio .video-hero {
+        width: 100%;
+    }
+}
 /* ===== navbar.php ===== */
 .barra-superior {
     height: 78px;
