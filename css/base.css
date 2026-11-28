@@ -1,3 +1,14 @@
+@import url("administration.css");
+@import url("catalog.css");
+@import url("create-account.css");
+@import url("layout.css");
+@import url("book-form.css");
+@import url("home.css");
+@import url("book.css");
+@import url("my-lists.css");
+@import url("library-navigation.css");
+@import url("navigation-bar.css");
+
 * {
     box-sizing: border-box;
 }
@@ -9,5 +20,5 @@ body {
     place-items: center;
     background: #151a27;
     color: #1d1b19;
-    font-family: Georgia, "Times New Roman", serif;
 }
+

@@ -98,8 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Crear cuenta | BookVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/CrearCuenta.css">
 </head>
 <body class="pagina-acceso">
     <?php include 'navbar.php'; ?>
