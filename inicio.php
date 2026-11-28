@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Descubre tu próxima lectura en BookVerse: explora libros, guarda tus favoritos y comparte tu pasión por las historias.">
     <title>BookVerse | Un universo de historias</title>
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body class="pagina-inicio">
     <?php include 'navbar.php'; ?>
 
     <main>
         <section class="hero-inicio" aria-labelledby="titulo-inicio">
+            <img class="imagen-fondo-hero" src="assets/img/madera-hero.webp" alt="" aria-hidden="true">
             <div class="contenido-hero">
                 <p class="rotulo-inicio"><span aria-hidden="true"></span> Tu próxima aventura empieza aquí</p>
                 <h1 id="titulo-inicio">Hay historias que te encuentran. <em>Encuentra la tuya.</em></h1>
@@ -65,27 +65,10 @@
             </div>
         </section>
 
-        <section class="destacado-del-mes container" aria-labelledby="titulo-destacado-inicio">
-            <div class="portada-destacada-inicio" aria-hidden="true">
-                <span>BOOKVERSE<br>LECTURA DESTACADA</span>
-                <strong>El nombre<br>del viento</strong>
-                <small>Patrick Rothfuss</small>
-                <i></i>
-            </div>
-            <div class="detalles-destacado">
-                <p class="rotulo-inicio">Una historia para perderse</p>
-                <h2 id="titulo-destacado-inicio">El nombre del viento</h2>
-                <p class="autor-destacado">Patrick Rothfuss <span>·</span> Fantasía épica</p>
-                <p class="descripcion-destacado">Magia, música y leyendas se entrelazan en una aventura inolvidable. Una lectura ideal para quienes disfrutan de los mundos llenos de misterio.</p>
-                <a class="enlace-destacado-inicio" href="libro.php">Descubrir el libro <span aria-hidden="true"></span></a>
-            </div>
-        </section>
     </main>
 
     <footer class="pie-inicio">
-        <a class="marca-inicio" href="inicio.php"><span class="icono-marca" aria-hidden="true">B</span><span>Book<span class="marca-resaltada">Verse</span></span></a>
         <p>Un universo de historias, a un libro de distancia.</p>
-        <a href="catalogo.php">Encuentra tu próxima lectura <span aria-hidden="true">→</span></a>
     </footer>
 </body>
 </html>

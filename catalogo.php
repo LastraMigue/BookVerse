@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explora una selección de libros de BookVerse y encuentra tu próxima lectura favorita.">
     <title>Catálogo de libros | BookVerse</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body class="pagina-catalogo pagina-catalogo-principal">
     <?php include 'navbar.php'; ?>
@@ -13,15 +14,8 @@
     <section class="marco-catalogo">
         <main class="panel-catalogo">
             <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
-                    <span>BV</span>
-                    <strong>BookVerse</strong>
-                </a>
                 <form class="busqueda-catalogo" role="search" action="catalogo.php" method="get">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
-                        <path d="M15.5 15.5L20 20"></path>
-                    </svg>
+                    
                     <input type="search" name="q" aria-label="Buscar libros por título o autor" placeholder="Buscar por título o autor">
                 </form>
             </header>
@@ -43,14 +37,13 @@
                         <span>Selección</span>
                     </div>
                     <nav class="enlaces-generos" aria-label="Géneros de la selección">
-                        <a href="#libro-fantasia"><span aria-hidden="true">✦</span> Fantasía <b>1</b></a>
-                        <a href="#libro-terror"><span aria-hidden="true">✦</span> Terror <b>1</b></a>
-                        <a href="#libro-romance"><span aria-hidden="true">✦</span> Romance <b>1</b></a>
-                        <a href="#libro-misterio"><span aria-hidden="true">✦</span> Misterio <b>1</b></a>
-                        <a href="#libro-realismo"><span aria-hidden="true">✦</span> Realismo mágico <b>1</b></a>
+                        <a href="#libro-fantasia"> Fantasía <b>1</b></a>
+                        <a href="#libro-terror"> Terror <b>1</b></a>
+                        <a href="#libro-romance"> Romance <b>1</b></a>
+                        <a href="#libro-misterio"> Misterio <b>1</b></a>
+                        <a href="#libro-realismo"> Realismo mágico <b>1</b></a>
                     </nav>
                     <div class="nota-catalogo">
-                        <span aria-hidden="true">✧</span>
                         <p>¿Tienes otro libro en mente?</p>
                         <a href="FormularioLibro.php">Propón un título <span aria-hidden="true">→</span></a>
                     </div>

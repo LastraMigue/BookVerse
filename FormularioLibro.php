@@ -5,21 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Propón un libro para que más lectores puedan descubrirlo en BookVerse.">
     <title>Proponer un libro | BookVerse</title>
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body class="pagina-catalogo pagina-formulario">
     <?php include 'navbar.php'; ?>
 
     <section class="marco-catalogo marco-formulario">
         <main class="panel-catalogo panel-formulario">
-            <header class="navegacion-catalogo">
-                <a class="titulo-catalogo" href="inicio.php" aria-label="Ir a BookVerse">
-                    <span>BV</span>
-                    <strong>BookVerse</strong>
-                </a>
-            </header>
             <div class="contenido-formulario">
                 <div class="encabezado-formulario">
                     <div>

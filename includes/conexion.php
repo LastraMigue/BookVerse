@@ -1,13 +1,10 @@
 <?php
-/**
- * BookVerse — Conexión a la Base de Datos mediante PDO
- *
- * Configuración técnica:
- * - Modo de errores: PDO::ERRMODE_EXCEPTION (excepciones activadas)
- * - Juego de caracteres: utf8mb4 (soporte completo de caracteres y emojis)
- * - Modo de obtención predeterminado: PDO::FETCH_ASSOC
- * - Emulación de sentencias preparadas desactivada (seguridad nativa contra inyecciones SQL)
- */
+// BookVerse — Conexión a la Base de Datos mediante PDO
+// Configuración técnica:
+// - Modo de errores: PDO::ERRMODE_EXCEPTION (excepciones activadas)
+// - Juego de caracteres: utf8mb4 (soporte completo de caracteres y emojis)
+// - Modo de obtención predeterminado: PDO::FETCH_ASSOC
+// - Emulación de sentencias preparadas desactivada (seguridad nativa contra inyecciones SQL)
 
 // Localizar y cargar config.php (puede estar en la raíz o en includes/)
 $rutaConfigRaiz = dirname(__DIR__) . '/config.php';
@@ -44,11 +41,7 @@ try {
     die("Error al conectar con la base de datos. Por favor, asegúrese de haber importado 'docs/sql/schema.sql' y de que el servicio MySQL esté iniciado en XAMPP.");
 }
 
-/**
- * Función auxiliar para obtener la instancia PDO en cualquier ámbito de función
- *
- * @return PDO
- */
+// Función auxiliar para obtener la instancia PDO en cualquier ámbito de función
 function obtenerConexion(): PDO
 {
     global $pdo;
