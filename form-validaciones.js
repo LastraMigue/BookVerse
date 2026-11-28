@@ -12,43 +12,57 @@ function initValidadorAcceso() {
   const campoPassword = document.getElementById('password');
   const campoConfirmacion = document.getElementById('confirmacion-contrasena');
   const campoTerminos = document.getElementById('terms');
+  const todosLosCampos = [campoNombre, campoEmail, campoPassword, campoConfirmacion, campoTerminos];
 
   const esRegistro = campoConfirmacion !== null;
-  let cajaErrores = null;
 
-  function mostrarErrores(errores) {
-    if (!cajaErrores) {
-      cajaErrores = document.createElement('div');
-      cajaErrores.className = 'alert alert-danger';
-      cajaErrores.setAttribute('role', 'alert');
-      formulario.parentNode.insertBefore(cajaErrores, formulario);
+  function mostrarErrorCampo(campo, mensaje) {
+    if (!campo) return;
+    campo.classList.add('is-invalid');
+
+    const contenedorBase =
+      campo.type === 'checkbox'
+        ? campo.closest('.form-check') || campo.parentElement || campo
+        : campo;
+
+    let mensajeEl = contenedorBase.nextElementSibling;
+    if (!mensajeEl || !mensajeEl.classList.contains('error-campo')) {
+      mensajeEl = document.createElement('div');
+      mensajeEl.className = 'error-campo text-danger small mt-1';
+      contenedorBase.insertAdjacentElement('afterend', mensajeEl);
     }
-
-    const lista = errores.map(error => `<li>${error}</li>`).join('');
-    cajaErrores.innerHTML = `<ul class="mb-0">${lista}</ul>`;
-    cajaErrores.hidden = false;
-
-    if (campoEmail) {
-      campoEmail.focus();
-    }
+    mensajeEl.textContent = mensaje;
   }
 
-  function limpiarErrores() {
-    if (cajaErrores) {
-      cajaErrores.hidden = true;
-      cajaErrores.innerHTML = '';
-    }
+  function limpiarErroresCampos() {
+    todosLosCampos.forEach(campo => {
+      if (!campo) return;
+      campo.classList.remove('is-invalid');
+
+      const contenedorBase =
+        campo.type === 'checkbox'
+          ? campo.closest('.form-check') || campo.parentElement || campo
+          : campo;
+
+      const siguiente = contenedorBase.nextElementSibling;
+      if (siguiente && siguiente.classList.contains('error-campo')) {
+        siguiente.remove();
+      }
+    });
   }
 
   function validar() {
-    const errores = [];
+    limpiarErroresCampos();
+    let hayErrores = false;
 
     if (campoNombre) {
       const nombre = typeof campoNombre.value === 'string' ? campoNombre.value.trim() : '';
       if (nombre === '' || !isNaN(nombre) || /\d/.test(nombre)) {
-        errores.push('Introduce un nombre y que no sea numerico.');
+        mostrarErrorCampo(campoNombre, 'Introduce un nombre y que no sea numérico.');
+        hayErrores = true;
       } else if (nombre.length < 2 || nombre.length > 100) {
-        errores.push('El nombre debe tener entre 2 y 100 caracteres.');
+        mostrarErrorCampo(campoNombre, 'El nombre debe tener entre 2 y 100 caracteres.');
+        hayErrores = true;
       }
     }
 
@@ -56,42 +70,48 @@ function initValidadorAcceso() {
       const email = typeof campoEmail.value === 'string' ? campoEmail.value.trim() : '';
       const formatoInvalido = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       if (email === '') {
-        errores.push('El correo electrónico es obligatorio.');
+        mostrarErrorCampo(campoEmail, 'El correo electrónico es obligatorio.');
+        hayErrores = true;
       } else if (formatoInvalido) {
-        errores.push('El formato del correo electrónico no es válido.');
+        mostrarErrorCampo(campoEmail, 'El formato del correo electrónico no es válido.');
+        hayErrores = true;
       } else if (email.length > 150) {
-        errores.push('El correo electrónico no puede superar los 150 caracteres.');
+        mostrarErrorCampo(campoEmail, 'El correo electrónico no puede superar los 150 caracteres.');
+        hayErrores = true;
       }
     }
 
     if (campoPassword) {
       const password = campoPassword.value;
       if (password === '') {
-        errores.push('La contraseña es obligatoria.');
+        mostrarErrorCampo(campoPassword, 'La contraseña es obligatoria.');
+        hayErrores = true;
       } else if (esRegistro && password.length < 8) {
-        errores.push('La contraseña debe tener al menos 8 caracteres.');
+        mostrarErrorCampo(campoPassword, 'La contraseña debe tener al menos 8 caracteres.');
+        hayErrores = true;
       }
     }
 
     if (campoConfirmacion && campoPassword && campoPassword.value !== campoConfirmacion.value) {
-      errores.push('Las contraseñas no coinciden.');
+      mostrarErrorCampo(campoConfirmacion, 'Las contraseñas no coinciden.');
+      hayErrores = true;
     }
 
     if (campoTerminos && !campoTerminos.checked) {
-      errores.push('Debes aceptar los términos para crear tu cuenta.');
+      mostrarErrorCampo(campoTerminos, 'Debes aceptar los términos para crear tu cuenta.');
+      hayErrores = true;
     }
 
-    return errores;
+    return hayErrores;
   }
 
   formulario.addEventListener('submit', evento => {
-    const errores = validar();
+    const hayErrores = validar();
 
-    if (errores.length > 0) {
+    if (hayErrores) {
       evento.preventDefault();
-      mostrarErrores(errores);
-    } else {
-      limpiarErrores();
+      const primerError = formulario.querySelector('.is-invalid');
+      if (primerError) primerError.focus();
     }
   });
 
@@ -100,7 +120,7 @@ function initValidadorAcceso() {
       const desajuste =
         campoConfirmacion.value !== '' &&
         campoConfirmacion.value !== campoPassword.value;
-      campoConfirmacion.classList.toggle('Invalido', desajuste);
+      campoConfirmacion.classList.toggle('is-invalid', desajuste);
     });
   }
 }
