@@ -4,9 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $haySesion = isset($_SESSION['usuario']);
 
-// Detecta desde qué profundidad se sirve este navbar para ajustar rutas
-$depth = substr_count($_SERVER['SCRIPT_NAME'], '/') - 2; // relativo a /BookVerse/
-$base = str_repeat('../', max($depth, 0));
+// Calcula la ruta relativa hacia la raíz del proyecto sin depender de la carpeta en htdocs
+$projectRoot = str_replace('\\', '/', realpath(dirname(__DIR__)));
+$scriptDir = str_replace('\\', '/', dirname(realpath($_SERVER['SCRIPT_FILENAME'])));
+$rel = trim(substr($scriptDir, strlen($projectRoot)), '/');
+$depth = $rel === '' ? 0 : substr_count($rel, '/') + 1;
+$base = str_repeat('../', $depth);
 ?>
 <header class="barra-superior barra-inicio">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-bookverse" aria-label="Navegación principal">

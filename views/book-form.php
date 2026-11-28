@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/libros.php';
 
 // Exigir sesión activa (si no hay sesión redirige a login; si es admin redirige a moderación)
-exigirSesion('/BookVerse/views/book-form.php');
+exigirSesion(obtenerBaseUrl() . '/views/book-form.php');
 
 $generos = obtenerGeneros($pdo);
 $errores = [];

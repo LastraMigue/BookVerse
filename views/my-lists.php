@@ -1,3 +1,10 @@
+<?php
+// BookVerse — Mis listas de lectura (requiere sesión)
+
+require_once __DIR__ . '/../includes/auth.php';
+
+exigirSesion(obtenerBaseUrl() . '/views/my-lists.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

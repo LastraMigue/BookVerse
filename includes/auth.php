@@ -7,6 +7,19 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/conexion.php';
 
+// Devuelve la ruta base del proyecto respecto al DocumentRoot (ej. /Act_servidor/BookVerse)
+function obtenerBaseUrl(): string
+{
+    $docRoot = str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'] ?? ''));
+    $projectRoot = str_replace('\\', '/', realpath(dirname(__DIR__)));
+
+    if ($docRoot !== '' && strpos($projectRoot, $docRoot) === 0) {
+        return rtrim(substr($projectRoot, strlen($docRoot)), '/');
+    }
+
+    return '';
+}
+
 // Inicia la sesión para un usuario autenticado y regenera el ID de sesión
 function iniciarSesionUsuario(array $usuario): void
 {
@@ -63,14 +76,16 @@ function esAdmin(): bool
 // Exige que la persona usuaria haya iniciado sesión
 function exigirSesion(?string $urlRetorno = null): void
 {
+    $base = obtenerBaseUrl();
+
     if (!estaAutenticado()) {
         $param = $urlRetorno ? '?redirect=' . urlencode($urlRetorno) : '';
-        header('Location: /BookVerse/auth/login.php' . $param);
+        header('Location: ' . $base . '/auth/login.php' . $param);
         exit;
     }
 
     if (esAdmin()) {
-        header('Location: /BookVerse/views/administration.php');
+        header('Location: ' . $base . '/views/administration.php');
         exit;
     }
 }
@@ -78,13 +93,15 @@ function exigirSesion(?string $urlRetorno = null): void
 // Exige privilegios de administrador
 function exigirAdmin(): void
 {
+    $base = obtenerBaseUrl();
+
     if (!estaAutenticado()) {
-        header('Location: /BookVerse/auth/login.php');
+        header('Location: ' . $base . '/auth/login.php');
         exit;
     }
 
     if (!esAdmin()) {
-        header('Location: /BookVerse/views/catalog.php');
+        header('Location: ' . $base . '/views/catalog.php');
         exit;
     }
 }
@@ -92,11 +109,13 @@ function exigirAdmin(): void
 // Redirige a usuarios que ya tienen sesión activa (para login/register)
 function redirigirSiAutenticado(): void
 {
+    $base = obtenerBaseUrl();
+
     if (estaAutenticado()) {
         if (esAdmin()) {
-            header('Location: /BookVerse/views/administration.php');
+            header('Location: ' . $base . '/views/administration.php');
         } else {
-            header('Location: /BookVerse/views/catalog.php');
+            header('Location: ' . $base . '/views/catalog.php');
         }
         exit;
     }
@@ -105,8 +124,10 @@ function redirigirSiAutenticado(): void
 // Control de acceso para páginas públicas
 function verificarAccesoPaginaPublica(): void
 {
+    $base = obtenerBaseUrl();
+
     if (esAdmin()) {
-        header('Location: /BookVerse/views/administration.php');
+        header('Location: ' . $base . '/views/administration.php');
         exit;
     }
 }

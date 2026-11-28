@@ -65,22 +65,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="destacado-del-mes container" aria-labelledby="titulo-destacado-inicio">
-            <div class="portada-destacada-inicio" aria-hidden="true">
-                <span>BOOKVERSE<br>LECTURA DESTACADA</span>
-                <strong>El nombre<br>del viento</strong>
-                <small>Patrick Rothfuss</small>
-                <i></i>
-            </div>
-            <div class="detalles-destacado">
-                <p class="rotulo-inicio">Una historia para perderse</p>
-                <h2 id="titulo-destacado-inicio">El nombre del viento</h2>
-                <p class="autor-destacado">Patrick Rothfuss <span>·</span> Fantasía épica</p>
-                <p class="descripcion-destacado">Magia, música y leyendas se entrelazan en una aventura inolvidable. Una lectura ideal para quienes disfrutan de los mundos llenos de misterio.</p>
-                <a class="enlace-destacado-inicio" href="book.php">Descubrir el libro <span aria-hidden="true"></span></a>
-            </div>
-        </section>
     </main>
 
     <footer class="pie-inicio">
