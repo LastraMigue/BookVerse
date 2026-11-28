@@ -17,8 +17,19 @@ $haySesion = isset($_SESSION['usuario']);
                 <li class="nav-item"><a class="nav-link" href="FormularioLibro.php">Proponer un libro</a></li>
                 <li class="nav-item"><a class="nav-link" href="MisListas.php">Mis listas</a></li>
                 <li class="nav-item"><a class="nav-link" href="IniciarSesion.php">Iniciar sesión</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ajustes</a>
+                    <ul class="dropdown-menu dropdown-menu-end menu-ajustes">
+                        <li>
+                            <button class="dropdown-item boton-tema" id="boton-tema" type="button" aria-label="Cambiar modo de color">
+                                <span class="texto-tema">Modo Oscuro</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
 </header>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>

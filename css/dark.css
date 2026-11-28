@@ -1,0 +1,373 @@
+body.modo-oscuro
+{
+    color-scheme: dark;
+    background: #1b1714;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-inicio,
+body.modo-oscuro.pagina-catalogo,
+body.modo-oscuro.pagina-formulario,
+body.modo-oscuro.pagina-listas,
+body.modo-oscuro.pagina-administracion,
+body.modo-oscuro.pagina-acceso
+{
+    background: #1b1714;
+    color: #f3e9dc;
+}
+body.modo-oscuro .barra-inicio
+{
+    border-bottom-color: #d6a34d;
+    background: #241c17;
+}
+body.modo-oscuro .barra-inicio .menu-ajustes
+{
+    border-color: #4a392c;
+    background: #29211b;
+}
+body.modo-oscuro .barra-inicio .menu-ajustes .boton-tema
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro .barra-inicio .menu-ajustes .icono-tema
+{
+    color: #d6a34d;
+}
+body.modo-oscuro .barra-inicio .menu-ajustes .boton-tema:hover,
+body.modo-oscuro .barra-inicio .menu-ajustes .boton-tema:focus-visible
+{
+    background: #493725;
+    color: #f3e9dc;
+}
+body.modo-oscuro .barra-inicio .enlaces-superiores a:hover,
+body.modo-oscuro .barra-inicio .enlaces-superiores a[aria-current="page"],
+body.modo-oscuro .barra-inicio .enlaces-superiores .boton-tema:hover
+{
+    border-color: #d6a34d;
+    background: #d6a34d;
+    color: #241a10;
+}
+body.modo-oscuro .barra-inicio .enlaces-superiores a:focus-visible,
+body.modo-oscuro .barra-inicio .enlaces-superiores .boton-tema:focus-visible,
+body.modo-oscuro .barra-inicio .navbar-toggler:focus
+{
+    outline-color: #d6a34d;
+}
+body.modo-oscuro.pagina-catalogo-principal .panel-catalogo,
+body.modo-oscuro.pagina-listas .panel-catalogo,
+body.modo-oscuro.pagina-administracion .panel-administracion,
+body.modo-oscuro.pagina-formulario .panel-formulario,
+body.modo-oscuro .marco-acceso,
+body.modo-oscuro .tarjeta-lista,
+body.modo-oscuro .tarjeta-moderacion,
+body.modo-oscuro .tarjeta-descubre
+{
+    border-color: #4a392c;
+    background: #29211b;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-catalogo-principal .navegacion-catalogo,
+body.modo-oscuro.pagina-listas .navegacion-catalogo,
+body.modo-oscuro .barra-lateral-administracion,
+body.modo-oscuro .barra-lateral-catalogo,
+body.modo-oscuro .barra-lateral-biblioteca,
+body.modo-oscuro .barra-lateral-detalle
+{
+    border-color: #4a392c;
+    background: #362a21;
+}
+body.modo-oscuro .presentacion-catalogo,
+body.modo-oscuro .panel-bienvenida-acceso
+{
+    background:
+        radial-gradient(ellipse at 87% 35%, rgba(214, 163, 77, .14), transparent 35%),
+        linear-gradient(120deg, #36271d, #241c17);
+}
+body.modo-oscuro.pagina-detalle .cuerpo-detalle
+{
+    background: #29211b;
+}
+body.modo-oscuro.pagina-inicio .seccion-descubre
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-inicio .tarjeta-descubre:hover,
+body.modo-oscuro .tarjeta-lista:hover,
+body.modo-oscuro .tarjeta-moderacion:hover
+{
+    border-color: #d6a34d;
+}
+body.modo-oscuro.pagina-inicio .encabezado-seccion-inicio h2,
+body.modo-oscuro.pagina-inicio .tarjeta-descubre h3,
+body.modo-oscuro.pagina-catalogo-principal .encabezado-resultados h2,
+body.modo-oscuro.pagina-catalogo-principal .datos-libro h3,
+body.modo-oscuro.pagina-listas .encabezado-listas h1,
+body.modo-oscuro.pagina-listas .encabezado-tarjeta-lista h2,
+body.modo-oscuro.pagina-administracion .encabezado-moderacion h1,
+body.modo-oscuro.pagina-administracion .encabezado-lista-moderacion h2,
+body.modo-oscuro.pagina-administracion .titulo-y-estado h3,
+body.modo-oscuro.pagina-formulario .encabezado-formulario h1,
+body.modo-oscuro.pagina-formulario .formulario-libro h2,
+body.modo-oscuro .tarjeta-acceso h2,
+body.modo-oscuro .informacion-resumen h1,
+body.modo-oscuro .sinopsis h2,
+body.modo-oscuro .barra-lateral-detalle h2,
+body.modo-oscuro .encabezado-resenas h2
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-inicio .rotulo-inicio,
+body.modo-oscuro.pagina-catalogo-principal .encabezado-resultados p,
+body.modo-oscuro.pagina-listas .rotulo-listas,
+body.modo-oscuro.pagina-listas .rotulo-biblioteca,
+body.modo-oscuro.pagina-administracion .rotulo-listas,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion .rotulo-biblioteca,
+body.modo-oscuro.pagina-formulario .encabezado-formulario p,
+body.modo-oscuro.pagina-formulario .recomendacion strong
+{
+    color: #d6a34d;
+}
+body.modo-oscuro.pagina-administracion .cuenta-pendientes strong,
+body.modo-oscuro.pagina-listas .resumen-listas strong
+{
+    color: #d6a34d;
+}
+body.modo-oscuro.pagina-inicio .encabezado-seccion-inicio > p:last-child,
+body.modo-oscuro.pagina-inicio .tarjeta-descubre p,
+body.modo-oscuro.pagina-inicio .pie-inicio p,
+body.modo-oscuro.pagina-catalogo-principal .encabezado-resultados small,
+body.modo-oscuro.pagina-catalogo-principal .autor-libro,
+body.modo-oscuro.pagina-catalogo-principal .descripcion-libro,
+body.modo-oscuro.pagina-listas .descripcion-biblioteca,
+body.modo-oscuro.pagina-listas .encabezado-listas small,
+body.modo-oscuro.pagina-listas .encabezado-tarjeta-lista p,
+body.modo-oscuro.pagina-listas .datos-miniatura small,
+body.modo-oscuro.pagina-administracion .descripcion-moderacion,
+body.modo-oscuro.pagina-administracion .nota-moderacion,
+body.modo-oscuro.pagina-administracion .detalle-moderacion,
+body.modo-oscuro.pagina-administracion .autor-moderacion,
+body.modo-oscuro.pagina-formulario .encabezado-formulario small,
+body.modo-oscuro.pagina-formulario .contador-caracteres,
+body.modo-oscuro .tarjeta-acceso .introduccion-acceso,
+body.modo-oscuro .sinopsis p,
+body.modo-oscuro .barra-lateral-detalle dt,
+body.modo-oscuro .resenas article p
+{
+    color: #c2b19e;
+}
+body.modo-oscuro.pagina-inicio .tarjeta-descubre a,
+body.modo-oscuro.pagina-listas .invitacion-listas a,
+body.modo-oscuro.pagina-listas .aviso-listas > a,
+body.modo-oscuro.pagina-acceso .enlace-registro a,
+body.modo-oscuro.pagina-detalle .encabezado-resenas a
+{
+    color: #d6a34d;
+}
+body.modo-oscuro.pagina-inicio .tarjeta-descubre a:hover,
+body.modo-oscuro.pagina-listas .invitacion-listas a:hover,
+body.modo-oscuro.pagina-listas .aviso-listas > a:hover,
+body.modo-oscuro.pagina-acceso .enlace-registro a:hover,
+body.modo-oscuro.pagina-detalle .encabezado-resenas a:hover
+{
+    color: #edc879;
+}
+body.modo-oscuro.pagina-catalogo-principal .tarjeta-libro,
+body.modo-oscuro.pagina-administracion .cuenta-pendientes,
+body.modo-oscuro.pagina-listas .resumen-listas,
+body.modo-oscuro.pagina-listas .aviso-listas,
+body.modo-oscuro.pagina-listas .invitacion-listas,
+body.modo-oscuro.pagina-detalle .barra-lateral-detalle,
+body.modo-oscuro.pagina-detalle .cuerpo-detalle
+{
+    border-color: #4a392c;
+    background-color: #362a21;
+}
+body.modo-oscuro.pagina-catalogo-principal .datos-libro,
+body.modo-oscuro.pagina-listas .tarjeta-lista,
+body.modo-oscuro.pagina-administracion .tarjeta-moderacion,
+body.modo-oscuro.pagina-formulario .contenido-formulario,
+body.modo-oscuro.pagina-detalle .contenido-principal-detalle
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-catalogo-principal .datos-libro h3,
+body.modo-oscuro.pagina-listas .encabezado-tarjeta-lista h2,
+body.modo-oscuro.pagina-listas .datos-miniatura strong,
+body.modo-oscuro.pagina-listas .invitacion-listas p,
+body.modo-oscuro.pagina-listas .aviso-listas h2,
+body.modo-oscuro.pagina-administracion .etiqueta-panel-admin,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion h2,
+body.modo-oscuro.pagina-administracion .encabezado-lista-moderacion p,
+body.modo-oscuro.pagina-administracion .detalle-moderacion strong,
+body.modo-oscuro.pagina-detalle .informacion-resumen h1,
+body.modo-oscuro.pagina-detalle .barra-lateral-detalle dd,
+body.modo-oscuro.pagina-detalle .resenas article strong
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-catalogo-principal .enlaces-generos a,
+body.modo-oscuro.pagina-listas .barra-lateral-biblioteca nav a,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion nav a,
+body.modo-oscuro.pagina-administracion .autor-moderacion,
+body.modo-oscuro.pagina-administracion .descripcion-libro-moderacion,
+body.modo-oscuro.pagina-formulario .etiqueta-formulario,
+body.modo-oscuro.pagina-formulario .recomendacion p,
+body.modo-oscuro.pagina-detalle .migas-de-pan,
+body.modo-oscuro.pagina-detalle .migas-de-pan a,
+body.modo-oscuro.pagina-detalle .dato-valoraciones,
+body.modo-oscuro.pagina-detalle .sinopsis p,
+body.modo-oscuro.pagina-detalle .resenas article p,
+body.modo-oscuro.pagina-acceso .formulario-acceso > .etiqueta-acceso,
+body.modo-oscuro.pagina-acceso .opcion-recordar
+{
+    color: #c2b19e;
+}
+body.modo-oscuro.pagina-catalogo-principal .enlaces-generos a:hover,
+body.modo-oscuro.pagina-catalogo-principal .enlaces-generos a:focus-visible,
+body.modo-oscuro.pagina-listas .barra-lateral-biblioteca nav a:hover,
+body.modo-oscuro.pagina-listas .barra-lateral-biblioteca nav a:focus-visible,
+body.modo-oscuro.pagina-listas .barra-lateral-biblioteca nav a.seleccionado,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion nav a:hover,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion nav a.seleccionado
+{
+    border-color: #4a392c;
+    background: #493725;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-catalogo-principal .tarjeta-libro,
+body.modo-oscuro.pagina-listas .tarjeta-lista,
+body.modo-oscuro.pagina-administracion .tarjeta-moderacion
+{
+    border-color: #4a392c;
+    background: #29211b;
+}
+body.modo-oscuro.pagina-catalogo-principal .portada-libro
+{
+    border-color: #4a392c;
+    background-color: #493725;
+}
+body.modo-oscuro.pagina-catalogo-principal .genero-libro,
+body.modo-oscuro.pagina-catalogo-principal .etiqueta-seleccion,
+body.modo-oscuro.pagina-listas .cantidad-lista,
+body.modo-oscuro.pagina-listas .resumen-listas,
+body.modo-oscuro.pagina-listas .aviso-listas,
+body.modo-oscuro.pagina-listas .invitacion-listas,
+body.modo-oscuro.pagina-administracion .cuenta-pendientes,
+body.modo-oscuro.pagina-administracion .pestanas-reportes a span,
+body.modo-oscuro.pagina-formulario .recomendacion
+{
+    border-color: #4a392c;
+    background: #3a2c21;
+    color: #c2b19e;
+}
+body.modo-oscuro.pagina-listas .libro-lista,
+body.modo-oscuro.pagina-administracion .pestanas-reportes,
+body.modo-oscuro.pagina-administracion .barra-lateral-administracion,
+body.modo-oscuro.pagina-detalle .sinopsis,
+body.modo-oscuro.pagina-detalle .seccion-valoracion,
+body.modo-oscuro.pagina-detalle .resenas article
+{
+    border-color: #4a392c;
+}
+body.modo-oscuro.pagina-administracion .estado-pendiente
+{
+    border-color: #755a32;
+    background: #49391f;
+    color: #f0c875;
+}
+body.modo-oscuro.pagina-administracion .estado-publicado
+{
+    border-color: #45694d;
+    background: #263d2c;
+    color: #b6d9bb;
+}
+body.modo-oscuro.pagina-formulario .campo-texto,
+body.modo-oscuro.pagina-formulario .formulario-libro textarea,
+body.modo-oscuro.pagina-acceso .formulario-acceso .form-control,
+body.modo-oscuro.pagina-catalogo-principal .busqueda-catalogo input,
+body.modo-oscuro.pagina-listas .busqueda-catalogo input
+{
+    border-color: #4a392c;
+    background: #211a15;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-formulario .campo-texto::placeholder,
+body.modo-oscuro.pagina-formulario .formulario-libro textarea::placeholder,
+body.modo-oscuro.pagina-acceso .formulario-acceso .form-control::placeholder,
+body.modo-oscuro.pagina-catalogo-principal .busqueda-catalogo input::placeholder,
+body.modo-oscuro.pagina-listas .busqueda-catalogo input::placeholder
+{
+    color: #a89580;
+}
+body.modo-oscuro.pagina-formulario .campo-texto:focus,
+body.modo-oscuro.pagina-formulario .formulario-libro textarea:focus,
+body.modo-oscuro.pagina-acceso .formulario-acceso .form-control:focus,
+body.modo-oscuro.pagina-catalogo-principal .busqueda-catalogo input:focus
+{
+    border-color: #d6a34d;
+    box-shadow: 0 0 0 3px rgba(214, 163, 77, .2);
+}
+body.modo-oscuro.pagina-formulario .carga-portada,
+body.modo-oscuro.pagina-formulario .boton-seleccionar-portada,
+body.modo-oscuro.pagina-detalle .boton-agregar-estanteria
+{
+    border-color: #4a392c;
+    background: #362a21;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-formulario .simbolo-carga,
+body.modo-oscuro.pagina-inicio .icono-descubre,
+body.modo-oscuro.pagina-listas .icono-aviso-listas
+{
+    background: #493725;
+    color: #d6a34d;
+}
+body.modo-oscuro.pagina-formulario .separador-formulario,
+body.modo-oscuro.pagina-formulario .acciones-formulario
+{
+    background-color: #4a392c;
+    border-color: #4a392c;
+}
+body.modo-oscuro.pagina-acceso .marco-acceso
+{
+    border-color: #4a392c;
+    background: #29211b;
+}
+body.modo-oscuro.pagina-acceso .tarjeta-acceso
+{
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-acceso .boton-acceso,
+body.modo-oscuro.pagina-listas .boton-descubrir-listas,
+body.modo-oscuro.pagina-detalle .boton-agregar-lista
+{
+    border-color: #493725;
+    background: #493725;
+    color: #f3e9dc;
+}
+body.modo-oscuro.pagina-acceso .boton-acceso:hover,
+body.modo-oscuro.pagina-listas .boton-descubrir-listas:hover,
+body.modo-oscuro.pagina-detalle .boton-agregar-lista:hover
+{
+    border-color: #5b422b;
+    background: #5b422b;
+}
+body.modo-oscuro.pagina-detalle .portada-detalle,
+body.modo-oscuro.pagina-detalle .imagen-perfil
+{
+    border-color: #4a392c;
+}
+body.modo-oscuro.pagina-detalle .barra-lateral-detalle
+{
+    border-color: #4a392c;
+    background: #362a21;
+}
+body.modo-oscuro.pagina-inicio .pie-inicio
+{
+    border-color: #4a392c;
+    background: #241c17;
+}
+body.modo-oscuro ::selection
+{
+    background: #8e642d;
+    color: #fff8eb;
+}

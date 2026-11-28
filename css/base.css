@@ -8,6 +8,7 @@
 @import url("my-lists.css");
 @import url("library-navigation.css");
 @import url("navigation-bar.css");
+@import url("dark.css");
 
 * {
     box-sizing: border-box;
